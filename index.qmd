@@ -32,8 +32,7 @@ Engineering program in Mechanical Engineering at the University
 of Alabama in Huntsville.
 
 **Author:** Joshua A. Fowler  
-**Department:** Mechanical and Aerospace Engineering  
-**Advisor:** Sarma Rani
+**Department:** Mechanical and Aerospace Engineering
 
 The numerical solver was developed from scratch to investigate
 how reconstruction and flux formulation affect solution accuracy,

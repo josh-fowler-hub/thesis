@@ -18,7 +18,7 @@
     "href": "index.html#research-background",
     "title": "High Order Roe-WENO Schemes Based on Higher-Order Central Differencing and Reconstruction",
     "section": "Research Background",
-    "text": "Research Background\nThis work was completed in 2021 for the Master of Science in Engineering program in Mechanical Engineering at the University of Alabama in Huntsville.\nAuthor: Joshua A. Fowler\nDepartment: Mechanical and Aerospace Engineering\nAdvisor: Sarma Rani\nThe numerical solver was developed from scratch to investigate how reconstruction and flux formulation affect solution accuracy, numerical diffusion, and stability."
+    "text": "Research Background\nThis work was completed in 2021 for the Master of Science in Engineering program in Mechanical Engineering at the University of Alabama in Huntsville.\nAuthor: Joshua A. Fowler\nDepartment: Mechanical and Aerospace Engineering\nThe numerical solver was developed from scratch to investigate how reconstruction and flux formulation affect solution accuracy, numerical diffusion, and stability."
   },
   {
     "objectID": "index.html#methods-investigated",
