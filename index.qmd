@@ -1,0 +1,104 @@
+---
+title: "High Order Roe-WENO Schemes Based on Higher-Order Central Differencing and Reconstruction"
+subtitle: "Master’s Thesis · Joshua A. Fowler · 2021"
+description: "An investigation of higher-order shock-capturing methods for the one-dimensional compressible Euler equations."
+---
+
+[Download the thesis PDF](downloads/thesis.pdf){.btn .btn-primary}
+[View the MATLAB implementation](https://github.com/josh-fowler-hub/HighOrderEuler-MATLAB){.btn .btn-outline-light}
+
+## Overview
+
+This thesis investigates two approaches to developing higher-order
+shock-capturing schemes based on Roe’s approximate Riemann solver.
+
+The first approach increases the order of the left and right state
+reconstruction using weighted essentially non-oscillatory (WENO)
+methods. These reconstructed states are used in both the average
+and diffusive contributions to the numerical flux.
+
+The second approach applies higher-order central differencing to
+the average-flux contribution while retaining higher-order
+reconstruction for the diffusive contribution.
+
+Both approaches are evaluated by solving the unsteady,
+one-dimensional compressible Euler equations for four
+Riemann-problem configurations.
+
+## Research Background
+
+This work was completed in 2021 for the Master of Science in
+Engineering program in Mechanical Engineering at the University
+of Alabama in Huntsville.
+
+**Author:** Joshua A. Fowler  
+**Department:** Mechanical and Aerospace Engineering  
+**Advisor:** Sarma Rani
+
+The numerical solver was developed from scratch to investigate
+how reconstruction and flux formulation affect solution accuracy,
+numerical diffusion, and stability.
+
+## Methods Investigated
+
+The thesis develops and examines:
+
+- Finite-volume discretization of the compressible Euler equations.
+- Roe’s approximate Riemann solver.
+- The Harten–Hyman entropy fix.
+- MUSCL reconstruction.
+- Third-order and fifth-order WENO reconstruction.
+- Higher-order central-differencing modifications.
+- Explicit temporal discretization, including an SSP Runge–Kutta method.
+
+## Benchmark Problems
+
+The methods are evaluated using four configurations:
+
+1. Modified Sod shock tube.
+2. Blast wave.
+3. Shock collision.
+4. Stationary contact wave.
+
+The comparisons examine how the schemes resolve shocks,
+contact discontinuities, and other high-gradient features.
+
+## Main Findings
+
+For the configurations examined, increasing the order of
+reconstruction reduced numerical diffusion and improved the
+resolution of high-gradient regions.
+
+The alternative approach using higher-order central differencing
+in the average-flux contribution produced unstable behavior and
+large oscillations in high-gradient regions for most test cases.
+
+The thesis discusses these results in the context of the
+interaction between reconstruction, numerical dissipation,
+and flux formulation.
+
+## Read the Thesis
+
+The full thesis is currently available as a PDF, including
+the mathematical development, benchmark results, figures,
+and references.
+
+[Download the complete thesis](downloads/thesis.pdf){.btn .btn-primary}
+
+## Related Software
+
+The Euler solver has been implemented independently in several
+scientific computing languages:
+
+- [MATLAB — HighOrderEuler-MATLAB](https://github.com/josh-fowler-hub/HighOrderEuler-MATLAB)
+- [C++ — HighOrderEuler-Cpp](https://github.com/josh-fowler-hub/HighOrderEuler-Cpp)
+- [Python — PyHighOrderEuler](https://github.com/josh-fowler-hub/PyHighOrderEuler)
+- [Julia — HighOrderEuler.jl](https://github.com/josh-fowler-hub/HighOrderEuler.jl)
+
+These repositories provide related implementations. Their
+current contents may differ from the software version used
+for the original thesis.
+
+---
+
+[Return to my portfolio](https://josh-fowler-hub.github.io/)

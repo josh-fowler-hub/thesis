@@ -1,0 +1,58 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "High Order Roe-WENO Schemes Based on Higher-Order Central Differencing and Reconstruction",
+    "section": "",
+    "text": "Download the thesis PDF View the MATLAB implementation"
+  },
+  {
+    "objectID": "index.html#overview",
+    "href": "index.html#overview",
+    "title": "High Order Roe-WENO Schemes Based on Higher-Order Central Differencing and Reconstruction",
+    "section": "Overview",
+    "text": "Overview\nThis thesis investigates two approaches to developing higher-order shock-capturing schemes based on Roe’s approximate Riemann solver.\nThe first approach increases the order of the left and right state reconstruction using weighted essentially non-oscillatory (WENO) methods. These reconstructed states are used in both the average and diffusive contributions to the numerical flux.\nThe second approach applies higher-order central differencing to the average-flux contribution while retaining higher-order reconstruction for the diffusive contribution.\nBoth approaches are evaluated by solving the unsteady, one-dimensional compressible Euler equations for four Riemann-problem configurations."
+  },
+  {
+    "objectID": "index.html#research-background",
+    "href": "index.html#research-background",
+    "title": "High Order Roe-WENO Schemes Based on Higher-Order Central Differencing and Reconstruction",
+    "section": "Research Background",
+    "text": "Research Background\nThis work was completed in 2021 for the Master of Science in Engineering program in Mechanical Engineering at the University of Alabama in Huntsville.\nAuthor: Joshua A. Fowler\nDepartment: Mechanical and Aerospace Engineering\nAdvisor: Sarma Rani\nThe numerical solver was developed from scratch to investigate how reconstruction and flux formulation affect solution accuracy, numerical diffusion, and stability."
+  },
+  {
+    "objectID": "index.html#methods-investigated",
+    "href": "index.html#methods-investigated",
+    "title": "High Order Roe-WENO Schemes Based on Higher-Order Central Differencing and Reconstruction",
+    "section": "Methods Investigated",
+    "text": "Methods Investigated\nThe thesis develops and examines:\n\nFinite-volume discretization of the compressible Euler equations.\nRoe’s approximate Riemann solver.\nThe Harten–Hyman entropy fix.\nMUSCL reconstruction.\nThird-order and fifth-order WENO reconstruction.\nHigher-order central-differencing modifications.\nExplicit temporal discretization, including an SSP Runge–Kutta method."
+  },
+  {
+    "objectID": "index.html#benchmark-problems",
+    "href": "index.html#benchmark-problems",
+    "title": "High Order Roe-WENO Schemes Based on Higher-Order Central Differencing and Reconstruction",
+    "section": "Benchmark Problems",
+    "text": "Benchmark Problems\nThe methods are evaluated using four configurations:\n\nModified Sod shock tube.\nBlast wave.\nShock collision.\nStationary contact wave.\n\nThe comparisons examine how the schemes resolve shocks, contact discontinuities, and other high-gradient features."
+  },
+  {
+    "objectID": "index.html#main-findings",
+    "href": "index.html#main-findings",
+    "title": "High Order Roe-WENO Schemes Based on Higher-Order Central Differencing and Reconstruction",
+    "section": "Main Findings",
+    "text": "Main Findings\nFor the configurations examined, increasing the order of reconstruction reduced numerical diffusion and improved the resolution of high-gradient regions.\nThe alternative approach using higher-order central differencing in the average-flux contribution produced unstable behavior and large oscillations in high-gradient regions for most test cases.\nThe thesis discusses these results in the context of the interaction between reconstruction, numerical dissipation, and flux formulation."
+  },
+  {
+    "objectID": "index.html#read-the-thesis",
+    "href": "index.html#read-the-thesis",
+    "title": "High Order Roe-WENO Schemes Based on Higher-Order Central Differencing and Reconstruction",
+    "section": "Read the Thesis",
+    "text": "Read the Thesis\nThe full thesis is currently available as a PDF, including the mathematical development, benchmark results, figures, and references.\nDownload the complete thesis"
+  },
+  {
+    "objectID": "index.html#related-software",
+    "href": "index.html#related-software",
+    "title": "High Order Roe-WENO Schemes Based on Higher-Order Central Differencing and Reconstruction",
+    "section": "Related Software",
+    "text": "Related Software\nThe Euler solver has been implemented independently in several scientific computing languages:\n\nMATLAB — HighOrderEuler-MATLAB\nC++ — HighOrderEuler-Cpp\nPython — PyHighOrderEuler\nJulia — HighOrderEuler.jl\n\nThese repositories provide related implementations. Their current contents may differ from the software version used for the original thesis.\n\nReturn to my portfolio"
+  }
+]

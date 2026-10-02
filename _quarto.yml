@@ -1,0 +1,43 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - index.qmd
+  resources:
+    - downloads/thesis.pdf
+
+website:
+  title: "Josh Fowler | Thesis"
+  site-url: https://josh-fowler-hub.github.io/thesis/
+  search: true
+
+  navbar:
+    left:
+      - href: index.qmd
+        text: Thesis
+      - href: https://josh-fowler-hub.github.io/
+        text: Portfolio
+      - href: https://josh-fowler-hub.github.io/daily-learning/
+        text: Daily Learning
+    right:
+      - icon: github
+        href: https://github.com/josh-fowler-hub/thesis
+        aria-label: Thesis repository
+
+  page-footer:
+    left: "Josh Fowler · Computational Engineering"
+    right:
+      - text: Portfolio
+        href: https://josh-fowler-hub.github.io/
+
+format:
+  html:
+    theme:
+      - darkly
+      - titan.scss
+    toc: true
+    toc-title: "On this page"
+    title-block-banner: true
+
+execute:
+  enabled: false
