@@ -1,0 +1,22 @@
+\chapter*{Abstract}
+% the \makeabstract command creates the top portion of the abstract
+% page ... must be issued before the abstract content
+\makeabstract
+
+%%%%%%%%%%% Your Abstract Text Goes after Here %%%%%%%%%%%%%%%%%%%%%%%
+Solving partial differential equations (PDE) using the Finite Volume Method (FVM) requires calculating the cell face fluxes using the cell-centered variables. To calculate the fluxes, distinct left and right states at a cell face are reconstructed from the cell-centered variables and their gradients. The discontinuity in the left and right states at a cell face is a well-known problem when numerically solving PDEs using the FVM. The solution of hyperbolic PDEs allow for discontinuities and high-gradient regions, and numerical schemes for solving hyperbolic PDEs must capture these when they arise. Riemann solvers are a class of methods used to capture discontinuities by solving the Riemann problem comprising the left and right states. Widely used Riemann solvers include the spatially first-order Roe's approximate Riemann solver and the Roe-MUSCL scheme, which is a second-order extension of Roe's approximate Riemann solver.  This thesis aims to develop and investigate higher order shock-capturing schemes by combining Roe's approximate Riemann solver with weighted essentially non-oscillatory (WENO) schemes.
+
+Roe's flux at a cell face encompasses two flux terms --- an average flux that may be interpreted as the central differencing of fluxes and a diffusive flux that enables the scheme to be total variation diminishing (TVD). This study considered two approaches to achieve a higher order form of Roe's scheme. The first approach involved increasing the order of the reconstruction by using higher order WENO methods to reconstruct the left and right states, which are then used both in the average and diffusive fluxes. The second approach involved using a higher order central differencing based on cell-centered for the average flux and higher order reconstructed variables to calculate the diffusive flux. The unsteady, one-dimensional Euler equations were solved using the two approaches in four configurations of Riemann problems. The results indicate that the second approach results in unstable schemes with large oscillations in high-gradient regions for most test cases, while the first approach provides much less diffusion leading to better capturing of these high-gradient regions.
+
+
+%This is my Abstract.  This page is tough to make in \LaTeX, and will
+%require some ``tweaking'' by the user (that's you).  You'll have to
+%go into \verb|uahdis.sty| and manually edit the Abstract Page to
+%properly reflect your title and School/Department.  Sorry, there was
+%really no way around it.
+
+%%%%%%%%%%%%% Your Abstract Text should be before Here %%%%%%%%%%%%%%
+
+% the abstractsig command creates the signature spaces after the
+% abstract, and therefore, must be issued after the abstract.
+\abstractsig

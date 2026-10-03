@@ -1,0 +1,550 @@
+\chapter{Riemann Solvers}\label{ch:NumericalMethods}
+\section{Finite Volume Method}
+
+The method used to discretize the one-dimensional Euler equations is the Finite Volume Method. The Finite Volume Method approximates the value at the cell centers by using the flux across the cell faces. Integrating \equationref{eqn:LinEuler} over space
+\begin{equation}
+	\int_V \boldsymbol{U}_t dV + \int_V \boldsymbol{F}_xdV = \boldsymbol{0}
+\end{equation}
+and using the Gauss-Divergence Theorem the Volume integral over the flux term can be converted to a surface integral.
+\begin{equation}
+	\int_V \left(\nabla \boldsymbol{\cdot} \boldsymbol{F}\right) dV = \int_S \boldsymbol{F} \boldsymbol{\cdot} d\hat{A}
+\end{equation}
+Converting the integral of the flux vector, $\boldsymbol{F}$, into a surface integral gives the following
+\begin{equation}
+	\int_V \boldsymbol{U}_t\,dV + \int_S  \boldsymbol{F} \boldsymbol{\cdot} \boldsymbol{\hat{n}}\,dS = \boldsymbol{0}
+\end{equation}
+The surface integral can then be represented as a sum over the surface area of the faces of a cell denoted as seen in \figureref{fig:CellSetUp}. In one dimension this reduces to
+\begin{equation}\label{eqn:spatiallydiscretized}
+	\boldsymbol{U}_t \Delta x + \left[\boldsymbol{F}_{i+\frac{1}{2}} - \boldsymbol{F}_{i-\frac{1}{2}}\right] = \boldsymbol{0}
+\end{equation}
+The spatially discretized equation can then be represented as
+\begin{equation}\label{eqn:spatiallydiscretized2}
+	\boldsymbol{U}_t = - \frac{1}{\Delta x} \left[\boldsymbol{F}_{i+\frac{1}{2}} - \boldsymbol{F}_{i-\frac{1}{2}}\right]
+\end{equation}
+\equationref{eqn:spatiallydiscretized2} can then be solved by finding the value of the numerical flux and an appropriate time discretization.
+\begin{figure}
+	\centering
+	\begin{tikzpicture}[scale=1]
+		\draw[thick,->] (-3,0) -- (8,0)node[anchor=west]{$x$};
+		\draw[thin,dashed] (1,-1) -- (1,1);
+		\draw[thin,dashed] (4,-1) -- (4,1);
+		\draw[thin,dashed] (7,-1) -- (7,1);
+		\draw[thin,dashed] (-2,-1) -- (-2,1);
+		\node[circle,draw=black, fill=white, inner sep=0pt,minimum size=5pt] (b) at (2.5,0) {};
+		\node[circle,draw=black, fill=white, inner sep=0pt,minimum size=5pt] (b) at (5.5,0) {};
+		\node[circle,draw=black, fill=white, inner sep=0pt,minimum size=5pt] (b) at (-0.5,0) {};
+		\node at (2.5,-0.5) {$i$};
+		\node at (5.5,-0.5) {$i+1$};
+		\node at (-0.5,-0.5) {$i-1$};
+		\node at (4,-1.5) {$i+\frac{1}{2}$};
+		\node at (1,-1.5) {$i-\frac{1}{2}$};
+		\node at (-2,-1.5) {$i-\frac{3}{2}$};
+		\node at (7,-1.5) {$i+\frac{3}{2}$};
+		\draw[thick,->] (5,1.5) to [out=270,in=30] (4,1.1);
+		\node at (5,1.75) {Cell Face};
+		\node at (2.5,1.75) {Cell Center};
+		\draw[thick,->] (2.5,1.5) to [out=270,in=90] (2.5,0.15);
+	\end{tikzpicture}
+	\caption[Cell Configuration for a one-dimensional grid.]{Cell Configuration for a one-dimensional grid.}
+	\label{fig:CellSetUp}
+\end{figure}
+\section{Roe's Approximate Riemann Solver}
+
+Roe \cite{ROE1997250} presented an approximate Riemann solver that uses an averaged Jacobian matrix, the Roe matrix $\tilde{\boldsymbol{A}}$, from which $\tilde{\lambda}_i$, $\tilde{\boldsymbol{K}}^{(i)}$, and $\tilde{\alpha}_i$ of \equationref{eqn:NumericalFluxAverage} can be found directly. This direct approximation to the flux function, $\boldsymbol{F}_{i+\frac{1}{2}}$, avoided the pressure iterations of Godunov's method, decreasing the computation time. Roe's breakthrough in constructing $\tilde{\boldsymbol{A}}$ was the introduction of a parameter vector, $\boldsymbol{Q}$, such that both $\boldsymbol{U}$ and $\boldsymbol{F}\left(\boldsymbol{U}\right)$ could be expressed in terms of $\boldsymbol{Q}$ \cite{toro2013riemann}. Roe starts by choosing the parameter vector, $\boldsymbol{Q}$ as
+\begin{equation}
+	\boldsymbol{Q} = \begin{bmatrix}
+		q_1\\ q_2\\ q_3
+	\end{bmatrix} = \sqrt{\rho} \begin{bmatrix}
+		1\\ u\\ H
+	\end{bmatrix}
+\end{equation}
+The differences in the data of $\boldsymbol{Q}$ are now expressed in terms of an averaged vector, $\tilde{\boldsymbol{Q}}$, which is found by a simple arithmetic average of the left and right states of $\boldsymbol{Q}$.
+\begin{equation}
+	\tilde{\boldsymbol{Q}} = \frac{1}{2} \left(\boldsymbol{Q}_L + \boldsymbol{Q}_R\right)
+\end{equation}
+Two Matrices are found, $\tilde{\boldsymbol{B}}$ and $\tilde{\boldsymbol{C}}$, so that the differences in the data, $\Delta \boldsymbol{U}$ and $\Delta \boldsymbol{F}$, can be expressed as
+\begin{equation}
+	\Delta \boldsymbol{U} = \tilde{\boldsymbol{B}} \Delta \boldsymbol{Q} ; \,\,\,\, \Delta \boldsymbol{F} = \tilde{\boldsymbol{C}} \Delta \boldsymbol{Q}
+\end{equation}
+$\tilde{\boldsymbol{B}}$ and $\tilde{\boldsymbol{C}}$ have the following form
+\begin{equation}
+	\tilde{\boldsymbol{B}} = \begin{bmatrix}
+		2\tilde{q}_1 & 0 & 0\\
+		\tilde{q}_2 & \tilde{q}_1 & 0\\
+		\frac{\tilde{q}_3}{\gamma} & \frac{\gamma-1}{\gamma}\tilde{q}_2 & \frac{\tilde{q}_1}{\gamma}
+	\end{bmatrix}
+\end{equation}
+\begin{equation}
+	\tilde{\boldsymbol{C}} = \begin{bmatrix}
+		\tilde{q}_2 & \tilde{q}_1 & 0\\
+		\frac{\gamma-1}{\gamma}\tilde{q}_3 & \frac{\gamma-1}{\gamma}\tilde{q}_2 & \frac{\gamma-1}{\gamma}\tilde{q}_1\\
+		0 & \tilde{q}_3 & \tilde{q}_2
+	\end{bmatrix}
+\end{equation}
+The Roe matrix, $\tilde{\boldsymbol{A}}$, can then be expressed as
+\begin{equation}
+	\tilde{\boldsymbol{A}} = \tilde{\boldsymbol{B}} \tilde{\boldsymbol{C}}^{-1}
+\end{equation}
+Which has the eigenvalues
+\begin{equation}
+	\tilde{\lambda}_1 = \tilde{u} - \tilde{a},\,\,\,\,\tilde{\lambda}_2 = \tilde{u},\,\,\,\,\tilde{\lambda}_3 = \tilde{u} + \tilde{a}
+\end{equation}
+and the corresponding right eigenvectors
+\begin{equation}\label{eq:eigenvectors}
+	\tilde{\boldsymbol{K}}^{\left(1\right)} = \begin{bmatrix}
+		1 \\ \tilde{u} - \tilde{a} \\ \tilde{H} - \tilde{u} \tilde{a}
+	\end{bmatrix},\,\,\,\,
+	\tilde{\boldsymbol{K}}^{\left(2\right)} = \begin{bmatrix}
+		1 \\ \tilde{u} \\ \frac{1}{2} \tilde{u}^2
+	\end{bmatrix},\,\,\,\,
+	\tilde{\boldsymbol{K}}^{\left(3\right)} = \begin{bmatrix}
+		1 \\ \tilde{u} + \tilde{a} \\ \tilde{H} + \tilde{u} \tilde{a}
+	\end{bmatrix}
+\end{equation}
+The Roe averaged variables, $\tilde{u}$, $\tilde{H}$, and $\tilde{a}$, are calculated as follows
+\begin{equation}
+	\tilde{u} = \frac{\sqrt{\rho_L} u_L + \sqrt{\rho_R} u_R}{\sqrt{\rho_L} + \sqrt{\rho_R}}
+\end{equation}
+\begin{equation}
+	\tilde{H} = \frac{\sqrt{\rho_L} H_L + \sqrt{\rho_R} H_R}{\sqrt{\rho_L} + \sqrt{\rho_R}}
+\end{equation}
+\begin{equation}
+	\tilde{a} = \left[\left(\gamma - 1\right) \left(\tilde{H} - \frac{1}{2} \tilde{u}^2\right)\right]^{\frac{1}{2}}
+\end{equation}
+Using the definition of the data difference from \equationref{eqn:datadifference} a set of equations is obtained, that when solved allow the computation of the numerical flux.
+\begin{equation}
+	\tilde{\alpha}_1 + \tilde{\alpha}_2 + \tilde{\alpha}_3 = \Delta u_1
+\end{equation}
+\begin{equation}
+	\tilde{\alpha}_1 \left(\tilde{u} - \tilde{a}\right) + \tilde{\alpha}_2 \tilde{u} + \tilde{\alpha}_3 \left(\tilde{u} + \tilde{a}\right) = \Delta u_2
+\end{equation}
+\begin{equation}
+	\tilde{\alpha}_1 \left(\tilde{H} - \tilde{u}\tilde{a}\right) + \frac{1}{2} u^2 \tilde{\alpha}_2 + \tilde{\alpha}_3 \left(\tilde{H} + \tilde{u}\tilde{a}\right) = \Delta u_3
+\end{equation}
+Solving these equations for the wave strengths, it can be found that
+\begin{equation}
+	\tilde{\alpha}_2 = \frac{\gamma - 1}{\tilde{a}^2} \left[\Delta u_1 \left(\tilde{H} - \tilde{u}^2\right)  + \tilde{u} \Delta u_2 - \Delta u_3\right]
+\end{equation}
+\begin{equation}
+	\tilde{\alpha}_1 = \frac{1}{2 \tilde{a}} \left[\Delta u_1\left(\tilde{u} + \tilde{a}\right) - \Delta u_2 - \tilde{a}\tilde{\alpha}_2\right]
+\end{equation}
+\begin{equation}\label{eq:wavestrength3}
+	\tilde{\alpha}_3 = \Delta u_1 - \left(\tilde{\alpha}_1 + \tilde{\alpha}_2\right)
+\end{equation}
+So that the numerical flux may be calculated as described in \equationref{eqn:NumericalFluxAverage}.
+
+The Roe numerical flux can also be expressed in terms of the Roe matrix $\boldsymbol{\tilde{A}}$. Letting $\boldsymbol{\tilde{\Lambda}}$ be the matrix of eigenvalues of the Roe matrix
+\begin{equation}
+	\boldsymbol{\tilde{\Lambda}} = \begin{bmatrix}
+		\tilde{u} - \tilde{a} & 0 & 0 \\
+		0 & \tilde{u} & 0 \\
+		0 & 0 & \tilde{u} + \tilde{a}
+	\end{bmatrix}
+\end{equation}
+and $\boldsymbol{\tilde{K}}$ be the matrix of right eigenvectors
+\begin{equation}
+	\boldsymbol{\tilde{K}} = \begin{bmatrix}
+		1 & 1 & 1 \\
+		\tilde{u}-\tilde{a} & \tilde{u} & \tilde{u}+\tilde{a} \\
+		\tilde{H}-\tilde{u}\tilde{a} & \frac{1}{2} \tilde{u}^2 & \tilde{H}+\tilde{u}\tilde{a}
+	\end{bmatrix}
+\end{equation}
+then the matrix $|\boldsymbol{\tilde{A}}|$ is given by
+\begin{equation}
+	|\boldsymbol{\tilde{A}}| = \boldsymbol{\tilde{K}} |\boldsymbol{\tilde{\Lambda}}| \boldsymbol{\tilde{K}}^{-1}
+\end{equation}
+then the Roe flux in matrix form is
+\begin{equation}
+	\boldsymbol{\tilde{F}}_{i+\frac{1}{2}} = \frac{1}{2}\left(\boldsymbol{F}_L + \boldsymbol{F}_R\right) - \frac{1}{2} |\boldsymbol{\tilde{A}}| \left(\boldsymbol{U}_R - \boldsymbol{U}_L\right)
+\end{equation}
+%\begin{equation}
+%	\boldsymbol{\tilde{F}}_{i+\frac{1}{2}} = \frac{1}{2}\left(\boldsymbol{F}_L + \boldsymbol{F}_R\right)_{i+\frac{1}{2}} - \frac{1}{2} |\boldsymbol{\tilde{A}}|_{i+\frac{1}{2}} \left(\boldsymbol{U}_R - \boldsymbol{U}_L\right)_{i+\frac{1}{2}}
+%\end{equation}
+%\begin{equation}
+%\boldsymbol{\tilde{F}}_{i-\frac{1}{2}} = \frac{1}{2}\left(\boldsymbol{F}_L + \boldsymbol{F}_R\right)_{i-\frac{1}{2}} - \frac{1}{2} |\boldsymbol{\tilde{A}}|_{i-\frac{1}{2}} \left(\boldsymbol{U}_R - \boldsymbol{U}_L\right)_{i-\frac{1}{2}}
+%\end{equation}
+%\begin{equation}\label{eq:eigenvectors}
+%	\tilde{\boldsymbol{K}}^{\left(1\right)} = \begin{bmatrix}
+%		1 \\ \tilde{u} - \tilde{a} \\ \tilde{H} - \tilde{u} \tilde{a}
+%	\end{bmatrix},\,\,\,\,
+%	\tilde{\boldsymbol{K}}^{\left(2\right)} = \begin{bmatrix}
+%		1 \\ \tilde{u} \\ \frac{1}{2} \tilde{u}^2
+%	\end{bmatrix},\,\,\,\,
+%	\tilde{\boldsymbol{K}}^{\left(3\right)} = \begin{bmatrix}
+%		1 \\ \tilde{u} + \tilde{a} \\ \tilde{H} + \tilde{u} \tilde{a}
+%	\end{bmatrix}
+%\end{equation}
+Roe's scheme has two difficulties. Firstly, the scheme needs a correction to avoid the appearance of entropy violating shocks discussed in \sectionref{sect:EntropyFix}. Second, the scheme also fails near low-density flows. Roe's method fails near low densities because the wave speeds are underestimated and can lead to solutions that include negative pressures and densities. Einfeldt, Munz, Roe, and Sjögreen \cite{EINFELDT1991273} proved that this vacuum problem affects all linearized Riemann solvers.
+\section{Harten-Hyman Entropy Fix}\label{sect:EntropyFix}
+Roe's Approximate Riemann solver leads to the development of entropy violating shocks within rarefaction waves, sometimes called rarefaction shocks \cite{toro2013riemann}. These rarefaction shocks occur when the eigenvalues of the Jacobian matrix vanish in sonic regions \cite{Kermani}. In practical computations, the entropy violating discontinuous waves cause difficulties when the rarefaction wave is transonic \cite{toro2013riemann}. There are then have two cases where these unphysical shocks occur --- in left and right transonic rarefactions. Modifications to Roe's Riemann solver can be made to avoid these entropy violating shocks. Harten and Hyman \cite{HARTEN1983235} suggested an entropy fix that has gained widespread use. Toro's \cite{toro2013riemann} formulation of the Harten and Hyman entropy fix for the time-dependent Euler equations is discussed here.
+
+\subsection{Left Transonic Rarefaction}
+
+In the case of a left transonic rarefaction the wave speeds are calculated as follows
+\begin{equation}
+	\lambda_1^L = u_L - a_L ; \, \, \lambda_1^R = u_* - a_{*L}
+\end{equation}
+where $u_*$ and $a_*$ are calculated from $\boldsymbol{U}_{*L}$ and $\boldsymbol{U}_{*R}$ found in \sectionref{sect:AdaptiveRiemannSolver}. If
+\begin{equation}
+	\lambda_1^L < 0 < \lambda_1^R
+\end{equation}
+then the left wave is a transonic rarefaction wave and the entropy fix is enforced in the following way. The single jump
+\begin{equation}\label{eqn:SingleJump1}
+	\boldsymbol{U}_{*L} - \boldsymbol{U}_L = \tilde{\alpha}_1 \tilde{\boldsymbol{K}}^{(1)}
+\end{equation}
+is a wave traveling with a speed $\tilde{\lambda}_1$ and is split into two smaller data jumps $\boldsymbol{U}_{SL} - \boldsymbol{U}_L$ and $\boldsymbol{U}_{*L} - \boldsymbol{U}_{SL}$. The jumps are traveling at speeds $\lambda_1^L$ and $\lambda_1^R$ respectively and $\boldsymbol{U}_{SL}$ is a transonic state that is to be found. Using \equationref{eq:IntegralForm} the following is found
+\begin{equation}\label{eq:IntegralEvaluated}
+	\lambda_1^R \left(\boldsymbol{U}_{SL} - \boldsymbol{U}_{*L}\right) + \lambda_1^L \left(\boldsymbol{U}_{L} - \boldsymbol{U}_{SL}\right) = \tilde{\lambda}_1 \left(\boldsymbol{U}_{L} - \boldsymbol{U}_{*L}\right)
+\end{equation}
+$\boldsymbol{U}_{SL}$ can then be found by
+\begin{equation}
+	\boldsymbol{U}_{SL} = \frac{ \left( \tilde{\lambda}_1 - \lambda_1^L \right) \boldsymbol{U}_L + \left( \tilde{\lambda}_1 - \lambda_1^R \right) \boldsymbol{U}_{*L}}{\lambda_1^R - \lambda_1^L}
+\end{equation}
+Using the one-sided Roe flux from \equationref{eqn:Fsum1} and applying to \equationref{eq:IntegralEvaluated}, the data jump $\boldsymbol{U}_{SL} - \boldsymbol{U}_L$ can be expressed as
+\begin{equation}
+	\boldsymbol{U}_{SL} - \boldsymbol{U}_L = \frac{\left( \lambda_1^R - \tilde{\lambda}_1 \right)}{\left(\lambda_1^R - \lambda_1^L\right)} \left(\boldsymbol{U}_{*L} - \boldsymbol{U}_L\right)
+\end{equation}
+The Roe approximation from \equationref{eqn:SingleJump1} leads to the flux jump $\left(\Delta \boldsymbol{F}\right)_1^L$ across the wave of speed $\lambda_1^L$ to be
+\begin{equation}
+	\left(\Delta \boldsymbol{F}\right)_1^L = \lambda_1^L \left(\frac{\lambda_1^R - \tilde{\lambda}_1}{\lambda_1^R - \lambda_1^L}\right) \tilde{\alpha}_1 \tilde{\boldsymbol{K}}^{(1)}
+\end{equation}
+A new wave speed, $\bar{\lambda}_1$, can then be defined as
+\begin{equation}
+	\bar{\lambda}_1 = \lambda_1^L \left(\frac{\lambda_1^R - \tilde{\lambda}_1}{\lambda_1^R - \lambda_1^L}\right)
+\end{equation}
+so that the intercell flux from \equationref{eqn:Fsum1} is now
+\begin{equation}\label{eq:Fsum1Entropy}
+	\boldsymbol{F}_{i+\frac{1}{2}} = \boldsymbol{F}_L + \bar{\lambda}_1 \tilde{\alpha}_1 \tilde{\boldsymbol{K}}^{(1)}
+\end{equation}
+\subsection{Right Transonic Rarefaction}
+In the case of a right transonic rarefaction we can define two new wave speeds in the same manner as the left case.
+\begin{equation}
+	\lambda_3^L = u_* + a_{*R} ; \, \, \lambda_3^R = u_R + a_R
+\end{equation}
+If
+\begin{equation}
+	\lambda_3^L < 0 < \lambda_3^R
+\end{equation}
+then the right wave is a transonic rarefaction wave and the transonic state $\boldsymbol{U}_{SR}$ between the waves of speeds $\lambda_3^L$ and $\lambda_3^R$ is given as
+\begin{equation}
+	\boldsymbol{U}_{SR} = \frac{ \left( \lambda_3^R - \tilde{\lambda_3} \right) \boldsymbol{U}_R + \left( \tilde{\lambda}_3 - \lambda_3^L \right) \boldsymbol{U}_{*R}}{\lambda_3^R - \lambda_3^L}
+\end{equation}
+A new wave speed, $\bar{\lambda}_3$, can then be defined as
+\begin{equation}
+	\bar{\lambda}_3 = \lambda_3^R \left(\frac{\tilde{\lambda}_3 - \lambda_3^R}{\lambda_3^R - \lambda_3^L}\right)
+\end{equation}
+Using the one-sided Roe flux from \equationref{eqn:Fsum2} and applying this new wave speed we have
+\begin{equation}\label{eq:Fsum2Entropy}
+	\boldsymbol{F}_{i+\frac{1}{2}} = \boldsymbol{F}_R - \bar{\lambda}_3 \tilde{\alpha}_1 \tilde{\boldsymbol{K}}^{(3)}
+\end{equation}
+Taking the simple average of \equationref{eq:Fsum1Entropy} and \equationref{eq:Fsum2Entropy} we again arrive at \equationref{eqn:NumericalFluxAverage} as the centered formula for the Roe flux.
+
+\section{Adaptive Riemann Solver}\label{sect:AdaptiveRiemannSolver}
+
+In order to find the speeds $u_*$, $a_{*L}$, and $a_{*R}$, $\boldsymbol{U}_{*R}$ and $\boldsymbol{U}_{*L}$ need to be found. Toro \cite{toro2013riemann} provides an adaptive Riemann solver outlined here that has been modified to include an iterative scheme to find the star states. The adaptive Riemann solver starts by defining a switching parameter $Q_{user}$ and a switching condition parameter $Q$ defined as
+\begin{equation}
+	Q = \frac{p_{max}}{p_{min}}
+\end{equation}
+and the $p_*$ state taken from the Primitive Variable Riemann Solver (PVRS) of \sectionref{sect:PVRS} as
+\begin{equation}
+	p_* = p_{pvrs}
+\end{equation}
+A choice of $Q_{user} = 2$ results in robust and efficient schemes that can handle most Riemann problems \cite{toro2013riemann}. If
+\begin{equation}
+	Q < Q_{user}
+\end{equation}
+and
+\begin{equation}
+	p_{min} < p_* < p_{max}
+\end{equation}
+then the PVRS is used for the star state calculations. If
+\begin{equation}
+	p_* < p_{min}
+\end{equation}
+then the Two Rarefaction Riemann Solver (TRRS) of \sectionref{sect:TRRS} is used. If none of the conditions is met then the Two Shock Riemann Solver (TSRS) of \sectionref{sect:TSRS} is used for the star state calculations. In all cases, the value of $p_*$ is an initial guess for the following Iterative Riemann Solver (IRS) using the Newton-Raphson method.
+
+\begin{equation}
+	f_k = \begin{cases}
+		\left(p_* - p\right) \sqrt{\frac{A_k}{p_* + B_k}} \,\,\,\, \textrm{if} \,\,\,\, p_* > p \,\,\,\, \left(\textrm{shock}\right)\\
+		\frac{2 a_k}{\gamma - 1} \left(\frac{p_*}{p}\right)^{\frac{\gamma - 1}{2 \gamma - 1}}\,\,\,\, \textrm{if} \,\,\,\, p_* \le p \,\,\,\, \left(\textrm{rarefaction}\right)
+	\end{cases}
+\end{equation}
+\begin{equation}
+	f^{\prime}_k = \begin{cases}
+		\sqrt{\frac{A_k}{p_* + B_k}} \left[1 - \frac{p_* - p}{ 2 \left(B_k + p\right)}\right]  \,\,\,\, \textrm{if} \,\,\,\, p_* > p \,\,\,\, \left(\textrm{shock}\right)\\
+		\frac{1}{\rho_k a_k} \left(\frac{p_*}{p}\right)^{-\frac{\gamma + 1}{2 \gamma}} \,\,\,\, \textrm{if} \,\,\,\, p_* \le p \,\,\,\, \left(\textrm{rarefaction}\right)
+	\end{cases}
+\end{equation}
+Where $A_k$, $B_k$, and $a_k$ are
+\begin{equation}
+	A_k = \frac{2}{\rho_k \left(\gamma + 1\right)}
+\end{equation}
+\begin{equation}
+	B_k = p \frac{\gamma - 1}{\gamma + 1}
+\end{equation}
+\begin{equation}
+	a_k = \sqrt{\frac{\gamma p}{\rho_k}}
+\end{equation}
+then $f$ and $f^{\prime}$ are
+\begin{equation}
+	f = f_L + f_R \,\,\,\, ; f^{\prime} = f^{\prime}_L + f^{\prime}_R
+\end{equation}
+The Newton-Raphson scheme for an iteration $n$ is then
+\begin{equation}
+	p_{*,n+1} = p_{*,n-1} - \frac{f_n}{f^{\prime}_n}
+\end{equation}
+The wave speeds can then be calculated according to the PVRS, TRRS, or TSRS. In the case where the TRRS or TSRS is used, and the wave system is a two rarefaction or two shock system, respectively, the $p_*$ equations are exact and will result in only one iteration.
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=0.5cm, minimum height=0.5cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{process} = [rectangle, minimum width=2cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, aspect=3, minimum width=1cm, minimum height=0.5cm, text centered, draw=black, fill=green!30]
+\tikzstyle{line} = [draw, -stealth, thick]
+
+
+\begin{figure}
+	\centering
+	\begin{tikzpicture}[node distance=1.5cm]
+		\node[align=center] (startblock) [startstop] {$Q = \frac{p_{max}}{p_{min}}$ \\ $p_* = p_{pvrs}$};
+		\node[align=center] (quser) [decision, below of=startblock,yshift=-1em]{$Q < Q_{user}$ \\ $p_{min} < p_* < p_{max}$};
+		\node[align=center] (PVRS) [process, below of=quser,xshift=-10em,yshift=-4.8em]{PVRS};
+		\node[align=center] (pmin) [decision, below of=quser,xshift=10em]{$p_* < p_{min}$};
+		\node[align=center] (TRRS) [process, below of=pmin,xshift=-5em]{TRRS};
+		\node[align=center] (TSRS) [process, below of=pmin,xshift=5em]{TSRS};
+		\node[align=center] (IRS) [process, below of=TRRS,xshift=-5em]{IRS};
+		\node[align=center] (wave) [startstop,below of=IRS]{Calculate Wave Speed};
+		
+		\path[line] (startblock.south) -- (quser);
+		\path[line] (quser.west) -| node[anchor=south]{\tiny True} (PVRS);
+		\path[line] (quser.east) -| node[anchor=south]{\tiny False} (pmin);
+		\path[line] (pmin.west) -| node[anchor=east]{\tiny True} (TRRS);
+		\path[line] (pmin.east) -| node[anchor=west]{\tiny False} (TSRS);
+		\path[line] (TRRS.west) -| (IRS);
+		\path[line] (TSRS.south) |- (IRS);
+		\path[line] (PVRS.south) |- (IRS);
+		\path[line] (IRS.south) -- (wave);
+%		\path[line] (roeflux.south) -- + (0,-1em) -| (AvgFlux);
+%		\path[line] (roeflux.south) -- + (0,-1em) -| (DiffFlux);
+%		\path[line] (AvgFlux.south) -- + (0,-1em) -| (Interface);
+%		\path[line] (AvgFlux.south) -- + (0,-1em) -| (CellCenter);
+%		\path[line] (DiffFlux.south) -- + (0,-1em) -| (Roe2);
+%		\path[line] (DiffFlux.south) -- + (0,-1em) -| (MUSCL2);
+%		\path[line] (DiffFlux.south) -- + (0,-1em) -| (WENO32);
+%		\path[line] (DiffFlux.south) -- + (0,-1em) -| (WENO52);
+%		\path[line] (Interface.south) -- + (0,-1em) -| (Roe1);
+%		\path[line] (Interface.south) -- + (0,-1em) -| (MUSCL1);
+%		\path[line] (Interface.south) -- + (0,-1em) -| (WENO31);
+%		\path[line] (Interface.south) -- + (0,-1em) -| (WENO51);
+%		\path[line] (CellCenter.south) -- + (0,-1em) -| (CD2);
+%		\path[line] (CellCenter.south) -- + (0,-1em) -| (CD4);
+%		\path[line] (CellCenter.south) -- + (0,-1em) -| (CD6);
+	\end{tikzpicture}
+	\caption[Flowchart for the Adaptive Riemann Solver.]{Flowchart for the Adaptive Riemann Solver.}
+	\label{fig:ARSFlowChart}
+\end{figure}
+
+%\begin{figure}
+%	\centering
+%	\begin{tikzpicture}[scale=0.5]
+%		\draw[thin,-] (-5,10) -- (5,10) -- (5,7) -- (-5,7) -- (-5,10);
+%		\node at (-3,8.5){$Q = \frac{p_{max}}{p_{min}} \,\, ;$};
+%		\node at (3,8.5){$p_* = p_{pvrs}$};
+%		\draw[thin,->] (0,7) -- (0,6);
+%		\draw[thin,-] (0,6) -- (5,4) -- (0,2) -- (-5,4) -- (0,6);
+%		\node at (0,4.75) {$Q < Q_{user}$};
+%		\node at (0,3.75) {$p_{min} < p_* < p_{max}$};
+%		\draw[thin,->] (-5,4) -- (-10,4) -- (-10,-2);
+%		\draw[thin,->] (5,4) -- (7.5,4) -- (7.5, 2);
+%		\draw[thin,-] (7.5,2) -- (10,0.5) -- (7.5,-1) -- (5,0.5) -- (7.5,2);
+%		\node at (7.5,0.5){$p_* < p_{min}$};
+%		\draw[thin,->] (10,0.5) -- (12,0.5) -- (12,-2);
+%		\draw[thin,->] (5,0.5) -- (3,0.5) -- (3,-2);
+%		\draw[thin,-] (-12,-2) -- (-12,-4) -- (-8,-4) -- (-8,-2) -- (-12,-2);
+%		\node at (-10,-3) {PVRS};
+%		\draw[thin,-] (14,-2) -- (14,-4) -- (10,-4) -- (10,-2) -- (14,-2);
+%		\node at (12,-3) {TSRS};
+%		\draw[thin,-] (1,-2) -- (1,-4) -- (5,-4) -- (5,-2) -- (1,-2);
+%		\node at (3,-3) {TRRS};
+%		\draw[thin,->] (-10,-4) -- (-10,-6) -- (-2,-6);
+%		\draw[thin,->] (12,-4) -- (12,-6) -- (2,-6);
+%		\draw[thin,->] (1,-3) -- (0,-3) -- (0,-5);
+%		\draw[thin,-] (0,-5) -- (-2,-5) -- (-2,-7) -- (2,-7) -- (2,-5) -- (0,-5);
+%		\node at (0,-6) {IRS};
+%	\end{tikzpicture}
+%	\caption[Flow Chart for the Adaptive Riemann Solver.]{Flow Chart for the Adaptive Riemann Solver.}
+%	\label{fig:ARSFlowChart}
+%\end{figure}
+
+\subsection{Primitive Variable Riemann Solver}\label{sect:PVRS}
+
+To estimate the wave speeds using the PVRS, the following star states are calculated
+\begin{equation}\label{eq:PVRS}
+	\begin{rcases}
+		p_* = \frac{1}{2} \left(p_L + p_R\right) + \frac{1}{2} \left(u_L - u_R\right) \bar{\rho} \bar{a}\\
+		u_* = \frac{1}{2} \left(u_L + u_R\right) + \frac{1}{2} \left(p_L - p_R\right) / \left(\bar{\rho} \bar{a}\right)\\
+		p_{*L} = \rho_L - \left(u_L - u_*\right)\bar{\rho} / \bar{a}\\
+		p_{*R} = \rho_R - \left(u_* - u_R\right)\bar{\rho} / \bar{a}
+	\end{rcases}
+\end{equation}
+where $\bar{\rho}$ and $\bar{a}$ are
+\begin{equation}
+	\bar{\rho} = \frac{1}{2} \left(\rho_L + \rho_R\right) \, , \,\,\,\, \bar{a} = \frac{1}{2} \left(a_L + a_R\right)
+\end{equation}
+the speeds of sound are calculated as
+\begin{equation}
+	a_{*L} = \sqrt{\frac{\gamma p_*}{\rho_{*L}}}
+\end{equation}
+\begin{equation}
+	a_{*R} = \sqrt{\frac{\gamma p_*}{\rho_{*R}}}
+\end{equation}
+\subsection{Two Rarefaction Riemann Solver}\label{sect:TRRS}
+To estimate the wave speeds using the TRRS, the initial guess for the pressure $p_*$ is calculated according to
+\begin{equation}
+	p_* = \left[\frac{a_L + a_R - \frac{\gamma - 1}{2} \left(u_R - u_L\right)}{a_L / p_L^z + a_R / p_R^z}\right]^{\frac{1}{z}}
+\end{equation}
+where $z$ is given by
+\begin{equation}
+	z = \frac{\gamma - 1}{2 \gamma}
+\end{equation}
+the speeds of sound and the particle velocities in the star region are given by
+\begin{equation}
+	a_{*L} = a_L \left(p_* / p_L\right)^z \, , \,\,\,\, u_* = u_L + \frac{2}{\gamma - 1} \left(a_L - a_{*L}\right)
+\end{equation}
+\begin{equation}
+	a_{*R} = a_R \left(p_* / p_R\right)^z \, , \,\,\,\, u_* = u_R + \frac{2}{\gamma - 1} \left(a_R - a_{*R}\right)
+\end{equation}
+\subsection{Two Shock Riemann Solver}\label{sect:TSRS}
+To estimate the speeds with the TSRS, a pressure function is defined as
+\begin{equation}
+	f\left(p\right) = \left(p - p_L\right) g_L\left(p\right) + \left(p - p_R\right) g_R\left(p\right) + u_R - u_L = 0
+\end{equation}
+where
+\begin{equation}
+	g_K\left(p\right) = \left[\frac{A_K}{p + B_K}\right]^{\frac{1}{2}}
+\end{equation}
+and $A_K$ and $B_K$ are given by
+\begin{equation}
+	A_K = \frac{2}{\left(\gamma + 1\right) \rho_K}
+\end{equation}
+\begin{equation}
+	B_K = \left(\frac{\gamma - 1}{\gamma + 1}\right) \rho_K
+\end{equation}
+and $K=L,R$. Assuming an estimate $p_0$ for the solution
+\begin{equation}
+	p_0 = max\left(0,p_{pvrs}\right)
+\end{equation}
+where $p_{pvrs}$ is the $p_*$ value found according to \equationref{eq:PVRS}, then the following is obtained
+\begin{equation}
+	\left(p - p_L\right) g_L\left(p_0\right) + \left(p - p_R\right) g_R\left(p_0\right) + u_R - u_L = 0
+\end{equation}
+The solution of which is
+\begin{equation}
+	p_* = \frac{g_L\left(p_0\right) p_L + g_R\left(p_0\right) p_R - \left(u_R - u_L\right)}{g_L\left(p_0\right) + g_R\left(p_0\right)}
+\end{equation}
+A solution for $u_*$ can then be derived as
+\begin{equation}
+	u_* = \frac{1}{2} \left(u_L + u_R\right) + \frac{1}{2} \left[\left(p_* - p_R\right) g_R\left(p_0\right) - \left(p_* - p_L\right) g_L\left(p_0\right)\right]
+\end{equation}
+The solutions for $\rho_{*L}$ and $\rho_{*R}$ are then
+\begin{equation}
+	\rho_{*L} = \rho_L \left[\frac{\frac{p_*}{p_L} + \frac{\gamma - 1}{\gamma + 1}}{\frac{\gamma - 1}{\gamma + 1}\frac{p_*}{p_L} + 1}\right] \, , \,\,\,\, \rho_{*R} = \rho_R \left[\frac{\frac{p_*}{p_R} + \frac{\gamma - 1}{\gamma + 1}}{\frac{\gamma - 1}{\gamma + 1}\frac{p_*}{p_R} + 1}\right]
+\end{equation}
+\section{Modification to Roe's Approximate Riemann Solver}
+
+Roe's method is only first-order. In order to extend Roe's scheme to higher-order, a modification is made. The modification to Roe's scheme involves replacing the average flux with a centrally differenced flux of a higher-order along with higher-order reconstruction. The method of replacing the average flux with a higher-order centrally differenced flux is discussed here.
+
+It is from \equationref{eqn:NumericalFluxAverage} that the average flux can be defined as a centrally differenced flux.
+\begin{equation}\label{eqn:CDFlux}
+	\boldsymbol{F}_{CD} = \frac{1}{2} \left( \boldsymbol{F}_L + \boldsymbol{F}_R \right)
+\end{equation}
+The diffusive flux is
+\begin{equation}\label{eqn:DiffFlux}
+	\boldsymbol{F}_{DF} = \frac{1}{2}\sum_{i = 1}^{m} \tilde{\alpha}_i  |\tilde{\lambda}_i |  \tilde{\boldsymbol{K}}^{\left(i\right)}
+\end{equation}
+The intercell flux can then be defined as
+\begin{equation}\label{eq:splitterm}
+	\boldsymbol{F}_{i+\frac{1}{2}} = \boldsymbol{F}_{CD} - \boldsymbol{F}_{DF}
+\end{equation}
+The resulting modified Roe scheme uses a higher-order central differencing term along with higher-order reconstruction to extend Roe's scheme to a higher-order. Replacing $\boldsymbol{F}_{CD}$ in \equationref{eq:splitterm} with \equationref{eqn:CD2}, \equationref{eqn:CD4}, or \equationref{eqn:CD6} will recover these higher-order schemes.
+\subsection{Second-Order Central Differencing}\label{sect:SecondOrderCD}
+If $f$ is any of the components of $\boldsymbol{F}$ then the Taylor series expansion of the component is
+\begin{equation}\label{eqn:fiexpansionCD2}
+	f_{i} = f_{i+\frac{1}{2}} - \frac{\Delta x}{2} \frac{\partial f}{\partial x} + \mathcal{O}\left(\Delta x^2\right)
+\end{equation}
+\begin{equation}\label{eqn:fip1expansionCD2}
+	f_{i+1} = f_{i+\frac{1}{2}} + \frac{\Delta x}{2} \frac{\partial f}{\partial x} + \mathcal{O}\left(\Delta x^2\right)
+\end{equation}
+and using \equationref{eqn:fiexpansionCD2} and \equationref{eqn:fip1expansionCD2} to solve for $f_{i+\frac{1}{2}}$
+\begin{equation}
+	f_{i+\frac{1}{2}} = \frac{1}{2} \left(f_{i} + f_{i+1}\right) + \mathcal{O}\left(\Delta x^2\right)
+\end{equation}
+applying the expansion to each of the components of $\boldsymbol{F}$ and dropping the higher-order terms the second-order central difference used in place of \equationref{eqn:CDFlux} is then
+\begin{equation}\label{eqn:CD2}
+	\boldsymbol{F}_{CD2} = \frac{1}{2} \left(\boldsymbol{F}_i + \boldsymbol{F}_{i+1}\right)
+\end{equation}
+\subsection{Fourth-Order Central Differencing}
+
+As in the case of the second-order Taylor series expansion of \sectionref{sect:SecondOrderCD}, the series expansions of the component of $\boldsymbol{F}$ is
+\begin{equation}\label{eqn:fim1CD4}
+	f_{i-1} = f_{i+\frac{1}{2}} - \frac{3 \Delta x}{2} \frac{\partial f}{\partial x} + 9 \Delta x^2 \frac{\partial^2 f}{\partial x^2} - \frac{27 \Delta x^3}{48} \frac{\partial^3 f}{\partial x^3} + \mathcal{O}\left(\Delta x^4\right)
+\end{equation}
+\begin{equation}
+	f_{i} = f_{i+\frac{1}{2}} - \frac{\Delta x}{2} \frac{\partial f}{\partial x} + \Delta x^2 \frac{\partial^2 f}{\partial x^2} - \frac{ \Delta x^3}{48} \frac{\partial^3 f}{\partial x^3} + \mathcal{O}\left(\Delta x^4\right)
+\end{equation}
+\begin{equation}
+	f_{i+1} = f_{i+\frac{1}{2}} + \frac{\Delta x}{2} \frac{\partial f}{\partial x} + \frac{\Delta x^2}{8} \frac{\partial^2 f}{\partial x^2} + \frac{\Delta x^3}{48} \frac{\partial^3 f}{\partial x^3} + \mathcal{O}\left(\Delta x^4\right)
+\end{equation}
+\begin{equation}\label{eqn:fip2CD4}
+	f_{i+2} = f_{i+\frac{1}{2}} + \frac{3 \Delta x}{2} \frac{\partial f}{\partial x} + \frac{9 \Delta x^2}{8} \frac{\partial^2 f}{\partial x^2} + \frac{27 \Delta x^3}{48} \frac{\partial^3 f}{\partial x^3} + \mathcal{O}\left(\Delta x^4\right)
+\end{equation}
+using \equationref{eqn:fim1CD4}-\equationref{eqn:fip2CD4} to solve for $f_{i+\frac{1}{2}}$ gives
+\begin{equation}
+	f_{i+\frac{1}{2}} = \frac{1}{16} \left(- f_{i-1} + 9 f_i + 9 f_{i+1} - f_{i+2}\right) + \mathcal{O}\left(\Delta x^4\right)
+\end{equation}
+applying the expansion to each of the components of $\boldsymbol{F}$ and dropping the higher-order terms, the fourth-order central difference used in place of \equationref{eqn:CDFlux} is then
+\begin{equation}\label{eqn:CD4}
+	\boldsymbol{F}_{CD4} = \frac{1}{16} \left(- \boldsymbol{F}_{i-1} + 9 \boldsymbol{F}_i + 9 \boldsymbol{F}_{i+1} - \boldsymbol{F}_{i+2}\right)
+\end{equation}
+\subsection{Sixth-Order Central Differencing}
+
+As in the case of the second-order Taylor series expansion of \sectionref{sect:SecondOrderCD}, the series expansions of the component of $\boldsymbol{F}$ is
+\begin{equation}\label{eqn:fim2CD6}
+	\begin{split}
+		f_{i-2} &= f_{i+\frac{1}{2}} - \frac{5 \Delta x}{2} \frac{\partial f}{\partial x} + 25 \Delta x^2 \frac{\partial^2 f}{\partial x^2} - \frac{125 \Delta x^3}{48} \frac{\partial^3 f}{\partial x^3}\\ &+ \frac{625 \Delta x^4}{384} \frac{\partial^4 f}{\partial x^4} - \frac{3125 \Delta x^5}{3840} \frac{\partial^5 f}{\partial x^5} + \mathcal{O}\left(\Delta x^6\right)
+	\end{split}
+\end{equation}
+\begin{equation}
+	\begin{split}
+		f_{i-1} &= f_{i+\frac{1}{2}} - \frac{3 \Delta x}{2} \frac{\partial f}{\partial x} + 9 \Delta x^2 \frac{\partial^2 f}{\partial x^2} - \frac{27 \Delta x^3}{48} \frac{\partial^3 f}{\partial x^3}\\ &+ \frac{81 \Delta x^4}{384} \frac{\partial^4 f}{\partial x^4} - \frac{243 \Delta x^5}{3840} \frac{\partial^5 f}{\partial x^5} + \mathcal{O}\left(\Delta x^6\right)
+	\end{split}
+\end{equation}
+\begin{equation}
+	\begin{split}
+		f_{i} &= f_{i+\frac{1}{2}} - \frac{\Delta x}{2} \frac{\partial f}{\partial x} + \Delta x^2 \frac{\partial^2 f}{\partial x^2} - \frac{\Delta x^3}{48} \frac{\partial^3 f}{\partial x^3}\\ &+ \frac{\Delta x^4}{384} \frac{\partial^4 f}{\partial x^4} - \frac{\Delta x^5}{3840} \frac{\partial^5 f}{\partial x^5} + \mathcal{O}\left(\Delta x^6\right)
+	\end{split}
+\end{equation}
+\begin{equation}
+	\begin{split}
+		f_{i+1} &= f_{i+\frac{1}{2}} - \frac{5 \Delta x}{2} \frac{\partial f}{\partial x} + 25 \Delta x^2 \frac{\partial^2 f}{\partial x^2} - \frac{125 \Delta x^3}{48} \frac{\partial^3 f}{\partial x^3}\\ &+ \frac{625 \Delta x^4}{384} \frac{\partial^4 f}{\partial x^4} - \frac{3125 \Delta x^5}{3840} \frac{\partial^5 f}{\partial x^5} + \mathcal{O}\left(\Delta x^6\right)
+	\end{split}
+\end{equation}
+\begin{equation}
+	\begin{split}
+		f_{i+2} &= f_{i+\frac{1}{2}} + \frac{\Delta x}{2} \frac{\partial f}{\partial x} + \frac{\Delta x^2}{8} \frac{\partial^2 f}{\partial x^2} + \frac{\Delta x^3}{48} \frac{\partial^3 f}{\partial x^3}\\ &+ \frac{\Delta x^4}{384} \frac{\partial^4 f}{\partial x^4} - \frac{\Delta x^5}{3840} \frac{\partial^5 f}{\partial x^5} + \mathcal{O}\left(\Delta x^6\right)
+	\end{split}
+\end{equation}
+\begin{equation}\label{eqn:fip3CD6}
+	\begin{split}
+		f_{i+3} &= f_{i+\frac{1}{2}} + \frac{5 \Delta x}{2} \frac{\partial f}{\partial x} + \frac{25 \Delta x^2}{8} \frac{\partial^2 f}{\partial x^2} + \frac{125 \Delta x^3}{48} \frac{\partial^3 f}{\partial x^3}\\ &+ \frac{625 \Delta x^4}{384} \frac{\partial^4 f}{\partial x^4} + \frac{3125 \Delta x^5}{3840} \frac{\partial^5 f}{\partial x^5} + \mathcal{O}\left(\Delta x^6\right)
+	\end{split}
+\end{equation}
+using \equationref{eqn:fim2CD6}-\equationref{eqn:fip3CD6} to solve for $f_{i+\frac{1}{2}}$ gives
+\begin{equation}
+	f_{i+\frac{1}{2}} = \frac{1}{256} \left(3 f_{i-2} - 25 f_{i-1} + 150 f_{i} + 150 f_{i+1} - 25 f_{i+2} + 3 f_{i+3}\right) + \mathcal{O}\left(\Delta x^6\right)
+\end{equation}
+applying the expansion to each of the components of $\boldsymbol{F}$ and dropping the higher-order terms, the sixth-order central difference used in place of \equationref{eqn:CDFlux} is then
+\begin{equation}\label{eqn:CD6}
+	\boldsymbol{F}_{CD6} = \frac{1}{256} \left(3 \boldsymbol{F}_{i-2} - 25 \boldsymbol{F}_{i-1} + 150 \boldsymbol{F}_{i} + 150 \boldsymbol{F}_{i+1} - 25 \boldsymbol{F}_{i+2} + 3 \boldsymbol{F}_{i+3}\right)
+\end{equation}
+
+

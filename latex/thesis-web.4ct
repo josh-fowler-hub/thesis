@@ -1,0 +1,73 @@
+\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi 
+\doTocEntry\toclikechapter{}{\csname a:TocLink\endcsname{2}{x2-1000}{QQ2-2-1}{Thesis Contents}}{3}\relax 
+\doTocEntry\toclikechapter{}{\csname a:TocLink\endcsname{3}{x3-2000}{QQ2-3-2}{Contents}}{5}\relax 
+\doTocEntry\tocchapter{1}{\csname a:TocLink\endcsname{4}{x4-30001}{QQ2-4-3}{Introduction}}{4}\relax 
+\doTocEntry\tocsection{1.1}{\csname a:TocLink\endcsname{5}{x5-40001.1}{QQ2-5-4}{Shock-Capturing Schemes}}{4}\relax 
+\doTocEntry\tocsection{1.2}{\csname a:TocLink\endcsname{6}{x6-50001.2}{QQ2-6-5}{Approach}}{8}\relax 
+\doTocEntry\toclof{1.1}{\csname a:TocLink\endcsname{6}{x6-50011}{}{\ignorespaces Roe Flux Calculation Outline}}{figure}\relax 
+\doTocEntry\toclof{1.2}{\csname a:TocLink\endcsname{6}{x6-50022}{}{\ignorespaces Process Flowchart}}{figure}\relax 
+\doTocEntry\tocsection{1.3}{\csname a:TocLink\endcsname{7}{x7-60001.3}{QQ2-7-8}{Outline}}{15}\relax 
+\doTocEntry\tocchapter{2}{\csname a:TocLink\endcsname{8}{x8-70002}{QQ2-8-9}{Governing Equations}}{22}\relax 
+\doTocEntry\tocsection{2.1}{\csname a:TocLink\endcsname{9}{x9-80002.1}{QQ2-9-10}{The Euler Equations}}{22}\relax 
+\doTocEntry\tocsection{2.2}{\csname a:TocLink\endcsname{10}{x10-90002.2}{QQ2-10-11}{The Riemann Problem}}{23}\relax 
+\doTocEntry\toclof{2.1}{\csname a:TocLink\endcsname{10}{x10-90031}{}{\ignorespaces Configuration of the wave system: (a) Left rarefaction, contact, right shock. (b) Left shock, contact, right rarefaction. (c) Left rarefaction, contact, right rarefaction. (d) Left shock, contact, right shock.}}{figure}\relax 
+\doTocEntry\toclof{2.2}{\csname a:TocLink\endcsname{10}{x10-90042}{}{\ignorespaces Solution structure of the Riemann problem on the $x$-$t$ plane for the time-dependent Euler equations.}}{figure}\relax 
+\doTocEntry\tocsection{2.3}{\csname a:TocLink\endcsname{11}{x11-100002.3}{QQ2-11-14}{The Approximate Riemann Problem}}{30}\relax 
+\doTocEntry\tocchapter{3}{\csname a:TocLink\endcsname{12}{x12-110003}{QQ2-12-15}{Riemann Solvers}}{36}\relax 
+\doTocEntry\tocsection{3.1}{\csname a:TocLink\endcsname{13}{x13-120003.1}{QQ2-13-16}{Finite Volume Method}}{36}\relax 
+\doTocEntry\toclof{3.1}{\csname a:TocLink\endcsname{13}{x13-120061}{}{\ignorespaces Cell Configuration for a one-dimensional grid.}}{figure}\relax 
+\doTocEntry\tocsection{3.2}{\csname a:TocLink\endcsname{14}{x14-130003.2}{QQ2-14-18}{Roe's Approximate Riemann Solver}}{40}\relax 
+\doTocEntry\tocsection{3.3}{\csname a:TocLink\endcsname{15}{x15-140003.3}{QQ2-15-19}{Harten-Hyman Entropy Fix}}{41}\relax 
+\doTocEntry\tocsubsection{3.3.1}{\csname a:TocLink\endcsname{15}{x15-150003.3.1}{QQ2-15-20}{Left Transonic Rarefaction}}{41}\relax 
+\doTocEntry\tocsubsection{3.3.2}{\csname a:TocLink\endcsname{15}{x15-160003.3.2}{QQ2-15-21}{Right Transonic Rarefaction}}{42}\relax 
+\doTocEntry\tocsection{3.4}{\csname a:TocLink\endcsname{16}{x16-170003.4}{QQ2-16-22}{Adaptive Riemann Solver}}{43}\relax 
+\doTocEntry\toclof{3.2}{\csname a:TocLink\endcsname{16}{x16-170132}{}{\ignorespaces Flowchart for the Adaptive Riemann Solver.}}{figure}\relax 
+\doTocEntry\tocsubsection{3.4.1}{\csname a:TocLink\endcsname{16}{x16-180003.4.1}{QQ2-16-24}{Primitive Variable Riemann Solver}}{46}\relax 
+\doTocEntry\tocsubsection{3.4.2}{\csname a:TocLink\endcsname{16}{x16-190003.4.2}{QQ2-16-25}{Two Rarefaction Riemann Solver}}{46}\relax 
+\doTocEntry\tocsubsection{3.4.3}{\csname a:TocLink\endcsname{16}{x16-200003.4.3}{QQ2-16-26}{Two Shock Riemann Solver}}{46}\relax 
+\doTocEntry\tocsection{3.5}{\csname a:TocLink\endcsname{17}{x17-210003.5}{QQ2-17-27}{Modification to Roe's Approximate Riemann Solver}}{47}\relax 
+\doTocEntry\tocsubsection{3.5.1}{\csname a:TocLink\endcsname{17}{x17-220003.5.1}{QQ2-17-28}{Second-Order Central Differencing}}{47}\relax 
+\doTocEntry\tocsubsection{3.5.2}{\csname a:TocLink\endcsname{17}{x17-230003.5.2}{QQ2-17-29}{Fourth-Order Central Differencing}}{47}\relax 
+\doTocEntry\tocsubsection{3.5.3}{\csname a:TocLink\endcsname{17}{x17-240003.5.3}{QQ2-17-30}{Sixth-Order Central Differencing}}{48}\relax 
+\doTocEntry\tocchapter{4}{\csname a:TocLink\endcsname{18}{x18-250004}{QQ2-18-31}{Reconstruction}}{54}\relax 
+\doTocEntry\tocsection{4.1}{\csname a:TocLink\endcsname{19}{x19-260004.1}{QQ2-19-32}{Monotonic Upwind Scheme for Conservation Laws}}{54}\relax 
+\doTocEntry\toclof{4.1}{\csname a:TocLink\endcsname{19}{x19-260021}{}{\ignorespaces MUSCL Reconstruction.}}{figure}\relax 
+\doTocEntry\tocsubsection{4.1.1}{\csname a:TocLink\endcsname{19}{x19-270004.1.1}{QQ2-19-34}{MUSCL Reconstruction}}{57}\relax 
+\doTocEntry\tocsection{4.2}{\csname a:TocLink\endcsname{20}{x20-280004.2}{QQ2-20-35}{Weighted Essentially Non-Oscillatory Schemes}}{58}\relax 
+\doTocEntry\toclof{4.2}{\csname a:TocLink\endcsname{20}{x20-280012}{}{\ignorespaces WENO Reconstruction.}}{figure}\relax 
+\doTocEntry\tocsubsection{4.2.1}{\csname a:TocLink\endcsname{20}{x20-290004.2.1}{QQ2-20-37}{Third-Order WENO Reconstruction}}{61}\relax 
+\doTocEntry\tocsubsection{4.2.2}{\csname a:TocLink\endcsname{20}{x20-300004.2.2}{QQ2-20-38}{Fifth-Order WENO Reconstruction}}{61}\relax 
+\doTocEntry\tocchapter{5}{\csname a:TocLink\endcsname{21}{x21-310005}{QQ2-21-39}{Higher-Order Reconstruction Results}}{67}\relax 
+\doTocEntry\tocsection{5.1}{\csname a:TocLink\endcsname{22}{x22-320005.1}{QQ2-22-40}{Method and Initial Conditions}}{67}\relax 
+\doTocEntry\toclot{5.1}{\csname a:TocLink\endcsname{22}{x22-320011}{}{\ignorespaces Initial Conditions}}{table}\relax 
+\doTocEntry\tocsection{5.2}{\csname a:TocLink\endcsname{23}{x23-330005.2}{QQ2-23-42}{Legend Naming Scheme}}{70}\relax 
+\doTocEntry\tocsection{5.3}{\csname a:TocLink\endcsname{24}{x24-340005.3}{QQ2-24-43}{Test 1: Modified Sod Shock Tube}}{71}\relax 
+\doTocEntry\tocsubsection{5.3.1}{\csname a:TocLink\endcsname{24}{x24-350005.3.1}{QQ2-24-44}{Higher-Order Reconstruction Results}}{71}\relax 
+\doTocEntry\toclof{5.1}{\csname a:TocLink\endcsname{24}{x24-350011}{}{\ignorespaces Results for density for the higher-order reconstruction for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}}{figure}\relax 
+\doTocEntry\toclof{5.2}{\csname a:TocLink\endcsname{24}{x24-350022}{}{\ignorespaces Results for velocity for the higher-order reconstruction for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}}{figure}\relax 
+\doTocEntry\toclof{5.3}{\csname a:TocLink\endcsname{24}{x24-350033}{}{\ignorespaces Results for pressure for the higher-order reconstruction for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}}{figure}\relax 
+\doTocEntry\toclof{5.4}{\csname a:TocLink\endcsname{24}{x24-350044}{}{\ignorespaces Results for internal energy for the higher-order reconstruction for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}}{figure}\relax 
+\doTocEntry\tocsection{5.4}{\csname a:TocLink\endcsname{25}{x25-360005.4}{QQ2-25-49}{Test 2: Blast Wave}}{84}\relax 
+\doTocEntry\tocsubsection{5.4.1}{\csname a:TocLink\endcsname{25}{x25-370005.4.1}{QQ2-25-50}{Higher-Order Reconstruction Results}}{84}\relax 
+\doTocEntry\toclof{5.5}{\csname a:TocLink\endcsname{25}{x25-370015}{}{\ignorespaces Results for density for the higher-order reconstruction for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}}{figure}\relax 
+\doTocEntry\toclof{5.6}{\csname a:TocLink\endcsname{25}{x25-370026}{}{\ignorespaces Results for velocity for the higher-order reconstruction for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}}{figure}\relax 
+\doTocEntry\toclof{5.7}{\csname a:TocLink\endcsname{25}{x25-370037}{}{\ignorespaces Results for pressure for the higher-order reconstruction for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}}{figure}\relax 
+\doTocEntry\toclof{5.8}{\csname a:TocLink\endcsname{25}{x25-370048}{}{\ignorespaces Results for internal energy for the higher-order reconstruction for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}}{figure}\relax 
+\doTocEntry\tocsection{5.5}{\csname a:TocLink\endcsname{26}{x26-380005.5}{QQ2-26-55}{Test 3: Shock Collision}}{97}\relax 
+\doTocEntry\tocsubsection{5.5.1}{\csname a:TocLink\endcsname{26}{x26-390005.5.1}{QQ2-26-56}{Higher-Order Reconstruction Results}}{97}\relax 
+\doTocEntry\toclof{5.9}{\csname a:TocLink\endcsname{26}{x26-390019}{}{\ignorespaces Results for density for the higher-order reconstruction for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}}{figure}\relax 
+\doTocEntry\toclof{5.10}{\csname a:TocLink\endcsname{26}{x26-3900210}{}{\ignorespaces Results for velocity for the higher-order reconstruction for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}}{figure}\relax 
+\doTocEntry\toclof{5.11}{\csname a:TocLink\endcsname{26}{x26-3900311}{}{\ignorespaces Results for pressure for the higher-order reconstruction for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}}{figure}\relax 
+\doTocEntry\toclof{5.12}{\csname a:TocLink\endcsname{26}{x26-3900412}{}{\ignorespaces Results for internal energy for the higher-order reconstruction for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}}{figure}\relax 
+\doTocEntry\tocsection{5.6}{\csname a:TocLink\endcsname{27}{x27-400005.6}{QQ2-27-61}{Test 4: Stationary Contact Wave}}{110}\relax 
+\doTocEntry\tocsubsection{5.6.1}{\csname a:TocLink\endcsname{27}{x27-410005.6.1}{QQ2-27-62}{Higher-Order Reconstruction Results}}{110}\relax 
+\doTocEntry\toclof{5.13}{\csname a:TocLink\endcsname{27}{x27-4100113}{}{\ignorespaces Results for density for the higher-order reconstruction for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}}{figure}\relax 
+\doTocEntry\toclof{5.14}{\csname a:TocLink\endcsname{27}{x27-4100214}{}{\ignorespaces Results for velocity for the higher-order reconstruction for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}}{figure}\relax 
+\doTocEntry\toclof{5.15}{\csname a:TocLink\endcsname{27}{x27-4100315}{}{\ignorespaces Results for pressure for the higher-order reconstruction for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}}{figure}\relax 
+\doTocEntry\toclof{5.16}{\csname a:TocLink\endcsname{27}{x27-4100416}{}{\ignorespaces Results for internal energy for the higher-order reconstruction for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}}{figure}\relax 
+\doTocEntry\tocchapter{6}{\csname a:TocLink\endcsname{28}{x28-420006}{QQ2-28-67}{Conclusions}}{128}\relax 
+\doTocEntry\tocsection{6.1}{\csname a:TocLink\endcsname{29}{x29-430006.1}{QQ2-29-68}{Higher-Order Reconstruction Results}}{128}\relax 
+\doTocEntry\tocsection{6.2}{\csname a:TocLink\endcsname{30}{x30-440006.2}{QQ2-30-69}{Higher-Order Reconstruction with Higher-Order Central Differencing Results}}{130}\relax 
+\doTocEntry\tocsection{6.3}{\csname a:TocLink\endcsname{31}{x31-450006.3}{QQ2-31-70}{Conclusions}}{132}\relax 
+\doTocEntry\toclikechapter{}{\csname a:TocLink\endcsname{32}{x32-46000}{QQ2-32-71}{Bibliography}}{138}\relax 
+\par 

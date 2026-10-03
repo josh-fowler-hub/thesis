@@ -1,0 +1,62 @@
+<!DOCTYPE html> 
+<html lang='en-US' xml:lang='en-US'> 
+<head><title>Higher-Order Reconstruction Results</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='thesis-web.css' rel='stylesheet' type='text/css' /> 
+<meta content='thesis-web.tex' name='src' /> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+<link href='titan-reader.css' rel='stylesheet' type='text/css' /> 
+</head><body>
+<!-- l. 3 --><p class='noindent'> <nav aria-label='Thesis navigation' class='thesis-nav'> <a href='/thesis/'>Thesis overview</a>  |  <a href='/thesis/reader/thesis-web.html'>Contents</a>  |  <a href='/'>Portfolio</a> </nav>  </p><!-- l. 3 --><div class='crosslinks'><p class='noindent'>[<a href='HigherOrderReconstructionwithHigherOrderCentralDifferencingResults.html'>next</a>] [<a href='#tailHigherOrderReconstructionResults1.html'>tail</a>] [<a href='Conclusions.html#HigherOrderReconstructionResults1.html'>up</a>] </p></div>
+   <h3 class='sectionHead' id='higherorder-reconstruction-results5'><span class='titlemark'>6.1   </span> <a id='x29-430006.1'></a>Higher-Order Reconstruction Results</h3>
+<!-- l. 5 --><p class='noindent'>The Roe scheme adds a large amount of diffusion in regions near where
+rarefactions and contact discontinuities occur. In all of the test cases, the
+Roe-WENO5 scheme provides the least diffusive solution. The improvement
+provided by the Roe-WENO5 scheme is most apparent in regions containing
+contact discontinuities. Near contact discontinuities, the Roe-WENO5 scheme
+can be seen to add much less diffusion than the Roe, Roe-MUSCL, and
+Roe-WENO3 schemes. This reduction in numerical diffusion leads to better
+capturing of the contact wave. The exception to this improvement is the
+standing contact wave in Test 4, where the Roe-WENO5 scheme only
+provides slightly less diffusion than the Roe, Roe-MUSCL, and Roe-WENO3
+schemes.
+</p><!-- l. 7 --><p class='indent'>   The Roe-WENO5 scheme adds less numerical diffusion near rarefactions than
+the Roe, Roe-MUSCL, and Roe-WENO3. This leads to a more accurate capturing
+of rarefactions than the other three schemes. The Roe scheme adds the
+most diffusion near rarefactions, leading to inaccurate capturing of the
+rarefaction wave. The Roe-WENO5 adds the least diffusion near the rarefaction
+waves and captures the wave much more accurately. The Roe-WENO3
+scheme captures the rarefaction wave more accurately than the Roe and
+Roe-MUSCL schemes, but the Roe-WENO5 scheme can be seen to be an
+improvement.
+</p><!-- l. 9 --><p class='indent'>   In cases such as Test 2, where the contact wave is very close to a shock,
+numerical methods may not accurately represent the region of constant density
+between the contact wave and shock wave due to a large amount of diffusion
+                                                                          
+
+                                                                          
+added near the contact wave. In this case, the Roe-WENO5 scheme adds much
+less diffusion near the contact wave and provides a much more accurate solution.
+In Test 4, however, this is not the case. The Roe, Roe-MUSCL, and Roe-WENO3
+schemes also provide an accurate solution in this region. The Roe-WENO5 scheme
+also displays some small pressure oscillations near the location of contact
+discontinuities for the Roe-MUSCL scheme and absent from the Roe and
+Roe-MUSCL schemes.
+</p><!-- l. 11 --><p class='indent'>   The Roe-WENO5 scheme captures shocks better than the Roe, Roe-MUSCL,
+and Roe-WENO3 schemes; however, the advantage over the Roe-MUSCL and
+Roe-WENO3 schemes are minimal. The Roe scheme leads to a smearing of the
+solution in the region. This smearing is easily observed in Test 1, Test 2, and Test
+3. The Roe-MUSCL and Roe-WENO3 schemes can be seen to capture shock
+waves equally well, adding only slightly more diffusion near shocks than the
+Roe-WENO5 scheme.
+                                                                          
+
+                                                                          
+</p>
+   <!-- l. 12 --><div class='crosslinks'><p class='noindent'>[<a href='HigherOrderReconstructionwithHigherOrderCentralDifferencingResults.html'>next</a>] [<a href='HigherOrderReconstructionResults1.html'>front</a>] [<a href='Conclusions.html#HigherOrderReconstructionResults1.html'>up</a>] </p></div>
+<!-- l. 12 --><p class='indent'>   <a id='tailHigherOrderReconstructionResults1.html'></a> </p> 
+</body> 
+</html>

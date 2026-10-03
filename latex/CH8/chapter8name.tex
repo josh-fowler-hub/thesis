@@ -1,0 +1,257 @@
+\chapter{Higher-Order Reconstruction with Higher-Order Central Differencing Results}
+\section{Method and Initial Conditions}
+The results for the four numerical tests are presented here. The results obtained are shown at a time, $t$, for the density, $\rho$, the velocity, $u$, the pressure, $p$, and the internal energy, $e$. The initial conditions for the tests can be seen in \tableref{tbl:testparameters}. Each test is defined by initial left and right states, where $x_0$ defines the discontinuity's location in the $x$ domain that spans $0.0$ to $1.0$. In all tests, the ratio of specific heats, $\gamma$, is taken to be $1.4$, and the gas constant, $R$, is $8314.0$.
+
+The higher-order reconstruction results and higher-order central differencing for the average flux in Roe's scheme are performed similarly to the higher-order reconstruction schemes. A modified Roe solver with the entropy fix and a higher-order WENO reconstruction is used for the spatial discretization and a six-stage, fifth-order SSPRK method for the temporal discretization. The results are then compared to the modified Roe scheme with the entropy fix and no reconstruction and the modified Roe scheme with the entropy fix and a MUSCL reconstruction. The MUSCL reconstruction has the same parameters as the former case where $\kappa = 1$, $\Lambda = 1$, and a minmod limiter is used.
+\section{Legend Naming Scheme}
+In the modified Roe solver that uses higher-order central differencing for the average flux, the central differencing is referred to as CD with the order following. CD2-Roe, CD4-Roe, and CD6-Roe refer to the modified Roe solver with the second, fourth, and sixth-order central differencing for the average flux. In the higher-order reconstruction results, the reconstruction method is noted following the type of Roe solver used. Roe-MUSCL and Roe-WENO refer to the Roe scheme with the MUSCL reconstruction and the Roe scheme with WENO reconstruction. The WENO reconstruction order is noted immediately following so that WENO3 and WENO5 refer to third and fifth-order WENO reconstructions. The different configurations of the solver used in the modified Roe solver are shown in \tableref{tbl:SolverConfigs} for reference.
+\begin{table}
+	\begin{center}
+		\caption{Roe's Solver Configurations}
+		\label{tbl:SolverConfigs}
+		\begin{tabular}{@{}ccccc@{}}
+			\toprule \rule[-1pt]{0pt}{14pt}& \multicolumn{4}{c}{Reconstruction} \\ \cmidrule[0.75pt](ll){2-5}
+			\rule[-1pt]{0pt}{14pt}\begin{tabular}{@{}c@{}}CD Term \\ Order\end{tabular}&None&MUSCL&WENO3&WENO5\\
+			\midrule
+			\rule[-1pt]{0pt}{14pt}$2$&CD2-Roe&CD2-Roe-MUSCL&CD2-Roe-WENO3&CD2-Roe-WENO5\\
+			\rule[-1pt]{0pt}{14pt}$4$&CD4-Roe&CD4-Roe-MUSCL&CD4-Roe-WENO3&CD4-Roe-WENO5\\
+			\rule[-1pt]{0pt}{14pt}$6$&CD6-Roe&CD6-Roe-MUSCL&CD6-Roe-WENO3&CD6-Roe-WENO5\\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+\end{table}
+\section{Test 1: Modified Sod Shock Tube}
+Test 1 is a modified form of Sod's shock tube problem \cite{SOD19781} presented by Toro \cite{toro2013riemann}. In Sod's original problem the discontinuity is present at $x = 0.5$. In this study's modified shock tube problem, the discontinuity is moved to $x = 0.3$. This modified Sod shock tube problem is useful for testing the entropy satisfaction property of numerical methods. The solution consists of a right shock wave, a right traveling contact wave, and a left sonic rarefaction wave. The initial conditions for Test 1 are shown in \tableref{tbl:testparameters}.
+
+\subsection{Higher-Order Reconstruction and Second-Order Central Differencing Results}
+\begin{figure}
+	\cfig{5}{Test1CD2ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeDensity.eps}{5}
+	\caption[Results for density for the higher-order reconstruction with second-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.]{Results for density for the higher-order reconstruction with second-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}
+	\label{fig:Test1HORCD2density}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test1CD2ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeVelocity.eps}{5}
+	\caption[Results for velocity for the higher-order reconstruction with second-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.]{Results for velocity for the higher-order reconstruction with second-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}
+	\label{fig:Test1HORCD2velocity}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test1CD2ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoePressure.eps}{5}
+	\caption[Results for pressure for the higher-order reconstruction with second-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.]{Results for pressure for the higher-order reconstruction with second-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}
+	\label{fig:Test1HORCD2pressure}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test1CD2ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeInternalEnergy.eps}{5}
+	\caption[Results for internal energy for the higher-order reconstruction with second-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.]{Results for internal energy for the higher-order reconstruction with second-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}
+	\label{fig:Test1HORCD2energy}
+\end{figure}
+The results for the higher-order reconstruction with second-order central differencing for the average flux for Test 1 can be seen in \figureref{fig:Test1HORCD2density,fig:Test1HORCD2velocity,fig:Test1HORCD2pressure,fig:Test1HORCD2energy}. The results for the higher-order reconstruction with second-order central differencing of the average flux for Test 1 were obtained using the modified Roe solver with a MUSCL, WENO3, and WENO5 reconstruction. The wave system was solved until a time of $t=0.2$ using the fifth-order, six-stage SSPRK method with a CFL number of 1 and a computational domain consisting of a uniform grid of 100 cells.
+
+The solution for the CD2-Roe scheme remains largely unchanged from the solution of the Roe scheme. In \figureref{fig:Test1HORCD2density,fig:Test1HORCD2velocity,fig:Test1HORCD2pressure,fig:Test1HORCD2energy} it can be seen that the numerical artifact of the entropy fix present in the Roe scheme has been introduced to the CD2-Roe-MUSCL, CD2-Roe-WENO3, and CD2-Roe-WENO5 schemes. In \figureref{fig:Test1HORCD2density,fig:Test1HORCD2energy}, significant oscillations have developed in the regions ahead of the contact discontinuity and shock wave for the CD2-Roe-WENO5 scheme. Likewise, in \figureref{fig:Test1HORCD2velocity,fig:Test1HORCD2pressure} these same oscillations are present ahead of the shock wave for the CD2-Roe-WENO5 scheme. The velocity and pressure oscillations seen in the Roe-WENO5 scheme that correspond to the contact wave's location can be seen to have increased in amplitude in  \figureref{fig:Test1HORCD2velocity,fig:Test1HORCD2pressure} for the CD2-Roe-WENO5 scheme.
+
+
+\subsection{Higher-Order Reconstruction and Fourth-Order Central Differencing Results}
+\begin{figure}
+	\cfig{5}{Test1CD4ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeDensity.eps}{5}
+	\caption[Results for density for the higher-order reconstruction with fourth-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.]{Results for density for the higher-order reconstruction with fourth-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}
+	\label{fig:Test1HORCD4density}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test1CD4ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeVelocity.eps}{5}
+	\caption[Results for velocity for the higher-order reconstruction with fourth-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.]{Results for velocity for the higher-order reconstruction with fourth-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}
+	\label{fig:Test1HORCD4velocity}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test1CD4ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoePressure.eps}{5}
+	\caption[Results for pressure for the higher-order reconstruction with fourth-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.]{Results for pressure for the higher-order reconstruction with fourth-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}
+	\label{fig:Test1HORCD4pressure}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test1CD4ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeInternalEnergy.eps}{5}
+	\caption[Results for internal energy for the higher-order reconstruction with fourth-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.]{Results for internal energy for the higher-order reconstruction with fourth-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}
+	\label{fig:Test1HORCD4energy}
+\end{figure}
+The results for the higher-order reconstruction and fourth-order central differencing for the average flux for Test 1 can be seen in \figureref{fig:Test1HORCD4density,fig:Test1HORCD4velocity,fig:Test1HORCD4pressure,fig:Test1HORCD4energy}. The results for the higher-order reconstruction with fourth-order central differencing of the average flux for Test 1 were obtained using the modified Roe solver with a MUSCL, WENO3, and WENO5 reconstruction. The wave system was solved until a time of $t=0.2$ using the fifth-order, six-stage SSPRK method with a CFL number of 1 and a computational domain consisting of a uniform grid of 100 cells.
+
+The solution for the CD4-Roe scheme again remains largely unchanged from the Roe and CD2-Roe scheme's solutions. In \figureref{fig:Test1HORCD4density,fig:Test1HORCD4velocity,fig:Test1HORCD4pressure,fig:Test1HORCD4energy} it can be seen that the numerical artifact of the entropy fix present in the Roe scheme has again been introduced to the CD4-Roe-MUSCL, CD4-Roe-WENO3, and CD4-Roe-WENO5 schemes, as in the case of the CD2-Roe-MUSCL, CD2-Roe-WENO3, and CD2-Roe-WENO5 schemes. In \figureref{fig:Test1HORCD4density,fig:Test1HORCD4energy} it can be seen that the oscillations present in \figureref{fig:Test1HORCD2density,fig:Test1HORCD2energy} have dampened significantly in the regions ahead of the contact discontinuity and shock wave for the CD4-Roe-WENO5 scheme.  In \figureref{fig:Test1HORCD4velocity,fig:Test1HORCD4pressure} these same oscillations have dampened ahead of the shock wave for the CD4-Roe-WENO5 scheme compared to the CD2-Roe-WENO5 scheme. The velocity and pressure oscillations shown in \figureref{fig:Test1HORCD4velocity,fig:Test1HORCD4pressure} for the CD4-Roe-WENO5 scheme in the location of the contact wave can be seen to have dampened when compared to those present in the CD2-Roe-WENO5 scheme.
+
+\subsection{Higher-Order Reconstruction and Sixth-Order Central Differencing Results}
+\begin{figure}
+	\cfig{5}{Test1CD6ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeDensity.eps}{5}
+	\caption[Results for density for the higher-order reconstruction with sixth-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.]{Results for density for the higher-order reconstruction with sixth-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}
+	\label{fig:Test1HORCD6density}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test1CD6ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeVelocity.eps}{5}
+	\caption[Results for velocity for the higher-order reconstruction with sixth-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.]{Results for velocity for the higher-order reconstruction with sixth-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}
+	\label{fig:Test1HORCD6velocity}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test1CD6ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoePressure.eps}{5}
+	\caption[Results for pressure for the higher-order reconstruction with sixth-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.]{Results for pressure for the higher-order reconstruction with sixth-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}
+	\label{fig:Test1HORCD6pressure}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test1CD6ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeInternalEnergy.eps}{5}
+	\caption[Results for internal energy for the higher-order reconstruction with sixth-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.]{Results for internal energy for the higher-order reconstruction with sixth-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}
+	\label{fig:Test1HORCD6energy}
+\end{figure}
+The results for the higher-order reconstruction and sixth-order central differencing for the average flux for Test 1 can be seen in \figureref{fig:Test1HORCD6density,fig:Test1HORCD6velocity,fig:Test1HORCD6pressure,fig:Test1HORCD6energy}. The results for the higher-order reconstruction with sixth-order central differencing of the average flux for Test 1 were obtained using the modified Roe solver with a MUSCL, WENO3, and WENO5 reconstruction. The wave system was solved until a time of $t=0.2$ using the fifth-order, six-stage SSPRK method with a CFL number of 1 and a computational domain consisting of a uniform grid of 100 cells.
+
+The solution for the CD6-Roe scheme again remains largely unchanged from the Roe, CD2-Roe, and CD4-Roe schemes' solutions. In \figureref{fig:Test1HORCD6density,fig:Test1HORCD6velocity,fig:Test1HORCD6pressure,fig:Test1HORCD6energy} it can be seen that the numerical artifact of the entropy fix present in the Roe scheme has again been introduced to the CD6-Roe-MUSCL, CD6-Roe-WENO3, and CD6-Roe-WENO5 schemes, as in the case of the lower-order central differencing schemes. In \figureref{fig:Test1HORCD6density,fig:Test1HORCD6energy} it can be seen that the oscillations present in \figureref{fig:Test1HORCD2density,fig:Test1HORCD2energy,fig:Test1HORCD4density,fig:Test1HORCD4energy} have been almost eliminated entirely in the regions ahead of the contact discontinuity and shock wave for the CD6-Roe-WENO5 scheme. In \figureref{fig:Test1HORCD6velocity,fig:Test1HORCD6pressure} these same oscillations have also been almost eliminated ahead of the shock wave for the CD6-Roe-WENO5 scheme compared to the CD2-Roe-WENO5 and CD4-Roe-WENO5 schemes.
+
+\section{Test 2: Blast Wave}\label{sect:Test2}
+Test 2 is the left half of the blast wave problem of Woodward and Colella \cite{WOODWARD1984115}. Test 2 consists of a strong shock wave of Mach number 198, a contact surface, and a left rarefaction wave. Test 2 is a severe test used to assess the robustness and accuracy of numerical methods. The initial conditions for Test 2 can be seen in \tableref{tbl:testparameters}.
+
+\subsection{Higher-Order Reconstruction and Second-Order Central Differencing Results}
+
+The higher-order reconstruction with higher-order central differencing schemes do not produce solutions for Test 2, with the exception of the CD2-Roe scheme. The schemes induce non-TVD behavior, and the amplitude of the oscillations begins to increase as the time step increases. This behavior is still observed even in the case of low CFL numbers. In the case of Test 2, the amplitude of these oscillations begins to increase ahead of the contact discontinuity, and the density reaches a negative value at time step $n = 398$ and $t=0.0062349$ with a CFL number of $c=0.1$. The CD2-Roe scheme seen in \figureref{fig:Test3HORCD2density,fig:Test3HORCD2velocity,fig:Test3HORCD2pressure,fig:Test3HORCD2energy} can be seen to be identical to the Roe scheme seen in \figureref{fig:Test3HORdensity,fig:Test3HORvelocity,fig:Test3HORpressure,fig:Test3HORenergy}.
+\begin{figure}
+	\cfig{5}{Test3CD2ROECFL1Nodes100RoeDensity.eps}{5}
+	\caption[Results for density for the higher-order reconstruction with second-order central differencing for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.]{Results for density for the higher-order reconstruction with second-order central differencing for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}
+	\label{fig:Test3HORCD2density}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test3CD2ROECFL1Nodes100RoeVelocity.eps}{5}
+	\caption[Results for density for the higher-order reconstruction with second-order central differencing for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.]{Results for density for the higher-order reconstruction with second-order central differencing for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}
+	\label{fig:Test3HORCD2velocity}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test3CD2ROECFL1Nodes100RoePressure.eps}{5}
+	\caption[Results for density for the higher-order reconstruction with second-order central differencing for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.]{Results for density for the higher-order reconstruction with second-order central differencing for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}
+	\label{fig:Test3HORCD2pressure}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test3CD2ROECFL1Nodes100RoeInternalEnergy.eps}{5}
+	\caption[Results for density for the higher-order reconstruction with second-order central differencing for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.]{Results for density for the higher-order reconstruction with second-order central differencing for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}
+	\label{fig:Test3HORCD2energy}
+\end{figure}
+
+\section{Test 3: Shock Collision}
+Test 3 is made of the resultant shocks from both halves of the blast wave problem of Woodward and Colella \cite{WOODWARD1984115}. The test represents the collision of two strong shocks. The solution consists of a left-facing shock traveling slowly to the right, a right-traveling contact discontinuity, and a right-traveling shock wave. The initial conditions of Test 3 can be seen in \tableref{tbl:testparameters}.
+
+\subsection{Higher-Order Reconstruction and Second-Order Central Differencing Results}
+\begin{figure}
+	\cfig{5}{Test4CD2ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeDensity.eps}{5}
+	\caption[Results for density for the higher-order reconstruction with second-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.]{Results for density for the higher-order reconstruction with second-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}
+	\label{fig:Test4HORCD2density}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test4CD2ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeVelocity.eps}{5}
+	\caption[Results for velocity for the higher-order reconstruction with second-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.]{Results for velocity for the higher-order reconstruction with second-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}
+	\label{fig:Test4HORCD2velocity}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test4CD2ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoePressure.eps}{5}
+	\caption[Results for pressure for the higher-order reconstruction with second-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.]{Results for pressure for the higher-order reconstruction with second-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}
+	\label{fig:Test4HORCD2pressure}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test4CD2ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeInternalEnergy.eps}{5}
+	\caption[Results for internal energy for the higher-order reconstruction with second-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.]{Results for internal energy for the higher-order reconstruction with second-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}
+	\label{fig:Test4HORCD2energy}
+\end{figure}
+The results for the higher-order reconstruction with second-order central differencing for the average flux for Test 3 can be seen in \figureref{fig:Test4HORCD2density} - \figureref{fig:Test4HORCD2energy}. The higher-order reconstruction results with second-order central differencing of Test 3 were obtained using the modified Roe solver with a MUSCL, WENO3, and WENO5 reconstruction. The wave system was solved until a time of $t=0.035$ using the fifth-order, six-stage SSPRK method with a CFL number of 1 and a computational domain consisting of a uniform grid of 100 cells.
+
+In \figureref{fig:Test4HORCD2density,fig:Test4HORCD2energy} it can be seen that the large oscillations present in the CD2-Roe-WENO5 scheme results for Test 1 are again present ahead of the contact wave and right shock in Test 3. \figureref{fig:Test4HORCD2energy} shows that the oscillations ahead of the contact discontinuity in the CD2-Roe-WENO5 scheme affect the accuracy of the modeling of the contact wave when compared to the Roe-WENO5 scheme seen in \figureref{fig:Test4HORenergy}. The CD2-Roe scheme in \figureref{fig:Test4HORCD2density,fig:Test4HORCD2velocity,fig:Test4HORCD2pressure,fig:Test4HORCD2energy} remains essentially unchanged from the Roe scheme seen in \figureref{fig:Test4HORdensity,fig:Test4HORvelocity,fig:Test4HORpressure,fig:Test4HORenergy}.
+
+\subsection{Higher-Order Reconstruction and Fourth-Order Central Differencing Results}
+\begin{figure}
+	\cfig{5}{Test4CD4ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeDensity.eps}{5}
+	\caption[Results for density for the higher-order reconstruction with fourth-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.]{Results for density for the higher-order reconstruction with fourth-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}
+	\label{fig:Test4HORCD4density}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test4CD4ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeVelocity.eps}{5}
+	\caption[Results for velocity for the higher-order reconstruction with fourth-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.]{Results for velocity for the higher-order reconstruction with fourth-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}
+	\label{fig:Test4HORCD4velocity}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test4CD4ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoePressure.eps}{5}
+	\caption[Results for pressure for the higher-order reconstruction with fourth-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.]{Results for pressure for the higher-order reconstruction with fourth-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}
+	\label{fig:Test4HORCD4pressure}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test4CD4ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeInternalEnergy.eps}{5}
+	\caption[Results for internal energy for the higher-order reconstruction with fourth-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.]{Results for internal energy for the higher-order reconstruction with fourth-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}
+	\label{fig:Test4HORCD4energy}
+\end{figure}
+The results for the higher-order reconstruction and fourth-order central differencing for the average flux for Test 3 can be seen in \figureref{fig:Test4HORCD4density,fig:Test4HORCD4velocity,fig:Test4HORCD4pressure,fig:Test4HORCD4energy}. The results for the higher-order reconstruction with fourth-order central differencing of Test 3 were obtained using the modified Roe solver with a MUSCL, WENO3, and WENO5 reconstruction. The wave system was solved until a time of $t=0.035$ using the fifth-order, six-stage SSPRK method with a CFL number of 1 and a computational domain consisting of a uniform grid of 100 cells.
+
+In the region preceding the left shock in \figureref{fig:Test4HORCD4energy} for the CD4-Roe-WENO5 scheme, it can be seen that the oscillations have increased in amplitude, and there are some minimal oscillations in the pressure distribution now present following the left shock that can be seen in \figureref{fig:Test4HORCD4pressure}.  Ahead of the contact wave, the amplitude of the oscillations has decreased for the CD4-Roe-WENO5 scheme compared to the CD2-Roe-WENO5 scheme seen in \figureref{fig:Test4HORCD2density,fig:Test4HORCD2energy}. Also, in the region ahead of the left shock, oscillations now impact the CD4-Roe, CD4-Roe-MUSCL, and CD4-Roe-WENO3 schemes. Following the right shock, there is now an overshoot present that affects all of the schemes, also seen in \figureref{fig:Test4HORCD4energy}.
+
+\subsection{Higher-Order Reconstruction and Sixth-Order Central Differencing Results}
+\begin{figure}
+	\cfig{5}{Test4CD6ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeDensity.eps}{5}
+	\caption[Results for density for the higher-order reconstruction with sixth-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.]{Results for density for the higher-order reconstruction with sixth-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}
+	\label{fig:Test4HORCD6density}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test4CD6ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeVelocity.eps}{5}
+	\caption[Results for velocity for the higher-order reconstruction with sixth-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.]{Results for velocity for the higher-order reconstruction with sixth-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}
+	\label{fig:Test4HORCD6velocity}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test4CD6ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoePressure.eps}{5}
+	\caption[Results for pressure for the higher-order reconstruction with sixth-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.]{Results for pressure for the higher-order reconstruction with sixth-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}
+	\label{fig:Test4HORCD6pressure}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test4CD6ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeInternalEnergy.eps}{5}
+	\caption[Results for internal energy for the higher-order reconstruction with sixth-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.]{Results for internal energy for the higher-order reconstruction with sixth-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}
+	\label{fig:Test4HORCD6energy}
+\end{figure}
+
+The results for the higher-order reconstruction and sixth-order central differencing for the average flux for Test 3 can be seen in \figureref{fig:Test4HORCD6density,fig:Test1HORCD4velocity,fig:Test1HORCD4pressure,fig:Test1HORCD4energy}. The results for the higher-order reconstruction with sixth-order central differencing of Test 3 were obtained using the modified Roe solver with a MUSCL, WENO3, and WENO5 reconstruction. The wave system was solved until a time of $t=0.035$ using the fifth-order, six-stage SSPRK method with a CFL number of 1 and a computational domain consisting of a uniform grid of 100 cells.
+
+It can be seen in \figureref{fig:Test4HORCD6energy} that the oscillations ahead of the left shock in the CD6-Roe-WENO5 scheme have increased in amplitude when compared to the CD4-Roe-WENO5 scheme seen in \figureref{fig:Test4HORCD4energy}. Following the left shock in \figureref{fig:Test4HORCD6pressure} it can be seen that the oscillations that occur in \figureref{fig:Test4HORCD4pressure} have also increased in amplitude in the CD6-Roe-WENO5 scheme. The CD6-Roe-WENO5 scheme provides the least amount of diffusion near the contact discontinuity. The CD6-Roe-MUSCL and CD6-Roe-WENO3 schemes also capture the contact discontinuity more accurately than the CD6-Roe scheme. It can be seen in \figureref{fig:Test4HORCD6density,fig:Test4HORCD6energy} that the CD6-Roe scheme adds a large amount of diffusion near the contact wave. In the region following the right shock, the overshoot present in the CD4 schemes can be seen to have worsened for the CD6-Roe-MUSCL and CD6-Roe-WENO3 schemes in \figureref{fig:Test4HORCD6energy}.
+
+\section{Test 4: Stationary Contact Wave}
+Test 4 consists of Test 2 in \sectionref{sect:Test2} with a negative uniform background speed. This test is presented by Toro \cite{toro2013riemann} as a method of testing the ability of numerical methods to resolve slowly-moving contact discontinuities. The solution consists of a left rarefaction wave, a slow right-traveling shock wave, and a stationary contact wave. The initial conditions of Test 4 can be seen in \tableref{tbl:testparameters}.
+
+\subsection{Higher-Order Reconstruction and Second-Order Central Differencing Results}
+
+The higher-order reconstruction with higher-order central differencing schemes do not produce solutions for Test 4, with the exception of the CD2-Roe scheme. The schemes produce both negative and very large densities on the second time step at the contact discontinuity, even for CFL numbers as low as $c=0.01$.  The CD2-Roe scheme seen in \figureref{fig:Test5HORCD2density,fig:Test5HORCD2velocity,fig:Test5HORCD2pressure,fig:Test5HORCD2energy} can be seen to be identical to the Roe scheme seen in \figureref{fig:Test5HORdensity,fig:Test5HORvelocity,fig:Test5HORpressure,fig:Test5HORenergy}.
+\begin{figure}
+	\cfig{5}{Test5CD2ROECFL1Nodes100RoeDensity.eps}{5}
+	\caption[Results for density for the higher-order reconstruction with second-order central differencing for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.]{Results for density for the higher-order reconstruction with second-order central differencing for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}
+	\label{fig:Test5HORCD2density}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test5CD2ROECFL1Nodes100RoeVelocity.eps}{5}
+	\caption[Results for density for the higher-order reconstruction with second-order central differencing for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.]{Results for density for the higher-order reconstruction with second-order central differencing for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}
+	\label{fig:Test5HORCD2velocity}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test5CD2ROECFL1Nodes100RoePressure.eps}{5}
+	\caption[Results for density for the higher-order reconstruction with second-order central differencing for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.]{Results for density for the higher-order reconstruction with second-order central differencing for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}
+	\label{fig:Test5HORCD2pressure}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test5CD2ROECFL1Nodes100RoeInternalEnergy.eps}{5}
+	\caption[Results for density for the higher-order reconstruction with second-order central differencing for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.]{Results for density for the higher-order reconstruction with second-order central differencing for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}
+	\label{fig:Test5HORCD2energy}
+\end{figure}

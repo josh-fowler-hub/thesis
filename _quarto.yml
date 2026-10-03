@@ -5,6 +5,7 @@ project:
     - index.qmd
   resources:
     - downloads/thesis.pdf
+    - reader/**
 
 website:
   title: "Josh Fowler | Thesis"

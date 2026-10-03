@@ -1,0 +1,61 @@
+<!DOCTYPE html> 
+<html lang='en-US' xml:lang='en-US'> 
+<head><title>Harten-Hyman Entropy Fix</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='thesis-web.css' rel='stylesheet' type='text/css' /> 
+<meta content='thesis-web.tex' name='src' /> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+<link href='titan-reader.css' rel='stylesheet' type='text/css' /> 
+</head><body>
+<!-- l. 178 --><p class='noindent'> <nav aria-label='Thesis navigation' class='thesis-nav'> <a href='/thesis/'>Thesis overview</a>  |  <a href='/thesis/reader/thesis-web.html'>Contents</a>  |  <a href='/'>Portfolio</a> </nav>  </p><!-- l. 178 --><div class='crosslinks'><p class='noindent'>[<a href='AdaptiveRiemannSolver.html'>next</a>] [<a href='RoesApproximateRiemannSolver.html'>prev</a>] [<a href='RoesApproximateRiemannSolver.html#tailRoesApproximateRiemannSolver.html'>prev-tail</a>] [<a href='#tailHartenHymanEntropyFix.html'>tail</a>] [<a href='RiemannSolvers.html#HartenHymanEntropyFix.html'>up</a>] </p></div>
+   <h3 class='sectionHead' id='hartenhyman-entropy-fix'><span class='titlemark'>3.3   </span> <a id='x15-140003.3'></a>Harten-Hyman Entropy Fix</h3>
+<!-- l. 179 --><p class='noindent'>Roe’s Approximate Riemann solver leads to the development of entropy violating
+shocks within rarefaction waves, sometimes called rarefaction shocks <span class='cite'>[<a href='bibname.html#Xtoro2013riemann'>29</a>]</span>. These
+rarefaction shocks occur when the eigenvalues of the Jacobian matrix vanish in
+sonic regions <span class='cite'>[<a href='bibname.html#XKermani'>15</a>]</span>. In practical computations, the entropy violating discontinuous
+waves cause difficulties when the rarefaction wave is transonic <span class='cite'>[<a href='bibname.html#Xtoro2013riemann'>29</a>]</span>. There are then
+have two cases where these unphysical shocks occur — in left and right transonic
+rarefactions. Modifications to Roe’s Riemann solver can be made to avoid these
+entropy violating shocks. Harten and Hyman <span class='cite'>[<a href='bibname.html#XHARTEN1983235'>10</a>]</span> suggested an entropy fix that
+has gained widespread use. Toro’s <span class='cite'>[<a href='bibname.html#Xtoro2013riemann'>29</a>]</span> formulation of the Harten and
+Hyman entropy fix for the time-dependent Euler equations is discussed
+here.
+</p><!-- l. 181 --><p class='noindent'>
+</p>
+   <h4 class='subsectionHead' id='left-transonic-rarefaction'><span class='titlemark'>3.3.1   </span> <a id='x15-150003.3.1'></a>Left Transonic Rarefaction</h4>
+<!-- l. 183 --><p class='noindent'>In the case of a left transonic rarefaction the wave speeds are calculated as follows
+\begin {equation}  \lambda _1^L = u_L - a_L ; \, \, \lambda _1^R = u_* - a_{*L}  \end {equation}<a id='x15-15001r27'></a> where \(u_*\) and \(a_*\) are calculated from \(\boldsymbol {U}_{*L}\) and \(\boldsymbol {U}_{*R}\) found in Section <a href='AdaptiveRiemannSolver.html#adaptive-riemann-solver'>3.4<!-- tex4ht:ref: section:sect:AdaptiveRiemannSolver  --></a>. If \begin {equation}  \lambda _1^L &lt; 0 &lt; \lambda _1^R  \end {equation}<a id='x15-15002r28'></a> then the left wave
+is a transonic rarefaction wave and the entropy fix is enforced in the following
+way. The single jump \begin {equation} \label {eqn:SingleJump1} \boldsymbol {U}_{*L} - \boldsymbol {U}_L = \tilde {\alpha }_1 \tilde {\boldsymbol {K}}^{(1)}  \end {equation}<a id='x15-15003r29'></a> is a wave traveling with a speed \(\tilde {\lambda }_1\) and is split into two
+smaller data jumps \(\boldsymbol {U}_{SL} - \boldsymbol {U}_L\) and \(\boldsymbol {U}_{*L} - \boldsymbol {U}_{SL}\). The jumps are traveling at speeds \(\lambda _1^L\) and \(\lambda _1^R\) respectively
+and \(\boldsymbol {U}_{SL}\) is a transonic state that is to be found. Using Equation <a href='TheEulerEquations.html#x9-8011r11'>2.11<!-- tex4ht:ref: equation:eq:IntegralForm  --></a> the
+following is found \begin {equation} \label {eq:IntegralEvaluated} \lambda _1^R \left (\boldsymbol {U}_{SL} - \boldsymbol {U}_{*L}\right ) + \lambda _1^L \left (\boldsymbol {U}_{L} - \boldsymbol {U}_{SL}\right ) = \tilde {\lambda }_1 \left (\boldsymbol {U}_{L} - \boldsymbol {U}_{*L}\right )  \end {equation}<a id='x15-15004r30'></a> \(\boldsymbol {U}_{SL}\) can then be found by \begin {equation}  \boldsymbol {U}_{SL} = \frac { \left ( \tilde {\lambda }_1 - \lambda _1^L \right ) \boldsymbol {U}_L + \left ( \tilde {\lambda }_1 - \lambda _1^R \right ) \boldsymbol {U}_{*L}}{\lambda _1^R - \lambda _1^L}  \end {equation}<a id='x15-15005r31'></a> Using the one-sided Roe flux from
+Equation <a href='TheApproximateRiemannProblem.html#x11-10013r40'>2.40<!-- tex4ht:ref: equation:eqn:Fsum1  --></a> and applying to Equation <a href='#x15-15004r30'>3.30<!-- tex4ht:ref: equation:eq:IntegralEvaluated  --></a>, the data jump \(\boldsymbol {U}_{SL} - \boldsymbol {U}_L\) can be
+expressed as \begin {equation}  \boldsymbol {U}_{SL} - \boldsymbol {U}_L = \frac {\left ( \lambda _1^R - \tilde {\lambda }_1 \right )}{\left (\lambda _1^R - \lambda _1^L\right )} \left (\boldsymbol {U}_{*L} - \boldsymbol {U}_L\right )  \end {equation}<a id='x15-15006r32'></a> The Roe approximation from Equation <a href='#x15-15003r29'>3.29<!-- tex4ht:ref: equation:eqn:SingleJump1  --></a> leads to the
+flux jump \(\left (\Delta \boldsymbol {F}\right )_1^L\) across the wave of speed \(\lambda _1^L\) to be \begin {equation}  \left (\Delta \boldsymbol {F}\right )_1^L = \lambda _1^L \left (\frac {\lambda _1^R - \tilde {\lambda }_1}{\lambda _1^R - \lambda _1^L}\right ) \tilde {\alpha }_1 \tilde {\boldsymbol {K}}^{(1)}  \end {equation}<a id='x15-15007r33'></a> A new wave speed, \(\bar {\lambda }_1\), can
+then be defined as \begin {equation}  \bar {\lambda }_1 = \lambda _1^L \left (\frac {\lambda _1^R - \tilde {\lambda }_1}{\lambda _1^R - \lambda _1^L}\right )  \end {equation}<a id='x15-15008r34'></a> so that the intercell flux from Equation <a href='TheApproximateRiemannProblem.html#x11-10013r40'>2.40<!-- tex4ht:ref: equation:eqn:Fsum1  --></a> is now
+\begin {equation} \label {eq:Fsum1Entropy} \boldsymbol {F}_{i+\frac {1}{2}} = \boldsymbol {F}_L + \bar {\lambda }_1 \tilde {\alpha }_1 \tilde {\boldsymbol {K}}^{(1)}  \end {equation}<a id='x15-15009r35'></a>
+                                                                          
+
+                                                                          
+</p>
+   <h4 class='subsectionHead' id='right-transonic-rarefaction'><span class='titlemark'>3.3.2   </span> <a id='x15-160003.3.2'></a>Right Transonic Rarefaction</h4>
+<!-- l. 220 --><p class='noindent'>In the case of a right transonic rarefaction we can define two new wave speeds in
+the same manner as the left case. \begin {equation}  \lambda _3^L = u_* + a_{*R} ; \, \, \lambda _3^R = u_R + a_R  \end {equation}<a id='x15-16001r36'></a> If \begin {equation}  \lambda _3^L &lt; 0 &lt; \lambda _3^R  \end {equation}<a id='x15-16002r37'></a> then the right wave is a transonic
+rarefaction wave and the transonic state \(\boldsymbol {U}_{SR}\) between the waves of speeds \(\lambda _3^L\)
+and \(\lambda _3^R\) is given as \begin {equation}  \boldsymbol {U}_{SR} = \frac { \left ( \lambda _3^R - \tilde {\lambda _3} \right ) \boldsymbol {U}_R + \left ( \tilde {\lambda }_3 - \lambda _3^L \right ) \boldsymbol {U}_{*R}}{\lambda _3^R - \lambda _3^L}  \end {equation}<a id='x15-16003r38'></a> A new wave speed, \(\bar {\lambda }_3\), can then be defined as \begin {equation}  \bar {\lambda }_3 = \lambda _3^R \left (\frac {\tilde {\lambda }_3 - \lambda _3^R}{\lambda _3^R - \lambda _3^L}\right )  \end {equation}<a id='x15-16004r39'></a> Using the
+one-sided Roe flux from Equation <a href='TheApproximateRiemannProblem.html#x11-10014r41'>2.41<!-- tex4ht:ref: equation:eqn:Fsum2  --></a> and applying this new wave speed we
+have \begin {equation} \label {eq:Fsum2Entropy} \boldsymbol {F}_{i+\frac {1}{2}} = \boldsymbol {F}_R - \bar {\lambda }_3 \tilde {\alpha }_1 \tilde {\boldsymbol {K}}^{(3)}  \end {equation}<a id='x15-16005r40'></a> Taking the simple average of Equation <a href='#x15-15009r35'>3.35<!-- tex4ht:ref: equation:eq:Fsum1Entropy  --></a> and Equation <a href='#x15-16005r40'>3.40<!-- tex4ht:ref: equation:eq:Fsum2Entropy  --></a>
+we again arrive at Equation <a href='TheApproximateRiemannProblem.html#x11-10015r42'>2.42<!-- tex4ht:ref: equation:eqn:NumericalFluxAverage  --></a> as the centered formula for the Roe
+flux.
+                                                                          
+
+                                                                          
+</p>
+   <!-- l. 242 --><div class='crosslinks'><p class='noindent'>[<a href='AdaptiveRiemannSolver.html'>next</a>] [<a href='RoesApproximateRiemannSolver.html'>prev</a>] [<a href='RoesApproximateRiemannSolver.html#tailRoesApproximateRiemannSolver.html'>prev-tail</a>] [<a href='HartenHymanEntropyFix.html'>front</a>] [<a href='RiemannSolvers.html#HartenHymanEntropyFix.html'>up</a>] </p></div>
+<!-- l. 242 --><p class='indent'>   <a id='tailHartenHymanEntropyFix.html'></a>  </p> 
+</body> 
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html> 
+<html lang='en-US' xml:lang='en-US'> 
+<head><title>Adaptive Riemann Solver</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='thesis-web.css' rel='stylesheet' type='text/css' /> 
+<meta content='thesis-web.tex' name='src' /> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+<link href='titan-reader.css' rel='stylesheet' type='text/css' /> 
+</head><body>
+<!-- l. 242 --><p class='noindent'> <nav aria-label='Thesis navigation' class='thesis-nav'> <a href='/thesis/'>Thesis overview</a>  |  <a href='/thesis/reader/thesis-web.html'>Contents</a>  |  <a href='/'>Portfolio</a> </nav>  </p><!-- l. 242 --><div class='crosslinks'><p class='noindent'>[<a href='ModificationtoRoesApproximateRiemannSolver.html'>next</a>] [<a href='HartenHymanEntropyFix.html'>prev</a>] [<a href='HartenHymanEntropyFix.html#tailHartenHymanEntropyFix.html'>prev-tail</a>] [<a href='#tailAdaptiveRiemannSolver.html'>tail</a>] [<a href='RiemannSolvers.html#AdaptiveRiemannSolver.html'>up</a>] </p></div>
+   <h3 class='sectionHead' id='adaptive-riemann-solver'><span class='titlemark'>3.4   </span> <a id='x16-170003.4'></a>Adaptive Riemann Solver</h3>
+<!-- l. 244 --><p class='noindent'>In order to find the speeds \(u_*\), \(a_{*L}\), and \(a_{*R}\), \(\boldsymbol {U}_{*R}\) and \(\boldsymbol {U}_{*L}\) need to be found. Toro <span class='cite'>[<a href='bibname.html#Xtoro2013riemann'>29</a>]</span> provides an
+adaptive Riemann solver outlined here that has been modified to include an
+iterative scheme to find the star states. The adaptive Riemann solver starts by
+defining a switching parameter \(Q_{user}\) and a switching condition parameter \(Q\) defined as \begin {equation}  Q = \frac {p_{max}}{p_{min}}  \end {equation}<a id='x16-17001r41'></a>
+and the \(p_*\) state taken from the Primitive Variable Riemann Solver (PVRS) of
+Section <a href='#primitive-variable-riemann-solver'>3.4.1<!-- tex4ht:ref: section:sect:PVRS  --></a> as \begin {equation}  p_* = p_{pvrs}  \end {equation}<a id='x16-17002r42'></a> A choice of \(Q_{user} = 2\) results in robust and efficient schemes that can
+handle most Riemann problems <span class='cite'>[<a href='bibname.html#Xtoro2013riemann'>29</a>]</span>. If \begin {equation}  Q &lt; Q_{user}  \end {equation}<a id='x16-17003r43'></a> and \begin {equation}  p_{min} &lt; p_* &lt; p_{max}  \end {equation}<a id='x16-17004r44'></a> then the PVRS is used for
+the star state calculations. If \begin {equation}  p_* &lt; p_{min}  \end {equation}<a id='x16-17005r45'></a> then the Two Rarefaction Riemann Solver
+(TRRS) of Section <a href='#two-rarefaction-riemann-solver'>3.4.2<!-- tex4ht:ref: section:sect:TRRS  --></a> is used. If none of the conditions is met then
+the Two Shock Riemann Solver (TSRS) of Section <a href='#two-shock-riemann-solver'>3.4.3<!-- tex4ht:ref: section:sect:TSRS  --></a> is used for the
+star state calculations. In all cases, the value of \(p_*\) is an initial guess for
+the following Iterative Riemann Solver (IRS) using the Newton-Raphson
+method.
+</p><!-- l. 271 --><p class='indent'>   \begin {equation}  f_k = \begin {cases} \left (p_* - p\right ) \sqrt {\frac {A_k}{p_* + B_k}} \,\,\,\, \textrm {if} \,\,\,\, p_* &gt; p \,\,\,\, \left (\textrm {shock}\right )\\ \frac {2 a_k}{\gamma - 1} \left (\frac {p_*}{p}\right )^{\frac {\gamma - 1}{2 \gamma - 1}}\,\,\,\, \textrm {if} \,\,\,\, p_* \le p \,\,\,\, \left (\textrm {rarefaction}\right ) \end {cases}  \end {equation}<a id='x16-17006r46'></a> \begin {equation}  f^{\prime }_k = \begin {cases} \sqrt {\frac {A_k}{p_* + B_k}} \left [1 - \frac {p_* - p}{ 2 \left (B_k + p\right )}\right ] \,\,\,\, \textrm {if} \,\,\,\, p_* &gt; p \,\,\,\, \left (\textrm {shock}\right )\\ \frac {1}{\rho _k a_k} \left (\frac {p_*}{p}\right )^{-\frac {\gamma + 1}{2 \gamma }} \,\,\,\, \textrm {if} \,\,\,\, p_* \le p \,\,\,\, \left (\textrm {rarefaction}\right ) \end {cases}  \end {equation}<a id='x16-17007r47'></a> Where \(A_k\), \(B_k\), and \(a_k\) are \begin {equation}  A_k = \frac {2}{\rho _k \left (\gamma + 1\right )}  \end {equation}<a id='x16-17008r48'></a> \begin {equation}  B_k = p \frac {\gamma - 1}{\gamma + 1}  \end {equation}<a id='x16-17009r49'></a> \begin {equation}  a_k = \sqrt {\frac {\gamma p}{\rho _k}}  \end {equation}<a id='x16-17010r50'></a> then \(f\) and \(f^{\prime }\) are \begin {equation}  f = f_L + f_R \,\,\,\, ; f^{\prime } = f^{\prime }_L + f^{\prime }_R  \end {equation}<a id='x16-17011r51'></a> The Newton-Raphson scheme for an
+iteration \(n\) is then \begin {equation}  p_{*,n+1} = p_{*,n-1} - \frac {f_n}{f^{\prime }_n}  \end {equation}<a id='x16-17012r52'></a> The wave speeds can then be calculated according to the PVRS,
+TRRS, or TSRS. In the case where the TRRS or TSRS is used, and the wave
+system is a two rarefaction or two shock system, respectively, the \(p_*\) equations are
+exact and will result in only one iteration.
+</p>
+   <figure class='figure' id='x16-170132'><span id='flowchart-for-the-adaptive-riemann-solver'></span> 
+
+                                                                          
+
+                                                                          
+
+                                                                          
+
+                                                                          
+<!-- l. 341 --><p class='noindent'>                            <img alt='     pmax
+Q =Q pm&lt;inQuser
+ppPpTTICTFaTFa∗mV∗RSRarulrul =iR &lt;RRSleseesenSSScup&lt;plpmavpitrs∗ne &lt;WapvmeaxSpeed ' src='thesis-web5x.svg' />
+</p>
+<figcaption class='caption'><span class='id'>Figure 3.2: </span><span class='content'>Flowchart for the Adaptive Riemann Solver.</span></figcaption><!-- tex4ht:label?: x16-170132  -->
+                                                                          
+
+                                                                          
+   </figure>
+   <h4 class='subsectionHead' id='primitive-variable-riemann-solver'><span class='titlemark'>3.4.1   </span> <a id='x16-180003.4.1'></a>Primitive Variable Riemann Solver</h4>
+<!-- l. 380 --><p class='noindent'>To estimate the wave speeds using the PVRS, the following star states
+are calculated \begin {equation} \label {eq:PVRS} \begin {rcases} p_* = \frac {1}{2} \left (p_L + p_R\right ) + \frac {1}{2} \left (u_L - u_R\right ) \bar {\rho } \bar {a}\\ u_* = \frac {1}{2} \left (u_L + u_R\right ) + \frac {1}{2} \left (p_L - p_R\right ) / \left (\bar {\rho } \bar {a}\right )\\ p_{*L} = \rho _L - \left (u_L - u_*\right )\bar {\rho } / \bar {a}\\ p_{*R} = \rho _R - \left (u_* - u_R\right )\bar {\rho } / \bar {a} \end {rcases}  \end {equation}<a id='x16-18001r53'></a> where \(\bar {\rho }\) and \(\bar {a}\) are \begin {equation}  \bar {\rho } = \frac {1}{2} \left (\rho _L + \rho _R\right ) \, , \,\,\,\, \bar {a} = \frac {1}{2} \left (a_L + a_R\right )  \end {equation}<a id='x16-18002r54'></a> the speeds of sound are calculated as \begin {equation}  a_{*L} = \sqrt {\frac {\gamma p_*}{\rho _{*L}}}  \end {equation}<a id='x16-18003r55'></a>
+\begin {equation}  a_{*R} = \sqrt {\frac {\gamma p_*}{\rho _{*R}}}  \end {equation}<a id='x16-18004r56'></a>
+</p>
+   <h4 class='subsectionHead' id='two-rarefaction-riemann-solver'><span class='titlemark'>3.4.2   </span> <a id='x16-190003.4.2'></a>Two Rarefaction Riemann Solver</h4>
+<!-- l. 401 --><p class='noindent'>To estimate the wave speeds using the TRRS, the initial guess for the pressure \(p_*\) is
+calculated according to \begin {equation}  p_* = \left [\frac {a_L + a_R - \frac {\gamma - 1}{2} \left (u_R - u_L\right )}{a_L / p_L^z + a_R / p_R^z}\right ]^{\frac {1}{z}}  \end {equation}<a id='x16-19001r57'></a> where \(z\) is given by \begin {equation}  z = \frac {\gamma - 1}{2 \gamma }  \end {equation}<a id='x16-19002r58'></a> the speeds of sound and the particle
+velocities in the star region are given by \begin {equation}  a_{*L} = a_L \left (p_* / p_L\right )^z \, , \,\,\,\, u_* = u_L + \frac {2}{\gamma - 1} \left (a_L - a_{*L}\right )  \end {equation}<a id='x16-19003r59'></a> \begin {equation}  a_{*R} = a_R \left (p_* / p_R\right )^z \, , \,\,\,\, u_* = u_R + \frac {2}{\gamma - 1} \left (a_R - a_{*R}\right )  \end {equation}<a id='x16-19004r60'></a>
+</p>
+   <h4 class='subsectionHead' id='two-shock-riemann-solver'><span class='titlemark'>3.4.3   </span> <a id='x16-200003.4.3'></a>Two Shock Riemann Solver</h4>
+<!-- l. 417 --><p class='noindent'>To estimate the speeds with the TSRS, a pressure function is defined as \begin {equation}  f\left (p\right ) = \left (p - p_L\right ) g_L\left (p\right ) + \left (p - p_R\right ) g_R\left (p\right ) + u_R - u_L = 0  \end {equation}<a id='x16-20001r61'></a> where \begin {equation}  g_K\left (p\right ) = \left [\frac {A_K}{p + B_K}\right ]^{\frac {1}{2}}  \end {equation}<a id='x16-20002r62'></a>
+and \(A_K\) and \(B_K\) are given by \begin {equation}  A_K = \frac {2}{\left (\gamma + 1\right ) \rho _K}  \end {equation}<a id='x16-20003r63'></a> \begin {equation}  B_K = \left (\frac {\gamma - 1}{\gamma + 1}\right ) \rho _K  \end {equation}<a id='x16-20004r64'></a> and \(K=L,R\). Assuming an estimate \(p_0\) for the solution \begin {equation}  p_0 = max\left (0,p_{pvrs}\right )  \end {equation}<a id='x16-20005r65'></a> where \(p_{pvrs}\) is
+the \(p_*\) value found according to Equation <a href='#x16-18001r53'>3.53<!-- tex4ht:ref: equation:eq:PVRS  --></a>, then the following is obtained \begin {equation}  \left (p - p_L\right ) g_L\left (p_0\right ) + \left (p - p_R\right ) g_R\left (p_0\right ) + u_R - u_L = 0  \end {equation}<a id='x16-20006r66'></a> The
+solution of which is \begin {equation}  p_* = \frac {g_L\left (p_0\right ) p_L + g_R\left (p_0\right ) p_R - \left (u_R - u_L\right )}{g_L\left (p_0\right ) + g_R\left (p_0\right )}  \end {equation}<a id='x16-20007r67'></a> A solution for \(u_*\) can then be derived as \begin {equation}  u_* = \frac {1}{2} \left (u_L + u_R\right ) + \frac {1}{2} \left [\left (p_* - p_R\right ) g_R\left (p_0\right ) - \left (p_* - p_L\right ) g_L\left (p_0\right )\right ]  \end {equation}<a id='x16-20008r68'></a> The solutions for \(\rho _{*L}\) and \(\rho _{*R}\)
+are then \begin {equation}  \rho _{*L} = \rho _L \left [\frac {\frac {p_*}{p_L} + \frac {\gamma - 1}{\gamma + 1}}{\frac {\gamma - 1}{\gamma + 1}\frac {p_*}{p_L} + 1}\right ] \, , \,\,\,\, \rho _{*R} = \rho _R \left [\frac {\frac {p_*}{p_R} + \frac {\gamma - 1}{\gamma + 1}}{\frac {\gamma - 1}{\gamma + 1}\frac {p_*}{p_R} + 1}\right ]  \end {equation}<a id='x16-20009r69'></a>
+                                                                          
+
+                                                                          
+</p>
+   <!-- l. 452 --><div class='crosslinks'><p class='noindent'>[<a href='ModificationtoRoesApproximateRiemannSolver.html'>next</a>] [<a href='HartenHymanEntropyFix.html'>prev</a>] [<a href='HartenHymanEntropyFix.html#tailHartenHymanEntropyFix.html'>prev-tail</a>] [<a href='AdaptiveRiemannSolver.html'>front</a>] [<a href='RiemannSolvers.html#AdaptiveRiemannSolver.html'>up</a>] </p></div>
+<!-- l. 452 --><p class='indent'>   <a id='tailAdaptiveRiemannSolver.html'></a>  </p> 
+</body> 
+</html>

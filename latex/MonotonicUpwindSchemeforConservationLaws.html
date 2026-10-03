@@ -1,0 +1,73 @@
+<!DOCTYPE html> 
+<html lang='en-US' xml:lang='en-US'> 
+<head><title>Monotonic Upwind Scheme for Conservation Laws</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='thesis-web.css' rel='stylesheet' type='text/css' /> 
+<meta content='thesis-web.tex' name='src' /> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+<link href='titan-reader.css' rel='stylesheet' type='text/css' /> 
+</head><body>
+<!-- l. 2 --><p class='noindent'> <nav aria-label='Thesis navigation' class='thesis-nav'> <a href='/thesis/'>Thesis overview</a>  |  <a href='/thesis/reader/thesis-web.html'>Contents</a>  |  <a href='/'>Portfolio</a> </nav>  </p><!-- l. 2 --><div class='crosslinks'><p class='noindent'>[<a href='WeightedEssentiallyNonOscillatorySchemes.html'>next</a>] [<a href='#tailMonotonicUpwindSchemeforConservationLaws.html'>tail</a>] [<a href='Reconstruction.html#MonotonicUpwindSchemeforConservationLaws.html'>up</a>] </p></div>
+   <h3 class='sectionHead' id='monotonic-upwind-scheme-for-conservation-laws'><span class='titlemark'>4.1   </span> <a id='x19-260004.1'></a>Monotonic Upwind Scheme for Conservation Laws</h3>
+<!-- l. 4 --><p class='noindent'>The Monotonic Upwind Scheme for Conservation Laws (MUSCL) is used to
+reconstruct the values of the face variables from the cell-centered values to extend
+Roe’s solver to second-order. The MUSCL reconstruction uses a piecewise linear
+representation of the data seen in Figure <a href='#muscl-reconstruction'>4.1<!-- tex4ht:ref: figure:fig:MUSCLConfig  --></a> when \(\phi = 1\) resulting in a second-order
+scheme for smooth regions <span class='cite'>[<a href='bibname.html#Xhirsch2007numerical'>13</a>]</span>. Godunov’s theorem states that ”Linear numerical
+schemes for solving partial differential equations, having the property of not
+generating new extrema, can be at most first-order accurate.” <span class='cite'>[<a href='bibname.html#Xgodunov_hal-01620642'>7</a>]</span>. Accordingly,
+when \(\phi = 0\), a piecewise constant representation is recovered in regions with high
+gradients resulting in a first-order scheme that keeps the solution total
+variation diminishing (TVD). A solution is considered TVD when \begin {equation}  TV\left (\boldsymbol {U}^{n+1}\right ) \le TV\left (\boldsymbol {U}^n\right )  \end {equation}<a id='x19-26001r1'></a> In
+smooth regions the MUSCL scheme will retain second-order accuracy.
+</p><figure class='figure' id='x19-260021'><span id='muscl-reconstruction'></span> 
+
+                                                                          
+
+                                                                          
+
+                                                                          
+
+                                                                          
+<!-- l. 31 --><p class='noindent'><img alt='xiiiiiUUUU + − + +iiLR+,,11ii113++11
+    22222' src='thesis-web6x.svg' />
+</p>
+<figcaption class='caption'><span class='id'>Figure 4.1: </span><span class='content'>MUSCL Reconstruction.</span></figcaption><!-- tex4ht:label?: x19-260021  -->
+                                                                          
+
+                                                                          
+   </figure>
+   <h4 class='subsectionHead' id='muscl-reconstruction1'><span class='titlemark'>4.1.1   </span> <a id='x19-270004.1.1'></a>MUSCL Reconstruction</h4>
+<!-- l. 37 --><p class='noindent'>Following the \(\kappa \)-scheme of van Leer <span class='cite'>[<a href='bibname.html#XVANLEER1977263'>31</a>]</span>, the values of \(\boldsymbol {U}\) used in the variable
+extrapolation are \begin {equation}  \boldsymbol {U}^L_{i+\frac {1}{2}} = \boldsymbol {U}_i + \frac {\phi _i}{4 \Lambda } \left [\left (1-\kappa \right )\Delta \boldsymbol {U}_{i-\frac {1}{2}} + \left (1+\kappa \right )\Delta \boldsymbol {U}_{i+\frac {1}{2}}\right ]  \end {equation}<a id='x19-27001r2'></a> \begin {equation}  \boldsymbol {U}^R_{i+\frac {1}{2}} = \boldsymbol {U}_{i+1} - \frac {\phi _{i+1}}{4 \Lambda } \left [\left (1+\kappa \right )\Delta \boldsymbol {U}_{i+\frac {3}{2}} + \left (1-\kappa \right )\Delta \boldsymbol {U}_{i+\frac {1}{2}}\right ]  \end {equation}<a id='x19-27002r3'></a> \begin {equation}  \boldsymbol {U}^L_{i-\frac {1}{2}} = \boldsymbol {U}_{i-1} + \frac {\phi _{i-1}}{4 \Lambda } \left [\left (1-\kappa \right )\Delta \boldsymbol {U}_{i-\frac {3}{2}} + \left (1+\kappa \right )\Delta \boldsymbol {U}_{i-\frac {1}{2}}\right ]  \end {equation}<a id='x19-27003r4'></a> \begin {equation}  \boldsymbol {U}^R_{i-\frac {1}{2}} = \boldsymbol {U}_i - \frac {\phi _i}{4 \Lambda } \left [\left (1+\kappa \right )\Delta \boldsymbol {U}_{i+\frac {1}{2}} + \left (1-\kappa \right )\Delta \boldsymbol {U}_{i-\frac {1}{2}}\right ]  \end {equation}<a id='x19-27004r5'></a> Where the data differences are \begin {equation}  \Delta \boldsymbol {U}_{i+\frac {1}{2}} = \boldsymbol {U}_{i+1} - \boldsymbol {U}_{i}  \end {equation}<a id='x19-27005r6'></a> \begin {equation}  \Delta \boldsymbol {U}_{i-\frac {1}{2}} = \boldsymbol {U}_{i} - \boldsymbol {U}_{i-1}  \end {equation}<a id='x19-27006r7'></a> \begin {equation}  \Delta \boldsymbol {U}_{i+\frac {3}{2}} = \boldsymbol {U}_{i+2} - \boldsymbol {U}_{i+1}  \end {equation}<a id='x19-27007r8'></a> \begin {equation}  \Delta \boldsymbol {U}_{i-\frac {3}{2}} = \boldsymbol {U}_{i-1} - \boldsymbol {U}_{i-2}  \end {equation}<a id='x19-27008r9'></a>
+</p><!-- l. 64 --><p class='indent'>   The choice of \(\kappa \) determines the reconstruction scheme and may take any value
+between \(-1\) and \(1\). A choice of \(\kappa = 1\) results in a central difference scheme; while a
+choice of \(\kappa = -1\) will result in an upwind scheme; \(\kappa = 0\) will result in a second-order
+Fromm scheme <span class='cite'>[<a href='bibname.html#Xhirsch2007numerical'>13</a>]</span>. Choices of \(\kappa = \frac {1}{2}\) or \(\kappa = \frac {1}{3}\) will result in third-order reconstruction,
+however the accuracy of the reconstruction will degrade to second-order
+<span class='cite'>[<a href='bibname.html#XNishikawa'>19</a>]</span>.
+</p><!-- l. 66 --><p class='indent'>   \(\Lambda \) is a scaling factor used to dampen oscillations by increasing the numerical
+viscosity and may take on a value of \(1\) or \(2\) <span class='cite'>[<a href='bibname.html#XBIDADI201465'>1</a>]</span>. A choice of \(\Lambda = 2\) results in a more
+diffusive solution that avoids spurious oscillations, while \(\Lambda = 1\) will produce the original
+van Leer <span class='cite'>[<a href='bibname.html#XVANLEER1977263'>31</a>]</span> \(\kappa \)-scheme.
+</p><!-- l. 68 --><p class='indent'>   The flux limiter, \(\phi \), is a function that limits the gradient of \(\boldsymbol {U}\) in the solution. The
+flux limiter is a function of \(r\), such that \begin {equation}  \phi _{i+1} = \phi \left (r_{i+1}\right )  \end {equation}<a id='x19-27009r10'></a> \begin {equation}  \phi _{i} = \phi \left (r_{i}\right )  \end {equation}<a id='x19-27010r11'></a> \begin {equation}  \phi _{i-1} = \phi \left (r_{i-1}\right )  \end {equation}<a id='x19-27011r12'></a> where \(r\) is a ratio of the forward
+and backward gradients and is used as a measure of smoothness of the
+gradient of \(\boldsymbol {U}\) and calculated by the differences in the data. \begin {equation} \label {eqn:rip1} r_{i+1} = \frac {\Delta \boldsymbol {U}_{i+\frac {1}{2}}}{\Delta \boldsymbol {U}_{i+\frac {3}{2}} + \epsilon }  \end {equation}<a id='x19-27012r13'></a> \begin {equation}  r_{i} = \frac {\Delta \boldsymbol {U}_{i-\frac {1}{2}}}{\Delta \boldsymbol {U}_{i+\frac {1}{2}} + \epsilon }  \end {equation}<a id='x19-27013r14'></a> \begin {equation} \label {eqn:rim1} r_{i-1} = \frac {\Delta \boldsymbol {U}_{i-\frac {3}{2}}}{\Delta \boldsymbol {U}_{i-\frac {1}{2}} + \epsilon }  \end {equation}<a id='x19-27014r15'></a> \(\epsilon \) is a small
+factor of \(10^{-6}\) that prevents division by zero. There are many choices for the
+flux limiter function including van Leer’s <span class='cite'>[<a href='bibname.html#XVANLEER1997229'>34</a>]</span> or van Albada’s <span class='cite'>[<a href='bibname.html#XVANLEER199701'>30</a>]</span>. The
+most diffusive of the flux limiters is Roe’s <span class='cite'>[<a href='bibname.html#XROESome'>21</a>]</span> Minmod limiter, which is
+presented as \begin {equation}  \phi \left (r\right ) = max\left (0,min\left (1,r\right )\right )  \end {equation}<a id='x19-27015r16'></a> The Minmod limiter is the most dissipative and adds the
+maximum amount of numerical diffusion while keeping the solution TVD
+<span class='cite'>[<a href='bibname.html#XBAI201868'>20</a>]</span>.
+                                                                          
+
+                                                                          
+</p>
+   <!-- l. 94 --><div class='crosslinks'><p class='noindent'>[<a href='WeightedEssentiallyNonOscillatorySchemes.html'>next</a>] [<a href='MonotonicUpwindSchemeforConservationLaws.html'>front</a>] [<a href='Reconstruction.html#MonotonicUpwindSchemeforConservationLaws.html'>up</a>] </p></div>
+<!-- l. 94 --><p class='indent'>   <a id='tailMonotonicUpwindSchemeforConservationLaws.html'></a>  </p> 
+</body> 
+</html>

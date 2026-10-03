@@ -1,0 +1,22 @@
+% List of Symbols
+\listofsymbols
+
+\symboldefinition{$\beta$}{probability of non-detecting bad data}
+
+\symboldefinition{$\delta$}{Transition Coefficient Constant for the
+Design of Linear-Phase FIR Filters which are used to take up space
+when testing the list of symbols}
+
+\symboldefinition{$\zeta$}{Reflection Coefficient Parameter}
+
+\symboldefinition{$\sigma$}{Electrical Conductivity, typically given
+in units of S/m, which is also a nice way to test the list of
+symbols}
+
+
+
+
+
+
+
+\clearpage

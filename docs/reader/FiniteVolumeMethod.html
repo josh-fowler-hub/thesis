@@ -1,0 +1,47 @@
+<!DOCTYPE html> 
+<html lang='en-US' xml:lang='en-US'> 
+<head><title>Finite Volume Method</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='thesis-web.css' rel='stylesheet' type='text/css' /> 
+<meta content='thesis-web.tex' name='src' /> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+<link href='titan-reader.css' rel='stylesheet' type='text/css' /> 
+</head><body>
+<!-- l. 2 --><p class='noindent'> <nav aria-label='Thesis navigation' class='thesis-nav'> <a href='/thesis/'>Thesis overview</a>  |  <a href='/thesis/reader/thesis-web.html'>Contents</a>  |  <a href='/'>Portfolio</a> </nav>  </p><!-- l. 2 --><div class='crosslinks'><p class='noindent'>[<a href='RoesApproximateRiemannSolver.html'>next</a>] [<a href='#tailFiniteVolumeMethod.html'>tail</a>] [<a href='RiemannSolvers.html#FiniteVolumeMethod.html'>up</a>] </p></div>
+   <h3 class='sectionHead' id='finite-volume-method'><span class='titlemark'>3.1   </span> <a id='x13-120003.1'></a>Finite Volume Method</h3>
+<!-- l. 4 --><p class='noindent'>The method used to discretize the one-dimensional Euler equations is the Finite
+Volume Method. The Finite Volume Method approximates the value at the cell
+centers by using the flux across the cell faces. Integrating Equation <a href='TheEulerEquations.html#x9-8014r14'>2.14<!-- tex4ht:ref: equation:eqn:LinEuler  --></a> over
+space \begin {equation}  \int _V \boldsymbol {U}_t dV + \int _V \boldsymbol {F}_xdV = \boldsymbol {0}  \end {equation}<a id='x13-12001r1'></a> and using the Gauss-Divergence Theorem the Volume integral over the flux
+term can be converted to a surface integral. \begin {equation}  \int _V \left (\nabla \boldsymbol {\cdot } \boldsymbol {F}\right ) dV = \int _S \boldsymbol {F} \boldsymbol {\cdot } d\hat {A}  \end {equation}<a id='x13-12002r2'></a> Converting the integral of the flux
+vector, \(\boldsymbol {F}\), into a surface integral gives the following \begin {equation}  \int _V \boldsymbol {U}_t\,dV + \int _S \boldsymbol {F} \boldsymbol {\cdot } \boldsymbol {\hat {n}}\,dS = \boldsymbol {0}  \end {equation}<a id='x13-12003r3'></a> The surface integral can then
+be represented as a sum over the surface area of the faces of a cell denoted as seen
+in Figure <a href='#cell-configuration-for-a-onedimensional-grid'>3.1<!-- tex4ht:ref: figure:fig:CellSetUp  --></a>. In one dimension this reduces to \begin {equation} \label {eqn:spatiallydiscretized} \boldsymbol {U}_t \Delta x + \left [\boldsymbol {F}_{i+\frac {1}{2}} - \boldsymbol {F}_{i-\frac {1}{2}}\right ] = \boldsymbol {0}  \end {equation}<a id='x13-12004r4'></a> The spatially discretized equation
+can then be represented as \begin {equation} \label {eqn:spatiallydiscretized2} \boldsymbol {U}_t = - \frac {1}{\Delta x} \left [\boldsymbol {F}_{i+\frac {1}{2}} - \boldsymbol {F}_{i-\frac {1}{2}}\right ]  \end {equation}<a id='x13-12005r5'></a> Equation <a href='#x13-12005r5'>3.5<!-- tex4ht:ref: equation:eqn:spatiallydiscretized2  --></a> can then be solved by finding
+the value of the numerical flux and an appropriate time discretization.
+</p><figure class='figure' id='x13-120061'><span id='cell-configuration-for-a-onedimensional-grid'></span> 
+
+                                                                          
+
+                                                                          
+
+                                                                          
+
+                                                                          
+<!-- l. 47 --><p class='noindent'>                <img alt='xiiiiiiiCC + − + − − +eellll1112123232FCaecneter ' src='thesis-web4x.svg' />
+</p>
+<figcaption class='caption'><span class='id'>Figure 3.1: </span><span class='content'>Cell Configuration for a one-dimensional grid.</span></figcaption><!-- tex4ht:label?: x13-120061  -->
+                                                                          
+
+                                                                          
+   </figure>
+                                                                          
+
+                                                                          
+   <!-- l. 51 --><div class='crosslinks'><p class='noindent'>[<a href='RoesApproximateRiemannSolver.html'>next</a>] [<a href='FiniteVolumeMethod.html'>front</a>] [<a href='RiemannSolvers.html#FiniteVolumeMethod.html'>up</a>] </p></div>
+<!-- l. 51 --><p class='indent'>   <a id='tailFiniteVolumeMethod.html'></a> </p> 
+</body> 
+</html>

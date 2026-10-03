@@ -1,0 +1,65 @@
+\contentsline {chapter}{List of Figures}{x}%
+\contentsline {chapter}{List of Tables}{xv}%
+\contentsline {chapter}{Chapter}{}\vspace {-1.0em}
+\contentsline {chapter}{\numberline {1}Introduction}{1}%
+\contentsline {section}{\numberline {1.1}Shock-Capturing Schemes}{1}%
+\contentsline {section}{\numberline {1.2}Approach}{7}%
+\contentsline {section}{\numberline {1.3}Outline}{8}%
+\contentsline {chapter}{\numberline {2}Governing Equations}{11}%
+\contentsline {section}{\numberline {2.1}The Euler Equations}{11}%
+\contentsline {section}{\numberline {2.2}The Riemann Problem}{15}%
+\contentsline {section}{\numberline {2.3}The Approximate Riemann Problem}{17}%
+\contentsline {chapter}{\numberline {3}Riemann Solvers}{20}%
+\contentsline {section}{\numberline {3.1}Finite Volume Method}{20}%
+\contentsline {section}{\numberline {3.2}Roe's Approximate Riemann Solver}{21}%
+\contentsline {section}{\numberline {3.3}Harten-Hyman Entropy Fix}{25}%
+\contentsline {subsection}{\numberline {3.3.1}Left Transonic Rarefaction}{26}%
+\contentsline {subsection}{\numberline {3.3.2}Right Transonic Rarefaction}{28}%
+\contentsline {section}{\numberline {3.4}Adaptive Riemann Solver}{29}%
+\contentsline {subsection}{\numberline {3.4.1}Primitive Variable Riemann Solver}{32}%
+\contentsline {subsection}{\numberline {3.4.2}Two Rarefaction Riemann Solver}{32}%
+\contentsline {subsection}{\numberline {3.4.3}Two Shock Riemann Solver}{33}%
+\contentsline {section}{\numberline {3.5}Modification to Roe's Approximate Riemann Solver}{34}%
+\contentsline {subsection}{\numberline {3.5.1}Second-Order Central Differencing}{35}%
+\contentsline {subsection}{\numberline {3.5.2}Fourth-Order Central Differencing}{36}%
+\contentsline {subsection}{\numberline {3.5.3}Sixth-Order Central Differencing}{37}%
+\contentsline {chapter}{\numberline {4}Reconstruction}{39}%
+\contentsline {section}{\numberline {4.1}Monotonic Upwind Scheme for Conservation Laws}{39}%
+\contentsline {subsection}{\numberline {4.1.1}MUSCL Reconstruction}{40}%
+\contentsline {section}{\numberline {4.2}Weighted Essentially Non-Oscillatory Schemes}{42}%
+\contentsline {subsection}{\numberline {4.2.1}Third-Order WENO Reconstruction}{44}%
+\contentsline {subsection}{\numberline {4.2.2}Fifth-Order WENO Reconstruction}{46}%
+\contentsline {chapter}{\numberline {5}Temporal Discretization}{48}%
+\contentsline {section}{\numberline {5.1}Time Discretization}{48}%
+\contentsline {subsection}{\numberline {5.1.1}Six-Stage Fifth-Order SSPRK Method}{49}%
+\contentsline {chapter}{\numberline {6}Higher-Order Reconstruction Results}{52}%
+\contentsline {section}{\numberline {6.1}Method and Initial Conditions}{52}%
+\contentsline {section}{\numberline {6.2}Legend Naming Scheme}{53}%
+\contentsline {section}{\numberline {6.3}Test 1: Modified Sod Shock Tube}{54}%
+\contentsline {subsection}{\numberline {6.3.1}Higher-Order Reconstruction Results}{54}%
+\contentsline {section}{\numberline {6.4}Test 2: Blast Wave}{57}%
+\contentsline {subsection}{\numberline {6.4.1}Higher-Order Reconstruction Results}{57}%
+\contentsline {section}{\numberline {6.5}Test 3: Shock Collision}{60}%
+\contentsline {subsection}{\numberline {6.5.1}Higher-Order Reconstruction Results}{60}%
+\contentsline {section}{\numberline {6.6}Test 4: Stationary Contact Wave}{63}%
+\contentsline {subsection}{\numberline {6.6.1}Higher-Order Reconstruction Results}{66}%
+\contentsline {chapter}{\numberline {7}Higher-Order Reconstruction with Higher-Order Central Differencing Results}{67}%
+\contentsline {section}{\numberline {7.1}Method and Initial Conditions}{67}%
+\contentsline {section}{\numberline {7.2}Legend Naming Scheme}{68}%
+\contentsline {section}{\numberline {7.3}Test 1: Modified Sod Shock Tube}{69}%
+\contentsline {subsection}{\numberline {7.3.1}Higher-Order Reconstruction and Second-Order Central Differencing Results}{71}%
+\contentsline {subsection}{\numberline {7.3.2}Higher-Order Reconstruction and Fourth-Order Central Differencing Results}{72}%
+\contentsline {subsection}{\numberline {7.3.3}Higher-Order Reconstruction and Sixth-Order Central Differencing Results}{75}%
+\contentsline {section}{\numberline {7.4}Test 2: Blast Wave}{78}%
+\contentsline {subsection}{\numberline {7.4.1}Higher-Order Reconstruction and Second-Order Central Differencing Results}{78}%
+\contentsline {section}{\numberline {7.5}Test 3: Shock Collision}{81}%
+\contentsline {subsection}{\numberline {7.5.1}Higher-Order Reconstruction and Second-Order Central Differencing Results}{81}%
+\contentsline {subsection}{\numberline {7.5.2}Higher-Order Reconstruction and Fourth-Order Central Differencing Results}{84}%
+\contentsline {subsection}{\numberline {7.5.3}Higher-Order Reconstruction and Sixth-Order Central Differencing Results}{86}%
+\contentsline {section}{\numberline {7.6}Test 4: Stationary Contact Wave}{89}%
+\contentsline {subsection}{\numberline {7.6.1}Higher-Order Reconstruction and Second-Order Central Differencing Results}{90}%
+\contentsline {chapter}{\numberline {8}Conclusions}{93}%
+\contentsline {section}{\numberline {8.1}Higher-Order Reconstruction Results}{93}%
+\contentsline {section}{\numberline {8.2}Higher-Order Reconstruction with Higher-Order Central Differencing Results}{94}%
+\contentsline {section}{\numberline {8.3}Conclusions}{96}%
+\contentsline {chapter}{REFERENCES}{97}%

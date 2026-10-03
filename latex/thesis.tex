@@ -1,0 +1,256 @@
+%   thesis.tex - UAH Master's Thesis Main TeX file
+%
+%   This is the main file for my thesis. It loads all content via
+%   \include statments
+
+%%% Making the DVI and PDF output the correct size %%%
+%   Important - the default pagesize for DVI and PDF output in most LaTeX
+%   distributions is a4 (210x297cm, or about 8.27�11.69 in), which won't work
+%   for the UAH format.  So, you have to change the DVI and PDF output in your
+%   LaTeX distribution.  In most distros, you need to change the following files:
+
+%   (1.)  C:\texmf\dvipdfm\config\dvipdfmx.cfg
+%   (2.)  C:\texmf\dvipdfm\config\config
+%   (3.)  C:\texmf\pdftex\config\pdftex.cfg
+
+%   For numbers (1.) and (2.), you will change where the files say "p a4" to
+%   "p letter" (there should be some explanation in the files themselves, too).
+%   For number (3.), you will change two lines of that file to read:
+
+%   page_height 11 true in
+%   page_width 8.5 true in
+
+%   There are "local" versions of all the above files in this complete rar
+%   package which 'should' override the a4 defaults - but these do not work in
+%   some distributions, so editing the above files is usually necessary.
+%   For more info, search google for "pdftex.cfg" and "dvipdfmx.cfg"
+%%% (End DVI and PDF changes) %%%
+
+%   Define the document class. The proper class is "book." The normal options
+%   are "12pt" and "onesided". When printing out copies for purposes other than
+%   submission to the Graduate School, the option "twoside" can be used to
+%   format the output in a manner which looks good when printed duplex.
+
+\documentclass[12pt,oneside,letterpaper]{book}
+
+%   Load the packages necessary for the thesis. The only required packages are
+%   "uahdis", which loads the UAH Dissertation Style, and "chngpage" which is
+%   used by "uahdis". The other packages are optional, and should be loaded only
+%   if you have a need for the functionality they provide. Documentation on each is
+%   available at CTAN.org. The basic purpose of each are described below:
+%   units---provides a convenient mechanism for writing quantities with units.
+%   bm---provides a convenient mechanism for producing bold symbols in math mode
+%   hhline---improved lines and borders in tables
+%   rotating---allows landscape oriented pages in a portrait oriented document
+%   verbatim---prints text files verbatim. useful for computer code
+%   amsfonts---provides additional typefaces
+%   amssymb---provides additional mathematical symbols
+%   xspace---properly adjusts space after \newcommands which expand to text
+%   booktabs---creates traditional scientific tables - no vertical lines, very
+%   few horizontal lines, with varying thickness (not meant to be used with hline)
+
+%   Excellent descriptions of all LaTeX packages can be found here:
+%   http://www.tug.org/tex-archive/help/Catalogue/index.html
+
+\usepackage[]{uahdis,chngpage,units,bm,hhline,rotating,verbatim,amsfonts,amssymb,xspace}
+\usepackage[]{indentfirst,layouts, booktabs, enumerate, gensymb}
+\usepackage[]{typedref}
+\usepackage[final]{graphicx}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage{pdfpages}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{automata,positioning}
+%\usepackage[section]{placeins}
+%   Load the tex file which contains all local \newcommands and \newenvironments
+
+\include{definitions}
+
+%   The next line requires the leading "%". It is only useful if you are using
+%   WinEdt as your text editor. It allows WinEdt to collect bibliographic entries into
+%   a pop-up table that you can summon when you are \cite-ing a source.
+
+%GATHER{Bibliography.bib}
+
+%   Define my name
+\author{Joshua A. Fowler}
+
+%   Define the title of my thesis (user upper and lower case)
+\title{High Order Roe-WENO Schemes Based on Higher-Order Central Differencing and Reconstruction}
+
+%   Define the year
+\date{2021}
+
+%   Define my department
+\uahdepartment{Mechanical and Aerospace Engineering}
+
+%   Define my advisor (no title - i.e., no "Dr.")
+\uahadvisor{Sarma Rani}
+
+%   Define my committee members (no titles)
+\uahmema{Kader Frendi}
+
+\uahmemb{Chang-kwon Kang}
+
+% MWT - UAH Thesis - only three committee members
+% if more than three, uncomment lines below
+% and appropriate lines in uahdis.sty
+
+%\uahmemc{Fourth Committee Member}
+
+%\uahmemd{Fifth Committee Member}
+
+%MWT
+
+%   Define my Department Chair (no title)
+\uahdeptchair{Keith Hollingsworth}
+
+%   Define my College (do not write "College of")
+\uahcollege{Engineering}
+
+%   Define my College Dean (no title)
+%   the tex for Dean Aunon is:  Jorge I. Au\~n\a'on
+\uahcolldean{Shankar Mahalingam}
+
+%   Define my Degree (i.e., Master of Science, Doctor of Philosophy)
+\uahdegree{Master of Science in Engineering}
+
+%   Define my Program name
+\uahprogram{Mechanical Engineering}
+
+%   Shortened name for degree
+%   type "master's" or "doctoral" (without quotes)
+\uahdegreeshort{master's}
+
+%   Define my Document Type
+\uahdoctype{thesis}
+
+%   Define my Graduate Dean
+\uahgraddean{Sean Lane}
+
+
+%   Let's get started (Finally!)
+\begin{document}
+
+%   To view a layout of the margins of this document,
+%   uncomment the below line (requires "layouts" package):
+%\layout
+%\tocdiagram\tocdesign
+
+%   Here comes the stuff that goes before the main content
+\frontmatter
+
+\pagestyle{plain}
+
+\maketitle
+
+%\copyrightpage
+\includepdf{../Paperwork/Fowler_Submission_Signature}
+%MWT - UAH Approval Form
+%\approvalpage
+\includepdf[pages=1-3]{../Paperwork/Sarma's student paper signed - CK}
+
+%\makeabstract % Now issued in ./FRONT/abstract.tex
+
+%   Include my abstract
+%\include{./FRONT/abstract}
+
+% Abstract signatures:
+%\abstractsig % command now issued in abstract.tex
+
+%   Include my acknowledgements
+%\include{./FRONT/acknowledgments}
+
+
+%   Make a Table of Contents
+\tableofcontents
+
+%   Make a List of Figures
+\listoffigures
+
+%   Make a List of Tables
+\listoftables
+
+%   Make a List of Symbols (Comment out if unwanted)
+%\include{./FRONT/symbols}
+
+%   Make a "Chapter" header in TOC, per UAH style
+%   issue command after last frontmatter TOC entry
+%   cannot come directly before first chapter \include
+\addchapheadtotoc
+
+
+%   Set my dedication (optional - comment out if unwanted)
+%\dedication{This is a dedication}
+
+%   Make Epigraph Page (Optional - comment out if unwanted)
+%\epigraphpage{Socrates}{I drank what?}
+
+\clearpage
+
+\pagestyle{myheadings} \markright{}
+
+%   Here comes the main content
+\mainmatter
+
+%   Include my chapters
+%   LaTeX will look for your chapter files in the appropriate folders,
+%   as addressed below.  LaTeX will look for a .tex file with the
+%   same name as the name you give it below - i.e., for the CH1 folder,
+%   LaTeX will look for introduction.tex (which is where you will type
+%   all your chapter 1 stuff).  You can name your chapters/files whatever
+%   you want - just make sure the names below match the names in the
+%   folders.  Also, you can add or subtract chapters as you like -
+%   just make sure that the address and filenames below match your
+%   file structure.
+
+\include{./CH1/introduction}
+\include{./CH2/chapter2name}
+\include{./CH3/chapter3name}
+\include{./CH4/chapter4name}
+\include{./CH7/chapter7name}
+\include{./CH5/chapter5name}
+\include{./CH8/chapter8name}
+\include{./CH6/conclusions}
+%\include{./CH9/figsforpresentation}
+
+%   This set of LaTeX files uses the Appendix Package to handle
+%   the appendices - it creates the "Appendices" page and puts
+%   "Appendix A:" in the TOC.  So, strictly speaking, the
+%   \appendix command is not necessary (because the appendix
+%   package uses an "appendices environment").  But, for
+%   the typedref package to operate correctly, you must include the
+%   \appendix command - so, it's included after the beginning of
+%   the appendices environment.  If you only have one appendix,
+%   then you need to remove the "page" option from the uahdis.sty
+%   file ('page' option occurs when loading appendix package).
+%   You can add or subtract appendices - they are treated just like
+%   chapters - the only difference is that they occur within the
+%   appendices environment, which tells LaTeX to give them letters
+%   instead of numbers.
+
+
+%\begin{appendices}
+%\appendix
+%\
+%%   Include my appendices
+%%\include{./CH7/appendix1name}
+%%\include{./CH8/appendix2name}
+%\include{./CH9/appendix3name}
+%
+%%   Here comes the stuff after the main content
+%%   turn off appendix environment/package first:
+%\end{appendices}
+\backmatter
+
+%   Include my bibliography
+\include{./BACK/bibliography}
+
+%   Include my biography
+%\include{./BACK/biography}
+% MWT - biography not included in UAH thesis
+
+
+%   We're done.
+\end{document}

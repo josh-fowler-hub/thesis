@@ -1,0 +1,366 @@
+[INFO]    mkparams: Output dir: ../table-test-compat-fixed
+[INFO]    mkparams: Compiler: latex
+[INFO]    mkparams: Latex options: -jobname="table-test"  
+[INFO]    mkparams: tex4ht.sty: xhtml,mathjax,charset=utf-8
+[INFO]    mkparams: tex4ht:  -cmozhtf -utf8
+[INFO]    mkparams: build_file: compat.mk4
+[INFO]    mkparams: Output format: html5
+[STATUS]  make4ht: Conversion started
+[STATUS]  make4ht: Input file: table-test.tex
+[INFO]    mkutils: Load extension	common_domfilters
+[INFO]    mkutils: Using build file	compat.mk4
+[INFO]    make4ht-lib: setting param correct_exit
+[INFO]    make4ht-lib: setting param correct_exit
+[INFO]    make4ht-lib: setting param correct_exit
+[INFO]    make4ht-lib: Adding: 	ext	dvi
+[INFO]    htlatex: LaTeX call: latex --interaction=errorstopmode  -jobname="table-test"   \RequirePackage[2024/11/01]{latexrelease}\makeatletter\def\HCode{\futurelet\HCode\HChar}\def\HChar{\ifx"\HCode\def\HCode"##1"{\Link##1}\expandafter\HCode\else\expandafter\Link\fi}\def\Link#1.a.b.c.{\let\HCode\documentstyle\def\documentstyle{\let\documentstyle\HCode\expandafter\def\csname tex4ht\endcsname{#1,html}\def\HCode####1{\documentstyle[tex4ht,}\@ifnextchar[{\HCode}{\documentstyle[tex4ht]}}\RequirePackage[#1,html]{tex4ht}}\makeatother\HCode xhtml,mathjax,charset=utf-8,html5.a.b.c.\input "\detokenize{table-test.tex}"
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=latex.fmt)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-09-09>
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/base\latexrelease.sty
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/pdftex\glyphtounicode.
+tex) (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/base\utf8.def
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/base\omsenc.dfu)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/base\ot1enc.dfu)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/base\t1enc.dfu)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1enc.dfu)))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\tex4ht.sty)
+(table-test.tex
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\usepackage.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+For additional information on amsmath, use the `?' option.
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\tex4ht.4ht
+::::::::::::::::::::::::::::::::::::::::::
+ TeX4ht info is available in the log file 
+::::::::::::::::::::::::::::::::::::::::::
+) (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\tex4ht.sty
+l.870 --- TeX4ht warning --- nonprimitive \everypar ---
+--- needs --- tex4ht table-test ---
+(table-test.tmp) (table-test.xref)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht)
+(table-test.4tc)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\latex.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\mathjax-latex-4
+ht.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\fontmath.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\utf8.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\article.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\amsmath.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\amstext.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\amsbsy.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\amsopn.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\l3backend-dvips
+.def) (table-test.aux) [1] (table-test.aux) )
+Output written on table-test.dvi (1 page, 14548 bytes).
+Transcript written on table-test.log.
+[INFO]    htlatex: Unsupported file: latexrelease.sty
+[INFO]    htlatex: Unsupported file: amsgen.sty
+[INFO]    htlatex: LaTeX call: latex --interaction=errorstopmode  -jobname="table-test"   \RequirePackage[2024/11/01]{latexrelease}\makeatletter\def\HCode{\futurelet\HCode\HChar}\def\HChar{\ifx"\HCode\def\HCode"##1"{\Link##1}\expandafter\HCode\else\expandafter\Link\fi}\def\Link#1.a.b.c.{\let\HCode\documentstyle\def\documentstyle{\let\documentstyle\HCode\expandafter\def\csname tex4ht\endcsname{#1,html}\def\HCode####1{\documentstyle[tex4ht,}\@ifnextchar[{\HCode}{\documentstyle[tex4ht]}}\RequirePackage[#1,html]{tex4ht}}\makeatother\HCode xhtml,mathjax,charset=utf-8,html5.a.b.c.\input "\detokenize{table-test.tex}"
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=latex.fmt)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-09-09>
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/base\latexrelease.sty
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/pdftex\glyphtounicode.
+tex) (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/base\utf8.def
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/base\omsenc.dfu)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/base\ot1enc.dfu)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/base\t1enc.dfu)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1enc.dfu)))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\tex4ht.sty)
+(table-test.tex
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\usepackage.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+For additional information on amsmath, use the `?' option.
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\tex4ht.4ht
+::::::::::::::::::::::::::::::::::::::::::
+ TeX4ht info is available in the log file 
+::::::::::::::::::::::::::::::::::::::::::
+) (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\tex4ht.sty
+l.870 --- TeX4ht warning --- nonprimitive \everypar ---
+--- needs --- tex4ht table-test ---
+(table-test.tmp) (table-test.xref)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht)
+(table-test.4tc)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\latex.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\mathjax-latex-4
+ht.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\fontmath.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\utf8.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\article.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\amsmath.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\amstext.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\amsbsy.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\amsopn.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\l3backend-dvips
+.def) (table-test.aux) [1] (table-test.aux) )
+Output written on table-test.dvi (1 page, 14548 bytes).
+Transcript written on table-test.log.
+[INFO]    htlatex: Unsupported file: latexrelease.sty
+[INFO]    htlatex: Unsupported file: amsgen.sty
+[INFO]    htlatex: LaTeX call: latex --interaction=errorstopmode  -jobname="table-test"   \RequirePackage[2024/11/01]{latexrelease}\makeatletter\def\HCode{\futurelet\HCode\HChar}\def\HChar{\ifx"\HCode\def\HCode"##1"{\Link##1}\expandafter\HCode\else\expandafter\Link\fi}\def\Link#1.a.b.c.{\let\HCode\documentstyle\def\documentstyle{\let\documentstyle\HCode\expandafter\def\csname tex4ht\endcsname{#1,html}\def\HCode####1{\documentstyle[tex4ht,}\@ifnextchar[{\HCode}{\documentstyle[tex4ht]}}\RequirePackage[#1,html]{tex4ht}}\makeatother\HCode xhtml,mathjax,charset=utf-8,html5.a.b.c.\input "\detokenize{table-test.tex}"
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=latex.fmt)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-09-09>
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/base\latexrelease.sty
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/pdftex\glyphtounicode.
+tex) (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/base\utf8.def
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/base\omsenc.dfu)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/base\ot1enc.dfu)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/base\t1enc.dfu)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1enc.dfu)))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\tex4ht.sty)
+(table-test.tex
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\usepackage.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+For additional information on amsmath, use the `?' option.
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\tex4ht.4ht
+::::::::::::::::::::::::::::::::::::::::::
+ TeX4ht info is available in the log file 
+::::::::::::::::::::::::::::::::::::::::::
+) (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\tex4ht.sty
+l.870 --- TeX4ht warning --- nonprimitive \everypar ---
+--- needs --- tex4ht table-test ---
+(table-test.tmp) (table-test.xref)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht)
+(table-test.4tc)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\latex.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\mathjax-latex-4
+ht.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\fontmath.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\utf8.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\article.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\amsmath.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\amstext.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\amsbsy.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\amsopn.4ht
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\unicode.4ht)
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html4-math.4ht)
+ (C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/generic/tex4ht\html5.4ht))
+(C:\Users\Josh\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\l3backend-dvips
+.def) (table-test.aux) [1] (table-test.aux) )
+Output written on table-test.dvi (1 page, 14548 bytes).
+Transcript written on table-test.log.
+[INFO]    htlatex: Unsupported file: latexrelease.sty
+[INFO]    htlatex: Unsupported file: amsgen.sty
+[INFO]    mkutils:  xhtml,mathjax,charset=utf-8,html5,html
+[INFO]    mkutils: executing: tex4ht  -cmozhtf -utf8 "table-test.dvi"
+----------------------------
+tex4ht.c (2023-10-13-15:32 Windows MiKTeX)
+tex4ht -cmozhtf 
+  -utf8 
+  table-test.dvi 
+(C:/Users/Josh/AppData/Local/Programs/MiKTeX/tex4ht/base/win32/tex4ht.env)
+(C:/Users/Josh/AppData/Local/Programs/MiKTeX/tex4ht/ht-fonts/mozilla/charset/unicode.4hf)
+(C:/Users/Josh/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmtt10.tfm)
+(C:/Users/Josh/AppData/Local/Programs/MiKTeX/tex4ht/ht-fonts/alias/cm/cmtt.htf)
+Searching `lm-rep-cmtt.htf' for `cmtt10.htf'
+(C:/Users/Josh/AppData/Local/Programs/MiKTeX/tex4ht/ht-fonts/unicode/lm/lm-rep-cmtt.htf)
+(C:/Users/Josh/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmr10.tfm)
+(C:/Users/Josh/AppData/Local/Programs/MiKTeX/tex4ht/ht-fonts/alias/lm/lm-rep-cmrm/cmr.htf)
+Searching `lm-rep-cmrm.htf' for `cmr10.htf'
+(C:/Users/Josh/AppData/Local/Programs/MiKTeX/tex4ht/ht-fonts/unicode/lm/lm-rep-cmrm.htf)
+[1 file table-test.html
+ file table-test.css
+ file table-test.tmp
+]
+Execute script `table-test.lg'
+
+[INFO]    mkutils: executing: t4ht  "table-test.dvi"
+----------------------------
+t4ht.c (2018-07-04-14:25 MiKTeX)
+t4ht table-test.dvi 
+(C:/Users/Josh/AppData/Local/Programs/MiKTeX/tex4ht/base/win32/tex4ht.env)
+Entering table-test.lg
+Entering table-test.css
+Entering table-test.tmp
+
+[INFO]    mkutils: Parse LG
+[INFO]    make4ht-lib: parse_lg process file: table-test.html
+[INFO]    make4ht-lib: parse_lg process file: table-test.html
+[INFO]    make4ht: outdir: ../table-test-compat-fixed/
+[INFO]    mkutils: Copy: copy "table-test.html" "..\table-test-compat-fixed"
+        1 file(s) copied.
+[INFO]    make4ht-lib: parse_lg process file: table-test.css
+[INFO]    make4ht: outdir: ../table-test-compat-fixed/
+[INFO]    mkutils: Copy: copy "table-test.css" "..\table-test-compat-fixed"
+        1 file(s) copied.
+[INFO]    make4ht-lib: parse_lg process file: table-test.tmp
+[INFO]    make4ht-lib: tmp file
+[STATUS]  make4ht: Conversion finished

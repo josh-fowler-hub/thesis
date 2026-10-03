@@ -1,0 +1,25 @@
+\chapter{I am Matt's Biography}
+
+I still need to be written
+\begin{singlespace}
+
+\section*{I am Matt's Publications}
+
+\begin{description}
+
+\item Matt's Paper 1
+
+\item Matt's Paper 2
+\end{description}
+
+\section*{I am Matt's Presentations}
+
+\begin{description}
+
+\item Matt's Presentation 1
+
+\item Matt's Presentation 2
+
+\end{description}
+
+\end{singlespace}

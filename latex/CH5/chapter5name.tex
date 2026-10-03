@@ -1,0 +1,183 @@
+\chapter{Higher-Order Reconstruction Results}
+\label{ch:Results}
+\section{Method and Initial Conditions}
+The results for the four numerical tests are presented here. The results obtained are shown at a time, $t$, for the density, $\rho$, the velocity, $u$, the pressure, $p$, and the internal energy, $e$. The initial conditions for the tests can be seen in \tableref{tbl:testparameters}. Each test is defined by initial left and right states, where $x_0$ defines the discontinuity's location in the $x$ domain that spans $0.0$ to $1.0$. In all tests, the ratio of specific heats, $\gamma$, is taken to be $1.4$, and the gas constant, $R$, is $8314.0$.
+
+\begin{table}
+	\begin{center}
+		\caption{Initial Conditions}
+		\label{tbl:testparameters}
+		\begin{tabular}{@{}cccccccc@{}}
+			\toprule \rule[-1pt]{0pt}{14pt}Test&$\rho_L$&$u_L$&$p_L$&$\rho_R$&$u_R$&$p_R$&$x_0$\\
+			\midrule \rule[-1pt]{0pt}{14pt}$1$&$1.0$&$0.75$&$1.0$&$0.125$&$0.0$&$0.1$&$0.3$\\
+			\rule[-1pt]{0pt}{14pt}$2$&$1.0$&$0.0$&$1000.0$&$1.0$&$0.0$&$0.01$&$0.5$\\
+			\rule[-1pt]{0pt}{14pt}$3$&$5.99924$&$19.5975$&$460.894$&$5.99242$&$-6.19633$&$46.0950$&$0.4$\\
+			\rule[-1pt]{0pt}{14pt}$4$&$1.0$&$-19.59745$&$1000.0$&$1.0$&$-19.59745$&$0.01$&$0.8$\\
+			
+			\bottomrule
+		\end{tabular}
+	\end{center}
+\end{table}
+
+The higher-order reconstruction results are obtained using Roe's solver with a higher-order WENO reconstruction for the spatial discretization and a six-stage, fifth-order SSPRK method for the temporal discretization with transmissive boundary conditions. The results are compared to both the Roe method with the entropy fix and no reconstruction and the Roe method with the entropy fix with a MUSCL reconstruction. The MUSCL reconstruction was performed with a central difference scheme where $\kappa = 1$ with a minmod limiter. $\Lambda$ is also chosen as $1$ in the MUSCL reconstruction resulting in no added numerical viscosity.
+
+The higher-order reconstruction results and higher-order central differencing for the average flux in Roe's scheme are performed similarly. A modified Roe solver with the entropy fix and a higher-order WENO reconstruction is used for the spatial discretization and a six-stage, fifth-order SSPRK method for the temporal discretization. The results are then compared to the modified Roe scheme with the entropy fix and no reconstruction and the modified Roe scheme with the entropy fix and a MUSCL reconstruction. The MUSCL reconstruction has the same parameters as the former case where $\kappa = 1$, $\Lambda = 1$, and a minmod limiter is used.
+\section{Legend Naming Scheme}
+In the higher-order reconstruction results, the reconstruction method is noted following Roe solver. Roe-MUSCL and Roe-WENO refer to the Roe scheme with the MUSCL reconstruction and the Roe scheme with WENO reconstruction. The WENO reconstruction order is noted immediately following so that WENO3 and WENO5 refer to third and fifth-order WENO reconstructions.
+%\begin{table}
+%	\begin{center}
+%		\caption{Roe's Solver Configurations}
+%		\label{tbl:RoeHORSolverConfigs}
+%		\begin{tabular}{@{}ccccc@{}}
+%			\toprule \rule[-1pt]{0pt}{14pt}& \multicolumn{4}{c}{Reconstruction} \\ \cmidrule[0.75pt](ll){2-5}
+%			\rule[-1pt]{0pt}{14pt}\begin{tabular}{@{}c@{}}CD Term \\ Order\end{tabular}&None&MUSCL&WENO3&WENO5\\
+%			\midrule \rule[-1pt]{0pt}{14pt}Roe&Roe&Roe-MUSCL&Roe-WENO3&Roe-WENO5\\
+%			\rule[-1pt]{0pt}{14pt}$2$&CD2-Roe&CD2-Roe-MUSCL&CD2-Roe-WENO3&CD2-Roe-WENO5\\
+%			\rule[-1pt]{0pt}{14pt}$4$&CD4-Roe&CD4-Roe-MUSCL&CD4-Roe-WENO3&CD4-Roe-WENO5\\
+%			\rule[-1pt]{0pt}{14pt}$6$&CD6-Roe&CD6-Roe-MUSCL&CD6-Roe-WENO3&CD6-Roe-WENO5\\
+%			\bottomrule
+%		\end{tabular}
+%	\end{center}
+%\end{table}
+\section{Test 1: Modified Sod Shock Tube}
+Test 1 is a modified form of Sod's shock tube problem \cite{SOD19781} presented by Toro \cite{toro2013riemann}. In Sod's original problem the discontinuity is present at $x = 0.5$. In this study's modified shock tube problem, the discontinuity is moved to $x = 0.3$. This modified Sod shock tube problem is useful for testing the entropy satisfaction property of numerical methods. The solution consists of a right shock wave, a right traveling contact wave, and a left sonic rarefaction wave. The initial conditions for Test 1 are shown in \tableref{tbl:testparameters}.
+
+%\begin{table}
+%\begin{center}
+%	\caption{Test 1 Parameters}
+%	\label{tbl:test1parameters}
+%	\begin{tabular}{@{}lcc@{}}
+%		\toprule \rule[-1pt]{0pt}{14pt}Property&L&R\\
+%		\midrule \rule[-1pt]{0pt}{14pt}$\rho$&$1.0$&$0.125$\\
+%		\rule[-1pt]{0pt}{14pt}$u$&$0.75$&$0.0$\\
+%		\rule[-1pt]{0pt}{14pt}$p$&$1.0$&$0.1$\\
+%		
+%		\bottomrule
+%	\end{tabular}
+%\end{center}
+%\end{table}
+
+\subsection{Higher-Order Reconstruction Results}
+\begin{figure}
+	\cfig{5}{Test1ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeDensity.eps}{5}
+	\caption[Results for density for the higher-order reconstruction for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.]{Results for density for the higher-order reconstruction for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}
+	\label{fig:Test1HORdensity}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test1ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeVelocity.eps}{5}
+	\caption[Results for velocity for the higher-order reconstruction for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.]{Results for velocity for the higher-order reconstruction for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}
+	\label{fig:Test1HORvelocity}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test1ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoePressure.eps}{5}
+	\caption[Results for pressure for the higher-order reconstruction for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.]{Results for pressure for the higher-order reconstruction for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}
+	\label{fig:Test1HORpressure}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test1ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeInternalEnergy.eps}{5}
+	\caption[Results for internal energy for the higher-order reconstruction for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.]{Results for internal energy for the higher-order reconstruction for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}
+	\label{fig:Test1HORenergy}
+\end{figure}
+The results for the higher-order reconstruction for Test 1 can be seen in \figureref{fig:Test1HORdensity,fig:Test1HORvelocity,fig:Test1HORpressure,fig:Test1HORenergy}. The higher-order reconstruction of Test 1 was obtained using the Roe solver with a MUSCL, WENO3, and WENO5 reconstruction. The wave system was solved until a time of $t=0.2$ using the fifth-order, six-stage SSPRK method with a CFL number of 1 and a computational domain consisting of a uniform grid of 100 cells.
+
+The solutions obtained using the higher-order reconstructions provide much less diffusive results than Roe's solver alone. \figureref{fig:Test1HORdensity} shows that the Roe-WENO5 method has produced the least diffusive solution near the contact discontinuity. Some small oscillations in the region between the rarefaction and contact wave characteristic of the WENO reconstruction method can be seen. In \figureref{fig:Test1HORvelocity,fig:Test1HORpressure} small oscillations in the velocity and pressure can be seen in the region that corresponds to the location of the contact discontinuity in the Roe-WENO5 scheme. Also visible in \figureref{fig:Test1HORdensity,fig:Test1HORvelocity,fig:Test1HORpressure,fig:Test1HORenergy} is a slight entropy-violating artifact in the sonic region of the Roe solution that the entropy fix alone does not eliminate. The solutions using the higher-order reconstruction do not contain this artifact and capture the rarefaction almost exactly.
+
+In \figureref{fig:Test1HORenergy} oscillations can be seen in the region between the contact discontinuity and the shock wave for the Roe-WENO5 solution. With the exception of the solution for internal energy, seen in \figureref{fig:Test1HORenergy}, the Roe-MUSCL and Roe-WENO3 schemes are almost identical. As expected, the Roe-MUSCL, Roe-WENO3, and Roe-WENO5 solutions provide sharper capturing of the solution's discontinuities.
+
+
+
+\section{Test 2: Blast Wave}\label{sect:Test2}
+Test 2 is the left half of the blast wave problem of Woodward and Colella \cite{WOODWARD1984115}. Test 2 consists of a strong shock wave of Mach number 198, a contact surface, and a left rarefaction wave. Test 2 is a severe test used to assess the robustness and accuracy of numerical methods. The initial conditions for Test 2 can be seen in \tableref{tbl:testparameters}.
+\subsection{Higher-Order Reconstruction Results}
+\begin{figure}
+	\cfig{5}{Test3ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeDensity.eps}{5}
+	\caption[Results for density for the higher-order reconstruction for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.]{Results for density for the higher-order reconstruction for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}
+	\label{fig:Test3HORdensity}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test3ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeVelocity.eps}{5}
+	\caption[Results for velocity for the higher-order reconstruction for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.]{Results for velocity for the higher-order reconstruction for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}
+	\label{fig:Test3HORvelocity}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test3ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoePressure.eps}{5}
+	\caption[Results for pressure for the higher-order reconstruction for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.]{Results for pressure for the higher-order reconstruction for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}
+	\label{fig:Test3HORpressure}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test3ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeInternalEnergy.eps}{5}
+	\caption[Results for internal energy for the higher-order reconstruction for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.]{Results for internal energy for the higher-order reconstruction for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}
+	\label{fig:Test3HORenergy}
+\end{figure}
+The results for the higher-order reconstruction for Test 2 can be seen in \figureref{fig:Test3HORdensity,fig:Test3HORvelocity,fig:Test3HORpressure,fig:Test3HORenergy}. The higher-order reconstruction of Test 2 was obtained using the Roe solver with a MUSCL, WENO3, and WENO5 reconstruction. The wave system was solved until a time of $t=0.012$ using the fifth-order, six-stage SSPRK method with a CFL number of 1 and a computational domain consisting of a uniform grid of 100 cells. 
+
+The solutions obtained using the higher-order reconstructions provide much less diffusive results than Roe's solver alone. As can be seen in \figureref{fig:Test3HORdensity,fig:Test3HORvelocity,fig:Test3HORpressure,fig:Test3HORenergy}, the WENO5 reconstruction provides a much less diffusive solution. In \figureref{fig:Test3HORdensity,fig:Test3HORenergy} it can be seen that the Roe-WENO5 scheme provides the best capturing of the region between the contact wave and the shock wave, superior to the Roe, Roe-MUSCL, and Roe-WENO3 schemes. In \figureref{fig:Test3HORvelocity}, the Roe scheme exhibits very diffusive behavior in the rarefaction region. The Roe-MUSCL, Roe-WENO3, and Roe-WENO5 schemes capture the rarefaction wave much more accurately, with the Roe-WENO5 providing slightly better capturing of the rarefaction in the region. In the region after the rarefaction wave, all four of the schemes exhibit some overshoot near the rarefaction wave. The Roe-WENO5 scheme corrects more quickly than the other three schemes.
+
+
+\section{Test 3: Shock Collision}
+Test 3 is made of the resultant shocks from both halves of the blast wave problem of Woodward and Colella \cite{WOODWARD1984115}. The test represents the collision of two strong shocks. The solution consists of a left-facing shock traveling slowly to the right, a right-traveling contact discontinuity, and a right-traveling shock wave. The initial conditions of Test 3 can be seen in \tableref{tbl:testparameters}.
+\subsection{Higher-Order Reconstruction Results}
+\begin{figure}
+	\cfig{5}{Test4ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeDensity.eps}{5}
+	\caption[Results for density for the higher-order reconstruction for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.]{Results for density for the higher-order reconstruction for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}
+	\label{fig:Test4HORdensity}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test4ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeVelocity.eps}{5}
+	\caption[Results for velocity for the higher-order reconstruction for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.]{Results for velocity for the higher-order reconstruction for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}
+	\label{fig:Test4HORvelocity}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test4ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoePressure.eps}{5}
+	\caption[Results for pressure for the higher-order reconstruction for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.]{Results for pressure for the higher-order reconstruction for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}
+	\label{fig:Test4HORpressure}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test4ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeInternalEnergy.eps}{5}
+	\caption[Results for internal energy for the higher-order reconstruction for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.]{Results for internal energy for the higher-order reconstruction for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}
+	\label{fig:Test4HORenergy}
+\end{figure}
+The results for the higher-order reconstruction for Test 3 can be seen in \figureref{fig:Test4HORdensity,fig:Test4HORvelocity,fig:Test4HORpressure,fig:Test4HORenergy}. The higher-order reconstruction of Test 3 was obtained using the Roe solver with a MUSCL, WENO3, and WENO5 reconstruction. The wave system was solved until a time of $t=0.035$ using the fifth-order, six-stage SSPRK method with a CFL number of 1 and a computational domain consisting of a uniform grid of 100 cells.
+
+As in the case of the other tests, the Roe-WENO5 scheme provides the least diffusive solution. This is more apparent in the contact discontinuity in the results for internal energy seen in \figureref{fig:Test4HORenergy}, where it can be easily seen that the Roe-WENO5 scheme captures the contact wave more accurately. In the region between the left and right shocks, the small oscillations characteristic of the WENO reconstruction schemes can be seen in \figureref{fig:Test4HORenergy} and \figureref{fig:Test4HORdensity}. These oscillations are much more pronounced in the Roe-WENO5 scheme than they are in the Roe-WENO3 scheme. The Roe-WENO3 scheme only provides a slightly less diffusive solution than the Roe-MUSCL scheme; however, both schemes capture shocks much better than the Roe scheme. In \figureref{fig:Test4HORdensity,fig:Test4HORenergy}, the Roe-MUSCL, Roe-WENO3, and Roe-WENO5 schemes capture the contact wave and right shock much more accurately than the Roe scheme.
+
+\section{Test 4: Stationary Contact Wave}
+Test 4 consists of Test 2 in \sectionref{sect:Test2} with a negative uniform background speed. This test is presented by Toro \cite{toro2013riemann} as a method of testing the ability of numerical methods to resolve slowly-moving contact discontinuities. The solution consists of a left rarefaction wave, a slow right-traveling shock wave, and a stationary contact wave. The initial conditions of Test 4 can be seen in \tableref{tbl:testparameters}.
+\subsection{Higher-Order Reconstruction Results}
+
+\begin{figure}
+	\cfig{5}{Test5ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeDensity.eps}{5}
+	\caption[Results for density for the higher-order reconstruction for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.]{Results for density for the higher-order reconstruction for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}
+	\label{fig:Test5HORdensity}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test5ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeVelocity.eps}{5}
+	\caption[Results for velocity for the higher-order reconstruction for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.]{Results for velocity for the higher-order reconstruction for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}
+	\label{fig:Test5HORvelocity}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test5ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoePressure.eps}{5}
+	\caption[Results for pressure for the higher-order reconstruction for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.]{Results for pressure for the higher-order reconstruction for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}
+	\label{fig:Test5HORpressure}
+\end{figure}
+
+\begin{figure}
+	\cfig{5}{Test5ROEvMUSCLvWENO3vWENO5CFL1Nodes100RoeInternalEnergy.eps}{5}
+	\caption[Results for internal energy for the higher-order reconstruction for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.]{Results for internal energy for the higher-order reconstruction for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}
+	\label{fig:Test5HORenergy}
+\end{figure}
+
+The results for the higher-order reconstruction for Test 4 can be seen in \figureref{fig:Test5HORdensity,fig:Test5HORvelocity,fig:Test5HORpressure,fig:Test5HORenergy}.  The higher-order reconstruction of Test 4 was obtained using the Roe solver with a MUSCL, WENO3, and WENO5 reconstruction. The wave system was solved until a time of $t=0.012$ using the fifth-order, six-stage SSPRK method with a CFL number of 1 and a computational domain consisting of a uniform grid of 100 cells.
+
+In \figureref{fig:Test5HORdensity,fig:Test5HORvelocity,fig:Test5HORpressure,fig:Test5HORenergy} it can be seen that the Roe scheme adds a large amount of diffusion in the rarefaction wave. The Roe-MUSCL, Roe-WENO3, and Roe-WENO5 schemes add much less diffusion than the Roe scheme, with the Roe-WENO5 scheme adding the least amount of diffusion, followed by the Roe-WENO3 scheme. The Roe, Roe-MUSCL, Roe-WENO3, and Roe-WENO5 schemes capture the stationary contact wave much better than the moving contact waves of the other three tests. In \figureref{fig:Test5HORdensity} it can be seen that the Roe-WENO5 scheme adds slightly less numerical diffusion than the Roe, Roe-MUSCL, and Roe-WENO3 schemes near the contact wave. The Roe-MUSCL and Roe-WENO3 schemes provide less diffusion than the Roe scheme. In \figureref{fig:Test5HORpressure}, it can be seen that the pressure oscillations at the location of the contact discontinuity are again present in the Roe-WENO5 scheme. \figureref{fig:Test5HORenergy} shows that the Roe-WENO5 scheme provides the least amount of diffusion in the right shock, followed by the Roe-MUSCL and Roe-WENO3 schemes, and the Roe scheme adds the most diffusion.

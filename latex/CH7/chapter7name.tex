@@ -1,0 +1,67 @@
+\chapter{Temporal Discretization}
+
+\section{Time Discretization}
+
+Hyperbolic PDEs can exhibit discontinuities and high-gradient regions that can affect the stability of the time discretization. Strong Stability Preserving Runge-Kutta (SSPRK) methods, also called Total Variation Diminishing Runge-Kutta (TVDRK) methods, were first developed for equations of the form of \equationref{eqn:EulerVector1d} \cite{GottliebandGottlieb}. These methods were developed to avoid spurious oscillations near discontinuities and other non-smooth areas in the solution \cite{hadjimichael}.  The method used to construct a general $m$-stage SSPRK method of order $m-1$ given by Gottlieb, Ketcheson, and Shu \cite{Gottlieb2009} is
+\begin{equation}
+	\boldsymbol{U}_0 = \boldsymbol{U}^n
+\end{equation}
+\begin{equation}
+	\boldsymbol{U}_k = \boldsymbol{U}_{k-1} + \frac{\Delta t}{2} L\left(\boldsymbol{U}_{k-1}\right)
+\end{equation}
+\begin{equation}
+	\boldsymbol{U}_m = \sum_{k=0}^{m-2} \alpha_{m,k} \boldsymbol{U}_k + \alpha_{m,m-1} \boldsymbol{U}_{m-1} + \frac{\alpha_{m,m-1} \Delta t}{2} L\left(\boldsymbol{U}_{m-1}\right)
+\end{equation}
+The coefficients can be calculated by
+\begin{equation}
+	\alpha_{2,0} = 0 \,\, , \,\,\,\,\,\,\,\, \alpha_{2,1} = 1
+\end{equation}
+\begin{equation}
+	\alpha_{m,k} = \frac{2}{k} \alpha_{m-1,k-1} \,\, , \,\,\,\,\,\,\,\, k \in \left[1,m-2\right]
+\end{equation}
+\begin{equation}
+	\alpha_{m,m-1} = \frac{2}{m} \alpha_{m-1,m-2}
+\end{equation}
+\begin{equation}
+	\alpha_{m,0} = 1 - \sum_{k=1}^{m-1} \alpha_{m,k}
+\end{equation}
+\begin{equation}
+	\boldsymbol{U}_m = \boldsymbol{U}^{n+1}
+\end{equation}
+
+A six-stage, fifth-order SSPRK method is constructed using these methods to discretize the Euler equations in time based on the paper by Gottlieb and Gottlieb \cite{GottliebandGottlieb}.
+\subsection{Six-Stage Fifth-Order SSPRK Method}
+
+Starting with a hyperbolic PDE in the form of \equationref{eqn:EulerVector1d} at time step $n$. The fifth-order, six-stage method where $k$ is the stage number and $k \, \in \, \left[1,6\right]$ is described here. Start by letting the intial value of $\boldsymbol{U}^n$ at a time step $n$ be
+\begin{equation}
+	\boldsymbol{U}_0 = \boldsymbol{U}^n
+\end{equation}
+If $ k \, \in \, \left[1,5\right]$, then the method for calculating the value of $\boldsymbol{U}_k$ is
+\begin{equation}
+	\boldsymbol{U}_{k} = \boldsymbol{U}_{k-1} + \frac{\Delta t}{2} L\left(\boldsymbol{U}_{k-1}\right)
+\end{equation}
+For $ k = 6$
+\begin{equation}
+	\boldsymbol{U}_{6} = \frac{1}{9} \boldsymbol{U}_{0} + \frac{2}{5} \boldsymbol{U}_{1} + \frac{4}{9} \boldsymbol{U}_{3} + \frac{2}{45} \boldsymbol{U}_{5} + \frac{\Delta t}{45} L\left(\boldsymbol{U}_{5}\right)
+\end{equation}
+Then the value of $\boldsymbol{U}$ at time step $n+1$ is then
+\begin{equation}
+	\boldsymbol{U}^{n+1} = \boldsymbol{U}_{6}
+\end{equation}
+The time step, $\Delta t$, is calculated by
+\begin{equation}
+	\Delta t = \frac{c \Delta x}{s_{max}};
+\end{equation}
+Where $c$ is the Courant-Friedrich-Lewy (CFL) number and the stability condition is
+\begin{equation}\label{eq:cflcond}
+	c \le 1
+\end{equation}
+The six-stage, fifth-order SSPRK method uses more stages than requires for a fifth-order method. This allows the CFL number, $c$, to be maximized and reduces the overall effective CFL number, allowing it to be raised farther than the stability condition of \equationref{eq:cflcond} \cite{Gottlieb2005}.  The maximum wave speed at time step $n$, $s_{max}$, in the solution is calculated by finding the wave speed at each cell and using the maximum between them
+\begin{equation}
+	s_{max} = max\left[\left|u_i\right|+a\right]
+\end{equation}
+$L\left(\boldsymbol{U}\right)$ is the value of $\boldsymbol{U}_t$ found by rearranging the spatially discretized equation \equationref{eqn:spatiallydiscretized2} so that
+\begin{equation}
+	L\left(\boldsymbol{U}\right) = -\frac{1}{\Delta x} \left[\boldsymbol{F}_{i+\frac{1}{2}} - \boldsymbol{F}_{i-\frac{1}{2}}\right]
+\end{equation}
+and the difference in the numerical flux is found from the reconstruction scheme and Roe Riemann Solver.

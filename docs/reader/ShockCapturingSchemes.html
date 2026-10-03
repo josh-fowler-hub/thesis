@@ -1,0 +1,167 @@
+<!DOCTYPE html> 
+<html lang='en-US' xml:lang='en-US'> 
+<head><title>Shock-Capturing Schemes</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='thesis-web.css' rel='stylesheet' type='text/css' /> 
+<meta content='thesis-web.tex' name='src' /> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+<link href='titan-reader.css' rel='stylesheet' type='text/css' /> 
+</head><body>
+<!-- l. 3 --><p class='noindent'> <nav aria-label='Thesis navigation' class='thesis-nav'> <a href='/thesis/'>Thesis overview</a>  |  <a href='/thesis/reader/thesis-web.html'>Contents</a>  |  <a href='/'>Portfolio</a> </nav>  </p><!-- l. 3 --><div class='crosslinks'><p class='noindent'>[<a href='Approach.html'>next</a>] [<a href='#tailShockCapturingSchemes.html'>tail</a>] [<a href='Introduction.html#ShockCapturingSchemes.html'>up</a>] </p></div>
+   <h3 class='sectionHead' id='shockcapturing-schemes'><span class='titlemark'>1.1   </span> <a id='x5-40001.1'></a>Shock-Capturing Schemes</h3>
+<!-- l. 5 --><p class='noindent'>Hyperbolic partial differential equations (PDE) allow for both smooth
+and discontinuous solutions. A system of hyperbolic PDEs that are of
+particular interest in computational fluid dynamics of compressible flows
+are the Euler equations. The Euler equations are a simplification of the
+Navier-Stokes equations and govern the physics of inviscid fluid flow. The
+solutions of one-dimensional Euler equations allow for three types of waves —
+rarefactions, contact discontinuities, and shock waves. The latter two waves
+contain strong discontinuities and regions of high gradients that pose a
+problem for the classical Finite Volume Method (FVM). In computational
+fluid dynamics (CFD), two approaches exist to increase the accuracy at
+regions with high gradients. Shock-fitting schemes employ a moving grid
+or shock-tracking to increase the order of accuracy. In either case, the
+shock-fitting schemes require prior knowledge of the discontinuity to increase the
+order of accuracy. Shock-capturing schemes employ several techniques to
+increase the solution’s accuracy near high gradients that do not require prior
+knowledge of the discontinuity. The majority of shock-capturing methods
+are first-order and give rise to spurious oscillations near discontinuities.
+Many shock-capturing methods attempt to preserve monotonicity by
+the addition of numerical diffusion near discontinuities. In this study,
+an alternative approach to increasing the order of the Roe approximate
+Riemann solver is investigated using higher-order reconstruction or the
+modification of the average flux term in Roe’s formulation for the cell-face
+fluxes.
+</p><!-- l. 7 --><p class='indent'>   Well-known shock-capturing methods include the MacCormack scheme <span class='cite'>[<a href='bibname.html#XMACCORMACK2003405'>18</a>]</span>,
+                                                                          
+
+                                                                          
+higher-order finite-difference total variation diminishing (TVD) methods
+introduced by Harten <span class='cite'>[<a href='bibname.html#XHARTEN1983357'>8</a>]</span>, the van Leer scheme <span class='cite'>[<a href='bibname.html#XVANLEER1997'>33</a>]</span>, and Riemann solvers. The
+MacCormack scheme is a two-step extension of the Lax-Wendroff <span class='cite'>[<a href='bibname.html#XLAXWENDROFF1960132'>16</a>]</span> scheme. The
+MacCormack and Lax-Wendroff schemes are both second-order finite difference
+methods; however, the MacCormack scheme uses a predictor and a corrector step,
+in which one step is a forward difference and the other is a backward difference.
+The TVD schemes of Harten ensure monotonicity by the addition of numerical
+viscosity to the solution by way of a viscosity function. The van Leer scheme was
+a correction to the Steger-Warming <span class='cite'>[<a href='bibname.html#XSTEGER1981263'>27</a>]</span> flux-splitting scheme in which the flux is
+split into two subvectors consisting of those associated with the positive
+eigenvalues and the negative eigenvalues of the Jacobian matrix. The van Leer
+scheme addresses the issues that arise in transonic regions in the Steger-Warming
+scheme by taking the flux’s value as the summation of the split fluxes in
+transonic and subsonic regions. Riemann solvers take advantage of the
+fact that the discontinuity between the left and right states is similar to
+the Riemann problem and solve the Riemann problem for the intercell
+flux.
+</p><!-- l. 9 --><p class='indent'>   Godunov <span class='cite'>[<a href='bibname.html#Xgodunov_hal-01620642'>7</a>]</span> is credited with the first exact Riemann solver. Godunov
+proposed a scheme that computed the solution to the Riemann problem
+at the cell interface. Godunov used a constant piecewise, cell-centered
+extrapolation of the data to represent the Riemann problem at the cell
+face. Godunov’s method then solves the initial value problem (IVP) for
+the conservation laws using the data’s constant piecewise representation.
+Solving the IVP leads to local Riemann problems at the intercell face
+positions. Godunov’s method then solves the local Riemann problem exactly.
+However, the exact solution for pressure in the local Riemann problem
+requires an iterative method to solve the pressure function. Solving the
+Riemann problem approximately can avoid this iterative method to find the
+pressure.
+</p><!-- l. 11 --><p class='indent'>   Approximate Riemann solvers are a class of shock-capturing schemes that
+approximate the analytic solution to the Riemann problem. Many approximate
+Riemann solvers have been developed. The Harten-Lax-van Leer (HLL) <span class='cite'>[<a href='bibname.html#XHARTENLAXVANLEER1983251'>12</a>]</span> solver
+uses a two-wave approach that assumes the solution consists of two waves
+separating three regions of constant data. This assumption is only correct for
+hyperbolic systems containing two equations, such as the shallow water equations.
+The Harten-Lax-van Leer-Contact (HLLC) solver of Toro, Spruce, and Speares
+<span class='cite'>[<a href='bibname.html#XTOROSPRUCESPEARES199441'>28</a>]</span> extends the HLL solver to three-wave systems such as the Euler equations by
+restoring the contact surface. Roe <span class='cite'>[<a href='bibname.html#XROE1997250'>24</a>]</span> proposed an approximate Riemann solver
+                                                                          
+
+                                                                          
+based on the linearized Jacobian that uses a Roe-averaged matrix that is then
+solved exactly to compute the interface flux. Roe’s method uses the eigenvalues
+and eigenvectors of the linearized Jacobian to directly solve for the wave
+strengths. The Roe flux consists of two terms — an average flux and a
+diffusive flux. The diffusive flux uses the wave strengths, eigenvalues,
+and eigenvectors, while the average flux consists of the simple average of
+the left and right fluxes. Most methods to increase Roe’s solver’s order
+involve higher-order reconstruction of the left and right states. This study
+considers two approaches to increase the order of Roe’s solver. The first
+approach uses higher order reconstruction of the left and right states
+at an interface, which are then used both in the average and diffusive
+fluxes. The second approach retains the higher order reconstruction of
+the first approach for the diffusive flux but employs higher order central
+differencing based on the conserved variables at the cell centers for the average
+flux.
+</p><!-- l. 13 --><p class='indent'>   There have been many improvements to Roe’s approximate Riemann solver.
+Roe and Pike <span class='cite'>[<a href='bibname.html#XROEPIKE1985'>23</a>]</span> introduced a refinement to the method that does not
+require calculating the Roe-averaged matrix. Roe and Pike introduced a
+Roe-Pike-averaged vector of primitive variables, which can be used to evaluate the
+wave strengths directly. Glaister <span class='cite'>[<a href='bibname.html#XGLAISTER1988382'>5</a>, <a href='bibname.html#XGLAISTER1988361'>6</a>]</span> used the Roe-Pike method to extend Roe’s
+solver to the time-dependent Euler equations and the three-dimensional Euler
+equations. Roe <span class='cite'>[<a href='bibname.html#XROE1992132'>22</a>]</span> introduced a sonic fix in which the numerical flux is modified
+at the sonic point and both the neighboring cell faces. Einfeldt, Munz, Roe, and
+Sjögreen <span class='cite'>[<a href='bibname.html#XEINFELDT1991273'>4</a>]</span> introduced corrections to avoid the vacuum problem near
+low densities. This correction consisted of splitting the signal speeds and
+adding an anti-diffusion coefficient that guaranteed positive densities and
+pressures.
+</p><!-- l. 15 --><p class='indent'>   Shocks and contact waves are discontinuous, and the Riemann problem
+provides a good approximation for these types of waves. Rarefactions, however,
+involve a continuous change in variables, and the linearized approximation across
+data jumps can be misrepresented and lead to unphysical, entropy violating,
+rarefaction shocks. Dubois and Mehlman <span class='cite'>[<a href='bibname.html#XDUBOISMEHLMAN1993311'>3</a>]</span> and Harten and Hyman <span class='cite'>[<a href='bibname.html#XHARTEN1983235'>10</a>]</span>
+introduced corrections to avoid the appearance of rarefaction shocks. Dubois
+and Mehlman modified the flux function to include a unique Hermite
+polynomial that gives Roe’s flux at non-sonic points but corrects the data’s
+misrepresentation at sonic points. This thesis makes use of Harten and
+Hyman’s approach to the entropy fix. The Harten-Hyman entropy fix
+calculates new wave speeds in the cases of transonic rarefactions using the
+                                                                          
+
+                                                                          
+velocity and speed of sound in the regions between the left and right
+states and uses these newly corrected wave speeds in the calculation of the
+flux.
+</p><!-- l. 17 --><p class='indent'>   van Leer <span class='cite'>[<a href='bibname.html#XVANLEER1979101'>32</a>]</span> produced the first high-order TVD scheme by replacing Godunov’s
+piecewise constant approximation with a piecewise linear approximation. The
+Monotonic Upwind Scheme for Conservation Laws (MUSCL) achieved
+second-order accuracy by reconstructing the left and right states and limiting
+their gradients. The flux limiter function ensures that the reconstruction is
+first-order in regions of high gradients and second-order in smooth regions. In this
+study, the second-order MUSCL reconstruction is used as a comparison against
+the third and fifth-order WENO reconstructions. The effects of higher-order
+central differencing on the average flux along with MUSCL reconstruction of the
+diffusive flux are also investigated.
+</p><!-- l. 19 --><p class='indent'>   Harten and Osher <span class='cite'>[<a href='bibname.html#XHARTENOSHER1987279'>11</a>]</span> refined the idea of replacing the piecewise constant
+approximation with the introduction of Essentially Non-Oscillatory (ENO)
+schemes. Harten, Engquist, Osher, and Chakravarthy <span class='cite'>[<a href='bibname.html#XHARTEN19973'>9</a>]</span> completed the
+ENO schemes and the stencil selection process. ENO schemes compare
+reconstruction polynomials and choose the smoothest of the polynomials so that a
+piecewise linear reconstruction is recovered that omits cells from the stencil
+that include discontinuities. The stencil selection process for the ENO
+scheme involves many conditional statements that are cumbersome for
+computations. Liu, Osher, and Chan <span class='cite'>[<a href='bibname.html#XLIU1994200'>17</a>]</span> developed new Weighted ENO (WENO)
+schemes that avoid the stencil selection process by adaptively excluding the
+discontinuous cell. The WENO schemes choose a convex combination of all the
+stencils and assign nonlinear weights such that the stencil containing the
+discontinuous cell is assigned a zero or almost zero weight. Jiang and Shu <span class='cite'>[<a href='bibname.html#X1996JCoPh.126..202J'>14</a>]</span>
+then proposed new smoothness measurements that were more accurate at
+critical points than the WENO schemes of Liu, Ohser, and Chan. Jiang and
+Shu’s smoothness measurements made use of the sum of the \(L^2\) norms of the
+derivatives of the interpolating polynomial, rather than the total variation \(L^1\)
+based smoothness measurement. This development led to smoother, more
+accurate stencils. In the higher-order reconstruction approach and the
+higher-order reconstruction with higher-order central differencing approach,
+this thesis uses a third and fifth-order WENO reconstruction with Jiang
+and Shu’s improved smoothness indicators to extend Roe’s scheme to
+higher-order.
+                                                                          
+
+                                                                          
+</p>
+   <!-- l. 21 --><div class='crosslinks'><p class='noindent'>[<a href='Approach.html'>next</a>] [<a href='ShockCapturingSchemes.html'>front</a>] [<a href='Introduction.html#ShockCapturingSchemes.html'>up</a>] </p></div>
+<!-- l. 21 --><p class='indent'>   <a id='tailShockCapturingSchemes.html'></a> </p> 
+</body> 
+</html>

@@ -1,0 +1,61 @@
+\chapter{Now We're getting into the Good Stuff}
+\label{ch:thisChapterLabel}
+
+\section{Overview}
+
+I still need to be written.
+
+\begin{figure}
+    \cfig{3}{blank.eps}{3.5}
+    \caption[Caption for list of figures.]{Long caption for by figure}
+    \label{fig:thisFigLabel}
+\end{figure}
+
+\section{Tables---Kinda like Figures in Reverse}
+
+In the UAH format, table require ``titles'' (where figures require
+``captions'').  So, all that really means is that you put the
+\verb|\caption{Table Title}| \textsl{before} you actually begin the
+table (but, of course, you must be in the table environment).  For
+example, this \TeX:
+\begin{verbatim}
+\begin{table}
+\begin{center}
+\caption{This is a Table Made with the Booktabs package}
+\label{tbl:table}
+\begin{tabular}{@{}lccc@{}}
+\toprule \rule[-1pt]{0pt}{14pt}Title 1-Left&Centered&Centered Again&
+Centered\\
+\midrule \rule[-1pt]{0pt}{14pt}Item 1&These are all&separated
+by&Ampersands
+\verb|&|\\
+\rule[-1pt]{0pt}{14pt}Math Works too&$E=mc^2$&$F=ma$&see?\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+\end{verbatim}
+
+\noindent produced the following table, \tableref{tbl:table}.
+\begin{table}
+\begin{center}
+\caption{This is a Table Made with the Booktabs package}
+\label{tbl:table}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\rule[-1pt]{0pt}{14pt}Title 1-Left&Centered&Centered Again&
+Centered\\
+\midrule
+\rule[-1pt]{0pt}{14pt}Item 1&These are all&separated by&Ampersands
+\verb|&|\\
+\rule[-1pt]{0pt}{14pt}Math Works too&$E=mc^2$&$F=ma$&see?\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+
+These files are set up such that \LaTeX\ will put figures and tables
+(which are collectively called ``floats'') at the top of the first
+available page (as near to where you inserted the figure or table
+environment as possible). You can change that (\ie, force \LaTeX\ to
+put the floats in different locations).  But, I prefer it simple.

@@ -1,0 +1,12 @@
+-- Apply the compatibility setting before TeX4ht is loaded.
+require "make4ht-htlatex"
+
+Make.latex_command = Make.latex_command:gsub(
+  "\\makeatletter",
+  "\\RequirePackage[2024/11/01]{latexrelease}\\makeatletter",
+  1
+)
+
+Make:htlatex {}
+Make:htlatex {}
+Make:htlatex {}

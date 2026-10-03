@@ -1,0 +1,66 @@
+<!DOCTYPE html> 
+<html lang='en-US' xml:lang='en-US'> 
+<head><title>Modification to Roe’s Approximate Riemann Solver</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='thesis-web.css' rel='stylesheet' type='text/css' /> 
+<meta content='thesis-web.tex' name='src' /> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+<link href='titan-reader.css' rel='stylesheet' type='text/css' /> 
+</head><body>
+<!-- l. 452 --><p class='noindent'> <nav aria-label='Thesis navigation' class='thesis-nav'> <a href='/thesis/'>Thesis overview</a>  |  <a href='/thesis/reader/thesis-web.html'>Contents</a>  |  <a href='/'>Portfolio</a> </nav>  </p><!-- l. 452 --><div class='crosslinks'><p class='noindent'>[<a href='AdaptiveRiemannSolver.html'>prev</a>] [<a href='AdaptiveRiemannSolver.html#tailAdaptiveRiemannSolver.html'>prev-tail</a>] [<a href='#tailModificationtoRoesApproximateRiemannSolver.html'>tail</a>] [<a href='RiemannSolvers.html#ModificationtoRoesApproximateRiemannSolver.html'>up</a>] </p></div>
+   <h3 class='sectionHead' id='modification-to-roes-approximate-riemann-solver'><span class='titlemark'>3.5   </span> <a id='x17-210003.5'></a>Modification to Roe’s Approximate Riemann Solver</h3>
+<!-- l. 454 --><p class='noindent'>Roe’s method is only first-order. In order to extend Roe’s scheme to higher-order,
+a modification is made. The modification to Roe’s scheme involves replacing the
+average flux with a centrally differenced flux of a higher-order along with
+higher-order reconstruction. The method of replacing the average flux with a
+higher-order centrally differenced flux is discussed here.
+</p><!-- l. 456 --><p class='indent'>   It is from Equation <a href='TheApproximateRiemannProblem.html#x11-10015r42'>2.42<!-- tex4ht:ref: equation:eqn:NumericalFluxAverage  --></a> that the average flux can be defined as a centrally
+differenced flux. \begin {equation} \label {eqn:CDFlux} \boldsymbol {F}_{CD} = \frac {1}{2} \left ( \boldsymbol {F}_L + \boldsymbol {F}_R \right )  \end {equation}<a id='x17-21001r70'></a> The diffusive flux is \begin {equation} \label {eqn:DiffFlux} \boldsymbol {F}_{DF} = \frac {1}{2}\sum _{i = 1}^{m} \tilde {\alpha }_i |\tilde {\lambda }_i | \tilde {\boldsymbol {K}}^{\left (i\right )}  \end {equation}<a id='x17-21002r71'></a> The intercell flux can then be defined as \begin {equation} \label {eq:splitterm} \boldsymbol {F}_{i+\frac {1}{2}} = \boldsymbol {F}_{CD} - \boldsymbol {F}_{DF}  \end {equation}<a id='x17-21003r72'></a>
+The resulting modified Roe scheme uses a higher-order central differencing
+term along with higher-order reconstruction to extend Roe’s scheme to a
+higher-order. Replacing \(\boldsymbol {F}_{CD}\) in Equation <a href='#x17-21003r72'>3.72<!-- tex4ht:ref: equation:eq:splitterm  --></a> with Equation <a href='#x17-22004r76'>3.76<!-- tex4ht:ref: equation:eqn:CD2  --></a>, Equation <a href='#x17-23006r82'>3.82<!-- tex4ht:ref: equation:eqn:CD4  --></a>, or
+Equation <a href='#x17-24008r90'>3.90<!-- tex4ht:ref: equation:eqn:CD6  --></a> will recover these higher-order schemes.
+</p>
+   <h4 class='subsectionHead' id='secondorder-central-differencing'><span class='titlemark'>3.5.1   </span> <a id='x17-220003.5.1'></a>Second-Order Central Differencing</h4>
+<!-- l. 470 --><p class='noindent'>If \(f\) is any of the components of \(\boldsymbol {F}\) then the Taylor series expansion of the component
+is \begin {equation} \label {eqn:fiexpansionCD2} f_{i} = f_{i+\frac {1}{2}} - \frac {\Delta x}{2} \frac {\partial f}{\partial x} + \mathcal {O}\left (\Delta x^2\right )  \end {equation}<a id='x17-22001r73'></a> \begin {equation} \label {eqn:fip1expansionCD2} f_{i+1} = f_{i+\frac {1}{2}} + \frac {\Delta x}{2} \frac {\partial f}{\partial x} + \mathcal {O}\left (\Delta x^2\right )  \end {equation}<a id='x17-22002r74'></a> and using Equation <a href='#x17-22001r73'>3.73<!-- tex4ht:ref: equation:eqn:fiexpansionCD2  --></a> and Equation <a href='#x17-22002r74'>3.74<!-- tex4ht:ref: equation:eqn:fip1expansionCD2  --></a> to solve for \(f_{i+\frac {1}{2}}\) \begin {equation}  f_{i+\frac {1}{2}} = \frac {1}{2} \left (f_{i} + f_{i+1}\right ) + \mathcal {O}\left (\Delta x^2\right )  \end {equation}<a id='x17-22003r75'></a> applying the
+expansion to each of the components of \(\boldsymbol {F}\) and dropping the higher-order terms the
+second-order central difference used in place of Equation <a href='#x17-21001r70'>3.70<!-- tex4ht:ref: equation:eqn:CDFlux  --></a> is then
+\begin {equation} \label {eqn:CD2} \boldsymbol {F}_{CD2} = \frac {1}{2} \left (\boldsymbol {F}_i + \boldsymbol {F}_{i+1}\right )  \end {equation}<a id='x17-22004r76'></a>
+</p>
+   <h4 class='subsectionHead' id='fourthorder-central-differencing'><span class='titlemark'>3.5.2   </span> <a id='x17-230003.5.2'></a>Fourth-Order Central Differencing</h4>
+<!-- l. 487 --><p class='noindent'>As in the case of the second-order Taylor series expansion of Section <a href='#secondorder-central-differencing'>3.5.1<!-- tex4ht:ref: section:sect:SecondOrderCD  --></a>, the
+series expansions of the component of \(\boldsymbol {F}\) is \begin {equation} \label {eqn:fim1CD4} f_{i-1} = f_{i+\frac {1}{2}} - \frac {3 \Delta x}{2} \frac {\partial f}{\partial x} + 9 \Delta x^2 \frac {\partial ^2 f}{\partial x^2} - \frac {27 \Delta x^3}{48} \frac {\partial ^3 f}{\partial x^3} + \mathcal {O}\left (\Delta x^4\right )  \end {equation}<a id='x17-23001r77'></a> \begin {equation}  f_{i} = f_{i+\frac {1}{2}} - \frac {\Delta x}{2} \frac {\partial f}{\partial x} + \Delta x^2 \frac {\partial ^2 f}{\partial x^2} - \frac { \Delta x^3}{48} \frac {\partial ^3 f}{\partial x^3} + \mathcal {O}\left (\Delta x^4\right )  \end {equation}<a id='x17-23002r78'></a> \begin {equation}  f_{i+1} = f_{i+\frac {1}{2}} + \frac {\Delta x}{2} \frac {\partial f}{\partial x} + \frac {\Delta x^2}{8} \frac {\partial ^2 f}{\partial x^2} + \frac {\Delta x^3}{48} \frac {\partial ^3 f}{\partial x^3} + \mathcal {O}\left (\Delta x^4\right )  \end {equation}<a id='x17-23003r79'></a> \begin {equation} \label {eqn:fip2CD4} f_{i+2} = f_{i+\frac {1}{2}} + \frac {3 \Delta x}{2} \frac {\partial f}{\partial x} + \frac {9 \Delta x^2}{8} \frac {\partial ^2 f}{\partial x^2} + \frac {27 \Delta x^3}{48} \frac {\partial ^3 f}{\partial x^3} + \mathcal {O}\left (\Delta x^4\right )  \end {equation}<a id='x17-23004r80'></a> using Equation <a href='#x17-23001r77'>3.77<!-- tex4ht:ref: equation:eqn:fim1CD4  --></a>-Equation <a href='#x17-23004r80'>3.80<!-- tex4ht:ref: equation:eqn:fip2CD4  --></a> to
+solve for \(f_{i+\frac {1}{2}}\) gives \begin {equation}  f_{i+\frac {1}{2}} = \frac {1}{16} \left (- f_{i-1} + 9 f_i + 9 f_{i+1} - f_{i+2}\right ) + \mathcal {O}\left (\Delta x^4\right )  \end {equation}<a id='x17-23005r81'></a> applying the expansion to each of the components of \(\boldsymbol {F}\) and
+dropping the higher-order terms, the fourth-order central difference used in place
+                                                                          
+
+                                                                          
+of Equation <a href='#x17-21001r70'>3.70<!-- tex4ht:ref: equation:eqn:CDFlux  --></a> is then \begin {equation} \label {eqn:CD4} \boldsymbol {F}_{CD4} = \frac {1}{16} \left (- \boldsymbol {F}_{i-1} + 9 \boldsymbol {F}_i + 9 \boldsymbol {F}_{i+1} - \boldsymbol {F}_{i+2}\right )  \end {equation}<a id='x17-23006r82'></a>
+</p>
+   <h4 class='subsectionHead' id='sixthorder-central-differencing'><span class='titlemark'>3.5.3   </span> <a id='x17-240003.5.3'></a>Sixth-Order Central Differencing</h4>
+<!-- l. 510 --><p class='noindent'>As in the case of the second-order Taylor series expansion of Section <a href='#secondorder-central-differencing'>3.5.1<!-- tex4ht:ref: section:sect:SecondOrderCD  --></a>, the
+series expansions of the component of \(\boldsymbol {F}\) is \begin {equation} \label {eqn:fim2CD6} \begin {split} f_{i-2} &amp;= f_{i+\frac {1}{2}} - \frac {5 \Delta x}{2} \frac {\partial f}{\partial x} + 25 \Delta x^2 \frac {\partial ^2 f}{\partial x^2} - \frac {125 \Delta x^3}{48} \frac {\partial ^3 f}{\partial x^3}\\ &amp;+ \frac {625 \Delta x^4}{384} \frac {\partial ^4 f}{\partial x^4} - \frac {3125 \Delta x^5}{3840} \frac {\partial ^5 f}{\partial x^5} + \mathcal {O}\left (\Delta x^6\right ) \end {split}  \end {equation}<a id='x17-24001r83'></a> \begin {equation}  \begin {split} f_{i-1} &amp;= f_{i+\frac {1}{2}} - \frac {3 \Delta x}{2} \frac {\partial f}{\partial x} + 9 \Delta x^2 \frac {\partial ^2 f}{\partial x^2} - \frac {27 \Delta x^3}{48} \frac {\partial ^3 f}{\partial x^3}\\ &amp;+ \frac {81 \Delta x^4}{384} \frac {\partial ^4 f}{\partial x^4} - \frac {243 \Delta x^5}{3840} \frac {\partial ^5 f}{\partial x^5} + \mathcal {O}\left (\Delta x^6\right ) \end {split}  \end {equation}<a id='x17-24002r84'></a> \begin {equation}  \begin {split} f_{i} &amp;= f_{i+\frac {1}{2}} - \frac {\Delta x}{2} \frac {\partial f}{\partial x} + \Delta x^2 \frac {\partial ^2 f}{\partial x^2} - \frac {\Delta x^3}{48} \frac {\partial ^3 f}{\partial x^3}\\ &amp;+ \frac {\Delta x^4}{384} \frac {\partial ^4 f}{\partial x^4} - \frac {\Delta x^5}{3840} \frac {\partial ^5 f}{\partial x^5} + \mathcal {O}\left (\Delta x^6\right ) \end {split}  \end {equation}<a id='x17-24003r85'></a> \begin {equation}  \begin {split} f_{i+1} &amp;= f_{i+\frac {1}{2}} - \frac {5 \Delta x}{2} \frac {\partial f}{\partial x} + 25 \Delta x^2 \frac {\partial ^2 f}{\partial x^2} - \frac {125 \Delta x^3}{48} \frac {\partial ^3 f}{\partial x^3}\\ &amp;+ \frac {625 \Delta x^4}{384} \frac {\partial ^4 f}{\partial x^4} - \frac {3125 \Delta x^5}{3840} \frac {\partial ^5 f}{\partial x^5} + \mathcal {O}\left (\Delta x^6\right ) \end {split}  \end {equation}<a id='x17-24004r86'></a> \begin {equation}  \begin {split} f_{i+2} &amp;= f_{i+\frac {1}{2}} + \frac {\Delta x}{2} \frac {\partial f}{\partial x} + \frac {\Delta x^2}{8} \frac {\partial ^2 f}{\partial x^2} + \frac {\Delta x^3}{48} \frac {\partial ^3 f}{\partial x^3}\\ &amp;+ \frac {\Delta x^4}{384} \frac {\partial ^4 f}{\partial x^4} - \frac {\Delta x^5}{3840} \frac {\partial ^5 f}{\partial x^5} + \mathcal {O}\left (\Delta x^6\right ) \end {split}  \end {equation}<a id='x17-24005r87'></a> \begin {equation} \label {eqn:fip3CD6} \begin {split} f_{i+3} &amp;= f_{i+\frac {1}{2}} + \frac {5 \Delta x}{2} \frac {\partial f}{\partial x} + \frac {25 \Delta x^2}{8} \frac {\partial ^2 f}{\partial x^2} + \frac {125 \Delta x^3}{48} \frac {\partial ^3 f}{\partial x^3}\\ &amp;+ \frac {625 \Delta x^4}{384} \frac {\partial ^4 f}{\partial x^4} + \frac {3125 \Delta x^5}{3840} \frac {\partial ^5 f}{\partial x^5} + \mathcal {O}\left (\Delta x^6\right ) \end {split}  \end {equation}<a id='x17-24006r88'></a> using Equation <a href='#x17-24001r83'>3.83<!-- tex4ht:ref: equation:eqn:fim2CD6  --></a>-Equation <a href='#x17-24006r88'>3.88<!-- tex4ht:ref: equation:eqn:fip3CD6  --></a>
+to solve for \(f_{i+\frac {1}{2}}\) gives \begin {equation}  f_{i+\frac {1}{2}} = \frac {1}{256} \left (3 f_{i-2} - 25 f_{i-1} + 150 f_{i} + 150 f_{i+1} - 25 f_{i+2} + 3 f_{i+3}\right ) + \mathcal {O}\left (\Delta x^6\right )  \end {equation}<a id='x17-24007r89'></a> applying the expansion to each of the components of \(\boldsymbol {F}\) and
+dropping the higher-order terms, the sixth-order central difference used in place of
+Equation <a href='#x17-21001r70'>3.70<!-- tex4ht:ref: equation:eqn:CDFlux  --></a> is then \begin {equation} \label {eqn:CD6} \boldsymbol {F}_{CD6} = \frac {1}{256} \left (3 \boldsymbol {F}_{i-2} - 25 \boldsymbol {F}_{i-1} + 150 \boldsymbol {F}_{i} + 150 \boldsymbol {F}_{i+1} - 25 \boldsymbol {F}_{i+2} + 3 \boldsymbol {F}_{i+3}\right )  \end {equation}<a id='x17-24008r90'></a>
+                                                                          
+
+                                                                          
+                                                                          
+
+                                                                          
+                                                                          
+
+                                                                          
+                                                                          
+
+                                                                          
+</p>
+   <!-- l. 1 --><div class='crosslinks'><p class='noindent'>[<a href='AdaptiveRiemannSolver.html'>prev</a>] [<a href='AdaptiveRiemannSolver.html#tailAdaptiveRiemannSolver.html'>prev-tail</a>] [<a href='ModificationtoRoesApproximateRiemannSolver.html'>front</a>] [<a href='RiemannSolvers.html#ModificationtoRoesApproximateRiemannSolver.html'>up</a>] </p></div>
+<!-- l. 1 --><p class='indent'>   <a id='tailModificationtoRoesApproximateRiemannSolver.html'></a>  </p> 
+</body> 
+</html>

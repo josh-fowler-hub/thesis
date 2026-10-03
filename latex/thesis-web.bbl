@@ -1,0 +1,211 @@
+\begin{thebibliography}{10}
+
+\bibitem{BIDADI201465}
+Shreyas Bidadi and Sarma~L. Rani.
+\newblock Quantification of numerical diffusivity due to tvd schemes in the
+  advection equation.
+\newblock {\em Journal of Computational Physics}, 261:65--82, 2014.
+
+\bibitem{courant1999supersonic}
+R.~Courant and K.O. Friedrichs.
+\newblock {\em Supersonic Flow and Shock Waves}.
+\newblock Applied Mathematical Sciences. Springer New York, 1999.
+
+\bibitem{DUBOISMEHLMAN1993311}
+Francois Dubois and Guillaume Mehlman.
+\newblock Nonparameterized 'entropy fix' for roe's method.
+\newblock {\em AIAA Journal}, 31(1):199--200, 1993.
+
+\bibitem{EINFELDT1991273}
+B~Einfeldt, C.D Munz, P.L Roe, and B~Sjögreen.
+\newblock On godunov-type methods near low densities.
+\newblock {\em Journal of Computational Physics}, 92(2):273--295, 1991.
+
+\bibitem{GLAISTER1988382}
+P~Glaister.
+\newblock An approximate linearised riemann solver for the euler equations for
+  real gases.
+\newblock {\em Journal of Computational Physics}, 74(2):382--408, 1988.
+
+\bibitem{GLAISTER1988361}
+P~Glaister.
+\newblock An approximate linearised riemann solver for the three-dimensional
+  euler equations for real gases using operator splitting.
+\newblock {\em Journal of Computational Physics}, 77(2):361--383, 1988.
+
+\bibitem{godunov:hal-01620642}
+Sergei~K. Godunov and I.~Bohachevsky.
+\newblock {Finite difference method for numerical computation of discontinuous
+  solutions of the equations of fluid dynamics}.
+\newblock {\em {Sbornik: Mathematics}}, 47(89)(3):271--306, 1959.
+
+\bibitem{HARTEN1983357}
+Ami Harten.
+\newblock High resolution schemes for hyperbolic conservation laws.
+\newblock {\em Journal of Computational Physics}, 49(3):357--393, 1983.
+
+\bibitem{HARTEN19973}
+Ami Harten, Bjorn Engquist, Stanley Osher, and Sukumar~R. Chakravarthy.
+\newblock Uniformly high order accurate essentially non-oscillatory schemes,
+  iii.
+\newblock {\em Journal of Computational Physics}, 131(1):3--47, 1997.
+
+\bibitem{HARTEN1983235}
+Ami Harten and James~M Hyman.
+\newblock Self adjusting grid methods for one-dimensional hyperbolic
+  conservation laws.
+\newblock {\em Journal of Computational Physics}, 50(2):235--269, 1983.
+
+\bibitem{HARTENOSHER1987279}
+Ami Harten and Stanley Osher.
+\newblock Uniformly high-order accurate nonoscillatory schemes. i.
+\newblock {\em SIAM Journal on Numerical Analysis}, 24(2):279--309, 1987.
+
+\bibitem{HARTENLAXVANLEER1983251}
+Amiram Harten, Peter~D. Lax, and Bram~van Leer.
+\newblock On upstream differencing and godunov-type schemes for hyperbolic
+  conservation laws.
+\newblock {\em SIAM Review}, 25(1):35--61, 1983.
+
+\bibitem{hirsch2007numerical}
+C.~Hirsch.
+\newblock {\em Numerical Computation of Internal and External Flows: The
+  Fundamentals of Computational Fluid Dynamics}.
+\newblock Elsevier Science, 2007.
+
+\bibitem{1996JCoPh.126..202J}
+Guang-Shan {Jiang} and Chi-Wang {Shu}.
+\newblock {Efficient Implementation of Weighted ENO Schemes}.
+\newblock {\em Journal of Computational Physics}, 126(1):202--228, June 1996.
+
+\bibitem{Kermani}
+M.Jafar Kermani, A.~Gerber, and John Stockie.
+\newblock Thermodynamically based moisture prediction using roe's scheme.
+\newblock {\em The 4th Conference of Iranian Aerospace Society}, January 2003.
+
+\bibitem{LAXWENDROFF1960132}
+Peter Lax and Burton Wendroff.
+\newblock Systems of conservation laws.
+\newblock {\em Communications on Pure and Applied Mathematics}, 13(2):217--237,
+  1960.
+
+\bibitem{LIU1994200}
+Xu-Dong Liu, Stanley Osher, and Tony Chan.
+\newblock Weighted essentially non-oscillatory schemes.
+\newblock {\em Journal of Computational Physics}, 115(1):200--212, 1994.
+
+\bibitem{MACCORMACK2003405}
+Robert~W. MacCormack.
+\newblock The effect of viscosity in hypervelocity impact cratering.
+\newblock {\em Journal of Spacecraft and Rockets}, 40(5):757--763, 2003.
+
+\bibitem{Nishikawa}
+Hiroaki Nishikawa.
+\newblock A truncation error analysis of third-order muscl scheme for nonlinear
+  conservation laws.
+\newblock {\em International Journal for Numerical Methods in Fluids}, pages
+  1--22, 10 2020.
+
+\bibitem{BAI201868}
+Feng peng Bai, Zhong hua Yang, and Wu~gang Zhou.
+\newblock Study of total variation diminishing (tvd) slope limiters in
+  dam-break flow simulation.
+\newblock {\em Water Science and Engineering}, 11(1):68--74, 2018.
+
+\bibitem{ROESome}
+P.~L. {Roe}.
+\newblock {Some contributions to the modelling of discontinuous flows}.
+\newblock In {\em Large-Scale Computations in Fluid Mechanics}, pages 163--193,
+  January 1985.
+
+\bibitem{ROE1992132}
+P.~L. Roe.
+\newblock Sonic flux formulae.
+\newblock {\em SIAM Journal on Scientific and Statistical Computing},
+  13(2):611--630, 1992.
+
+\bibitem{ROEPIKE1985}
+P.~L. Roe and J.~Pike.
+\newblock Efficient construction and utilisation of approximate riemann
+  solutions.
+\newblock In {\em Proc. of the Sixth Int'l. Symposium on Computing Methods in
+  Applied Sciences and Engineering, VI}, page 499–518, NLD, 1985.
+  North-Holland Publishing Co.
+
+\bibitem{ROE1997250}
+P.L. Roe.
+\newblock Approximate riemann solvers, parameter vectors, and difference
+  schemes.
+\newblock {\em Journal of Computational Physics}, 135(2):250--258, 1997.
+
+\bibitem{Shu1999}
+Chi-Wang Shu.
+\newblock {\em High Order ENO and WENO Schemes for Computational Fluid
+  Dynamics}, pages 439--582.
+\newblock Springer Berlin Heidelberg, Berlin, Heidelberg, 1999.
+
+\bibitem{SOD19781}
+Gary~A Sod.
+\newblock A survey of several finite difference methods for systems of
+  nonlinear hyperbolic conservation laws.
+\newblock {\em Journal of Computational Physics}, 27(1):1--31, 1978.
+
+\bibitem{STEGER1981263}
+Joseph~L Steger and R.F Warming.
+\newblock Flux vector splitting of the inviscid gasdynamic equations with
+  application to finite-difference methods.
+\newblock {\em Journal of Computational Physics}, 40(2):263--293, 1981.
+
+\bibitem{TOROSPRUCESPEARES199441}
+E.~F. {Toro}, M.~{Spruce}, and W.~{Speares}.
+\newblock {Restoration of the contact surface in the HLL-Riemann solver}.
+\newblock {\em Shock Waves}, 4(1):25--34, July 1994.
+
+\bibitem{toro2013riemann}
+E.F. Toro.
+\newblock {\em Riemann Solvers and Numerical Methods for Fluid Dynamics: A
+  Practical Introduction}.
+\newblock Springer Berlin Heidelberg, 2013.
+
+\bibitem{VANLEER199701}
+G.~D. van Albada, B.~van Leer, and W.~W. Roberts.
+\newblock {\em {A Comparative Study of Computational Methods in Cosmic Gas
+  Dynamics}}, pages 95--103.
+\newblock Springer Berlin Heidelberg, Berlin, Heidelberg, 1997.
+
+\bibitem{VANLEER1977263}
+Bram {Van Leer}.
+\newblock Towards the ultimate conservative difference scheme iii.
+  upstream-centered finite-difference schemes for ideal compressible flow.
+\newblock {\em Journal of Computational Physics}, 23(3):263--275, 1977.
+
+\bibitem{VANLEER1979101}
+Bram {van Leer}.
+\newblock Towards the ultimate conservative difference scheme. v. a
+  second-order sequel to godunov's method.
+\newblock {\em Journal of Computational Physics}, 32(1):101--136, 1979.
+
+\bibitem{VANLEER1997}
+Bram van Leer.
+\newblock {\em Flux-vector Splitting for the Euler Equations}, pages 80--89.
+\newblock Springer Berlin Heidelberg, 01 1997.
+
+\bibitem{VANLEER1997229}
+Bram {van Leer}.
+\newblock Towards the ultimate conservative difference scheme.
+\newblock {\em Journal of Computational Physics}, 135(2):229--248, 1997.
+
+\bibitem{WOODWARD1984115}
+Paul Woodward and Phillip Colella.
+\newblock The numerical simulation of two-dimensional fluid flow with strong
+  shocks.
+\newblock {\em Journal of Computational Physics}, 54(1):115--173, 1984.
+
+\bibitem{ZHANG2016103}
+Y.-T. Zhang and C.-W. Shu.
+\newblock Chapter 5 - eno and weno schemes.
+\newblock In Rémi Abgrall and Chi-Wang Shu, editors, {\em Handbook of
+  Numerical Methods for Hyperbolic Problems}, volume~17 of {\em Handbook of
+  Numerical Analysis}, pages 103--122. Elsevier, 2016.
+
+\end{thebibliography}

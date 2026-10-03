@@ -1,0 +1,73 @@
+<!DOCTYPE html> 
+<html lang='en-US' xml:lang='en-US'> 
+<head><title>The Riemann Problem</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='thesis-web.css' rel='stylesheet' type='text/css' /> 
+<meta content='thesis-web.tex' name='src' /> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+<link href='titan-reader.css' rel='stylesheet' type='text/css' /> 
+</head><body>
+<!-- l. 154 --><p class='noindent'> <nav aria-label='Thesis navigation' class='thesis-nav'> <a href='/thesis/'>Thesis overview</a>  |  <a href='/thesis/reader/thesis-web.html'>Contents</a>  |  <a href='/'>Portfolio</a> </nav>  </p><!-- l. 154 --><div class='crosslinks'><p class='noindent'>[<a href='TheApproximateRiemannProblem.html'>next</a>] [<a href='TheEulerEquations.html'>prev</a>] [<a href='TheEulerEquations.html#tailTheEulerEquations.html'>prev-tail</a>] [<a href='#tailTheRiemannProblem.html'>tail</a>] [<a href='GoverningEquations.html#TheRiemannProblem.html'>up</a>] </p></div>
+   <h3 class='sectionHead' id='the-riemann-problem'><span class='titlemark'>2.2   </span> <a id='x10-90002.2'></a>The Riemann Problem</h3>
+<!-- l. 155 --><p class='noindent'>The Riemann problem for the one dimensional Euler equations, Equation <a href='TheEulerEquations.html#x9-8012r12'>2.12<!-- tex4ht:ref: equation:eqn:EulerVector1d  --></a>, is
+an Initial Value Problem with the initial conditions of \begin {equation} \label {eqn:RiemannProblem} \boldsymbol {U}\left (x,0\right ) = \begin {cases} \boldsymbol {U}_L\,\,\,\, \textrm { if } \,\,x &lt; 0,\\ \boldsymbol {U}_R\,\,\,\, \textrm { if } \,\,x &gt; 0, \end {cases}  \end {equation}<a id='x10-9001r26'></a> This is a generalization of
+the shock-tube problem for the Euler equations, where two stationary
+gases (\(u_L=u_R=0\)), are separated by a membrane, that when removed creates a wave
+system <span class='cite'>[<a href='bibname.html#Xcourant1999supersonic'>2</a>]</span>. In the Riemann problem, however, the particle velocities, \(u_L\) and \(u_R\),
+are allowed to be non-zero <span class='cite'>[<a href='bibname.html#Xtoro2013riemann'>29</a>]</span>. When defining a Riemann problem, it is
+sometimes more convenient to refer to the vector of primitive variables, \(\boldsymbol {W}\)
+\begin {equation}  \boldsymbol {W} = \begin {bmatrix} \rho \\ u\\ p \end {bmatrix}  \end {equation}<a id='x10-9002r27'></a></p><figure class='figure' id='x10-90031'><span id='configuration-of-the-wave-system-a-left-rarefaction-contact-right-shock-b-left-shock-contact-right-rarefaction-c-left-rarefaction-contact-right-rarefaction-d-left-shock-contact-right-shock'></span> 
+
+                                                                          
+
+                                                                          
+
+                                                                          
+
+                                                                          
+<!-- l. 207 --><p class='noindent'>              <img alt='x0t(x0t(x0t(x0t(abcd)))) ' src='thesis-web2x.svg' />
+</p>
+<figcaption class='caption'><span class='id'>Figure 2.1: </span><span class='content'>Configuration of the wave system: (a) Left rarefaction, contact,
+right shock. (b) Left shock, contact, right rarefaction. (c) Left rarefaction,
+contact, right rarefaction. (d) Left shock, contact, right shock.</span></figcaption><!-- tex4ht:label?: x10-90031  -->
+                                                                          
+
+                                                                          
+   </figure>
+<!-- l. 211 --><p class='indent'>   Where, as in the case of Equation <a href='#x10-9001r26'>2.26<!-- tex4ht:ref: equation:eqn:RiemannProblem  --></a>, the left and right states, \(\boldsymbol {W}_L\) and \(\boldsymbol {W}_R\), are
+separated by a discontinuity at \(x = 0\). For an ideal gas that obeys the caloric equation
+of state in Equation <a href='TheEulerEquations.html#x9-8009r9'>2.9<!-- tex4ht:ref: equation:eqn:idealgasEOS  --></a>, the wave system created by the removal of the
+membrane has four possible configurations of waves seen in Figure <a href='#configuration-of-the-wave-system-a-left-rarefaction-contact-right-shock-b-left-shock-contact-right-rarefaction-c-left-rarefaction-contact-right-rarefaction-d-left-shock-contact-right-shock'>2.1<!-- tex4ht:ref: figure:fig:WaveConfig  --></a>.
+The wave system can consist of left and right rarefaction waves, left and
+right shock waves or a combination of the two <span class='cite'>[<a href='bibname.html#Xtoro2013riemann'>29</a>]</span>. As can be viewed in
+Figure <a href='#solution-structure-of-the-riemann-problem-on-the-xt-plane-for-the-timedependent-euler-equations'>2.2<!-- tex4ht:ref: figure:fig:SolutionStructure  --></a>, the left and right waves are separated by a contact discontinuity.
+The unknown regions between the left and right states are referred to
+as the star region, which contains the left and right star states, \(\boldsymbol {W}_{*L}\) and \(\boldsymbol {W}_{*L}\).
+An iterative solver for the Riemann problem is presented in Section <a href='AdaptiveRiemannSolver.html#adaptive-riemann-solver'>3.4<!-- tex4ht:ref: section:sect:AdaptiveRiemannSolver  --></a>.
+</p><figure class='figure' id='x10-90042'><span id='solution-structure-of-the-riemann-problem-on-the-xt-plane-for-the-timedependent-euler-equations'></span> 
+
+                                                                          
+
+                                                                          
+
+                                                                          
+
+                                                                          
+<!-- l. 232 --><p class='noindent'>                               <img alt='x0WtW((WWSuuLRta∗∗−+rLRaaR))egion ' src='thesis-web3x.svg' />
+</p>
+<figcaption class='caption'><span class='id'>Figure 2.2: </span><span class='content'>Solution structure of the Riemann problem on the \(x\)-\(t\) plane for the
+time-dependent Euler equations.</span></figcaption><!-- tex4ht:label?: x10-90042  -->
+                                                                          
+
+                                                                          
+   </figure>
+                                                                          
+
+                                                                          
+   <!-- l. 268 --><div class='crosslinks'><p class='noindent'>[<a href='TheApproximateRiemannProblem.html'>next</a>] [<a href='TheEulerEquations.html'>prev</a>] [<a href='TheEulerEquations.html#tailTheEulerEquations.html'>prev-tail</a>] [<a href='TheRiemannProblem.html'>front</a>] [<a href='GoverningEquations.html#TheRiemannProblem.html'>up</a>] </p></div>
+<!-- l. 268 --><p class='indent'>   <a id='tailTheRiemannProblem.html'></a> </p> 
+</body> 
+</html>

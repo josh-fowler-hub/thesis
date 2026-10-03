@@ -1,0 +1,37 @@
+\chapter{Introduction}
+\label{ch:intro}
+
+\section{This is how you make a section}
+
+I still need to be written.
+
+\subsection{This is a subsection}
+
+I am going to reference an book~\cite{sutton92}.
+
+\subsubsection{Subsubsection}
+
+There are four section-level-types in this UAH format that will
+appear in the TOC:
+\begin{enumerate}
+\item Chapter
+\item Section
+\item Subsection
+\item Subsubsection
+\end{enumerate}
+
+\noindent where, as far as numbering is concerned, in the book class
+of files, \LaTeX\ considers ``chapter'' to be zero, ``section'' to
+be 1, and so on. More section-levels exist (\ie, ``Paragraph''
+follows subsubsection), and you can use them in the text of your
+thesis, but you will have to edit the \verb|uahdis.sty| file to
+enable them in the TOC (and, I would not suggest putting anything
+below a subsubsection in the TOC).
+
+\begin{figure}
+    \cfig{1}{blank.eps}{3.5}
+    \caption[Caption for list of figures.]{Long caption for by figure}
+    \label{fig:thisFigLabel}
+\end{figure}
+
+\section{Back to a Section}

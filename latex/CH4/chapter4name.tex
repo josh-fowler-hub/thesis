@@ -1,0 +1,215 @@
+\chapter{Reconstruction}
+\section{Monotonic Upwind Scheme for Conservation Laws}
+
+The Monotonic Upwind Scheme for Conservation Laws (MUSCL) is used to reconstruct the values of the face variables from the cell-centered values to extend Roe's solver to second-order. The MUSCL reconstruction uses a piecewise linear representation of the data seen in \figureref{fig:MUSCLConfig} when $\phi = 1$ resulting in a second-order scheme for smooth regions \cite{hirsch2007numerical}.  Godunov's theorem states that "Linear numerical schemes for solving partial differential equations, having the property of not generating new extrema, can be at most first-order accurate." \cite{godunov:hal-01620642}. Accordingly, when $\phi = 0$, a piecewise constant representation is recovered in regions with high gradients resulting in a first-order scheme that keeps the solution total variation diminishing (TVD). A solution is considered TVD when
+\begin{equation}
+	TV\left(\boldsymbol{U}^{n+1}\right) \le TV\left(\boldsymbol{U}^n\right)
+\end{equation}
+In smooth regions the MUSCL scheme will retain second-order accuracy.
+\begin{figure}
+	\centering
+	\begin{tikzpicture}[scale=1]
+		\draw[thick,->] (0,0) -- (8,0)node[anchor=west]{$x$};
+		\draw[thin,dashed] (1,-1) -- (1,2);
+		\draw[thin,dashed] (4,-1) -- (4,4);
+		\draw[thin,dashed] (7,-1) -- (7,5);
+		\node[circle,draw=black, fill=white, inner sep=0pt,minimum size=5pt] (b) at (2.5,0) {};
+		\node[circle,draw=black, fill=white, inner sep=0pt,minimum size=5pt] (b) at (5.5,0) {};
+		\node at (2.5,-0.5) {$i$};
+		\node at (5.5,-0.5) {$i+1$};
+		\node at (1,-1.5) {$i-\frac{1}{2}$};
+		\node at (4,-1.5) {$i+\frac{1}{2}$};
+		\node at (7,-1.5) {$i+\frac{3}{2}$};
+		\draw[thin,-] (1,1) -- (4,1);
+		\draw[thin,-] (4,3) -- (7,3);
+		\draw[very thick,-] (1,0.5) -- (4,1.5);
+		\draw[very thick,-] (4,2.5) -- (7,3.5);
+		\node at (2.5,1.5) {$\boldsymbol{U}_{i}$};
+		\node at (5.5,3.5) {$\boldsymbol{U}_{i+1}$};
+		\node at (3.4,2.5) {$\boldsymbol{U}_{L,i+\frac{1}{2}}$};
+		\node at (4.75,2) {$\boldsymbol{U}_{R,i+\frac{1}{2}}$};
+	\end{tikzpicture}
+	\caption[MUSCL Reconstruction.]{MUSCL Reconstruction.}
+	\label{fig:MUSCLConfig}
+\end{figure}
+\subsection{MUSCL Reconstruction}
+
+Following the $\kappa$-scheme of van Leer \cite{VANLEER1977263}, the values of $\boldsymbol{U}$ used in the variable extrapolation are
+\begin{equation}
+	\boldsymbol{U}^L_{i+\frac{1}{2}} = \boldsymbol{U}_i + \frac{\phi_i}{4 \Lambda} \left[\left(1-\kappa\right)\Delta \boldsymbol{U}_{i-\frac{1}{2}} + \left(1+\kappa\right)\Delta \boldsymbol{U}_{i+\frac{1}{2}}\right]
+\end{equation}
+\begin{equation}
+	\boldsymbol{U}^R_{i+\frac{1}{2}} = \boldsymbol{U}_{i+1} - \frac{\phi_{i+1}}{4 \Lambda} \left[\left(1+\kappa\right)\Delta \boldsymbol{U}_{i+\frac{3}{2}} + \left(1-\kappa\right)\Delta \boldsymbol{U}_{i+\frac{1}{2}}\right]
+\end{equation}
+\begin{equation}
+	\boldsymbol{U}^L_{i-\frac{1}{2}} = \boldsymbol{U}_{i-1} + \frac{\phi_{i-1}}{4 \Lambda} \left[\left(1-\kappa\right)\Delta \boldsymbol{U}_{i-\frac{3}{2}} + \left(1+\kappa\right)\Delta \boldsymbol{U}_{i-\frac{1}{2}}\right]
+\end{equation}
+\begin{equation}
+	\boldsymbol{U}^R_{i-\frac{1}{2}} = \boldsymbol{U}_i - \frac{\phi_i}{4 \Lambda} \left[\left(1+\kappa\right)\Delta \boldsymbol{U}_{i+\frac{1}{2}} + \left(1-\kappa\right)\Delta \boldsymbol{U}_{i-\frac{1}{2}}\right]
+\end{equation}
+Where the data differences are
+\begin{equation}
+	\Delta \boldsymbol{U}_{i+\frac{1}{2}} = \boldsymbol{U}_{i+1} - \boldsymbol{U}_{i}
+\end{equation}
+\begin{equation}
+	\Delta \boldsymbol{U}_{i-\frac{1}{2}} = \boldsymbol{U}_{i} - \boldsymbol{U}_{i-1}
+\end{equation}
+\begin{equation}
+	\Delta \boldsymbol{U}_{i+\frac{3}{2}} = \boldsymbol{U}_{i+2} - \boldsymbol{U}_{i+1}
+\end{equation}
+\begin{equation}
+	\Delta \boldsymbol{U}_{i-\frac{3}{2}} = \boldsymbol{U}_{i-1} - \boldsymbol{U}_{i-2}
+\end{equation}
+
+The choice of $\kappa$ determines the reconstruction scheme and may take any value between $-1$ and $1$. A choice of $\kappa = 1$ results in a central difference scheme; while a choice of $\kappa = -1$ will result in an upwind scheme; $\kappa = 0$ will result in a second-order Fromm scheme \cite{hirsch2007numerical}. Choices of $\kappa = \frac{1}{2}$ or $\kappa = \frac{1}{3}$ will result in third-order reconstruction, however the accuracy of the reconstruction will degrade to second-order \cite{Nishikawa}. 
+
+$\Lambda$ is a scaling factor used to dampen oscillations by increasing the numerical viscosity and may take on a value of $1$ or $2$ \cite{BIDADI201465}. A choice of $\Lambda = 2$ results in a more diffusive solution that avoids spurious oscillations, while $\Lambda = 1$ will produce the original van Leer \cite{VANLEER1977263} $\kappa$-scheme. 
+
+The flux limiter, $\phi$, is a function that limits the gradient of $\boldsymbol{U}$ in the solution. The flux limiter is a function of $r$, such that
+\begin{equation}
+	\phi_{i+1} = \phi\left(r_{i+1}\right)
+\end{equation}
+\begin{equation}
+	\phi_{i} = \phi\left(r_{i}\right)
+\end{equation}
+\begin{equation}
+	\phi_{i-1} = \phi\left(r_{i-1}\right)
+\end{equation}
+where $r$ is a ratio of the forward and backward gradients and is used as a measure of smoothness of the gradient of $\boldsymbol{U}$ and calculated by the differences in the data.
+\begin{equation}\label{eqn:rip1}
+	r_{i+1} = \frac{\Delta \boldsymbol{U}_{i+\frac{1}{2}}}{\Delta \boldsymbol{U}_{i+\frac{3}{2}} + \epsilon}
+\end{equation}
+\begin{equation}
+	r_{i} = \frac{\Delta \boldsymbol{U}_{i-\frac{1}{2}}}{\Delta \boldsymbol{U}_{i+\frac{1}{2}} + \epsilon}
+\end{equation}
+\begin{equation}\label{eqn:rim1}
+	r_{i-1} = \frac{\Delta \boldsymbol{U}_{i-\frac{3}{2}}}{\Delta \boldsymbol{U}_{i-\frac{1}{2}} + \epsilon}
+\end{equation}
+$\epsilon$ is a small factor of $10^{-6}$ that prevents division by zero. There are many choices for the flux limiter function including van Leer's \cite{VANLEER1997229} or van Albada's \cite{VANLEER199701}. The most diffusive of the flux limiters is Roe's \cite{ROESome} Minmod limiter, which is presented as
+\begin{equation}
+	\phi\left(r\right) = max\left(0,min\left(1,r\right)\right)
+\end{equation}
+The Minmod limiter is the most dissipative and adds the maximum amount of numerical diffusion while keeping the solution TVD \cite{BAI201868}.
+
+\section{Weighted Essentially Non-Oscillatory Schemes}
+
+Weighted Essentially Non-Oscillatory (WENO) Schemes were developed by Liu, Osher, and Chan \cite{LIU1994200} as a refinement to the cell-averaged Essentially Non-Oscillatory (ENO) Schemes of Harten and Osher \cite{HARTEN19973}. The ENO method chooses an appropriate interpolating polynomial to represent the data to avoid including the discontinuous cell in the stencil \cite{Shu1999}. ENO methods are very robust and uniformly high-order; however, they involve cumbersome calculations due to the stencil selection process \cite{1996JCoPh.126..202J}.
+
+The WENO method chooses to use a convex combination of all of the stencils to form the reconstruction and avoid the excess calculations needed to choose a stencil \cite{Shu1999}. Assigning the appropriate weights to the interpolating polynomials achieves the same essentially non-oscillatory property of the ENO schemes, adaptively excluding the discontinuous cell by giving it an almost zero weight \cite{ZHANG2016103}.
+
+The order, $m$, of the WENO reconstruction scales by $m = 2 r -1$ so that a choice of $r=2$ corresponds to a third-order WENO scheme and a choice of $r=3$ results in a fifth-order WENO scheme, where $r$ is the number of points used for a chosen stencil.
+\begin{figure}
+	\centering
+	\begin{tikzpicture}[scale=1]
+		\draw[thick,->] (-5,0) -- (6,0);
+		\draw[thin,dashed] (0,-1)node[anchor=north]{$i+\frac{1}{2}$} -- (0,5);
+		\draw[thin,dashed] (-3,-1) -- (-3,5);
+		\node at (-3,-1.4){$i-\frac{1}{2}$};
+		\draw[thin,dashed] (3,-1) -- (3,3);
+		\node at (3,-1.4){$i+\frac{3}{2}$};
+		\draw[thin,-] (0,4.15) -- (-3,4.15);
+		\draw[thin,-] (0,1) -- (3,1);
+		\node[circle,draw=black, fill=white, inner sep=0pt,minimum size=5pt] (b) at (-1.5,0) {};
+		\node[circle,draw=black, fill=white, inner sep=0pt,minimum size=5pt] (b) at (1.5,0) {};
+		\node at (-1.5,-0.6) {$i$};
+		\node at (1.5,-0.6) {$i+1$};
+		\draw[very thick,-] (0,3) to [out=90,in=30] (-2,4) to [out=210,in=0] (-3.5,3) to [out=180,in=270] (-5,4);
+		\draw[very thick,-] (5,1) to [out=90,in=30] (3,2) to [out=210,in=0] (1.5,1) to [out=180,in=270] (0,2);
+		\node at (-1.5,4.5) {$\boldsymbol{U}_{i}$};
+		\node at (1.5,0.6) {$\boldsymbol{U}_{i+1}$};
+		\node at (-0.75,3.2) {$\boldsymbol{U}_{L,i+\frac{1}{2}}$};
+		\node at (0.75,2) {$\boldsymbol{U}_{R,i+\frac{1}{2}}$};
+	\end{tikzpicture}
+	\caption[WENO Reconstruction.]{WENO Reconstruction.}
+	\label{fig:WENOConfig}
+\end{figure}
+\subsection{Third-Order WENO Reconstruction}\label{sect:WENO3}
+
+The WENO Scheme uses a smoothness indicator to determine the appropriately weighted polynomial to interpolate the function. Jiang and Shu \cite{1996JCoPh.126..202J} proposed new smoothness measurements that are more accurate at critical points than the smoothness measurements of Liu, Osher, and Chan \cite{LIU1994200}. These smoothness measurements minimize the total variation for the approximation.
+
+The smoothness indicators, $IS_k$, for the third-order WENO (WENO3) scheme are
+\begin{equation}
+	IS_0 = \left(\boldsymbol{U}_{i+2} - \boldsymbol{U}_{i+1}\right)^2
+\end{equation}
+\begin{equation}
+	IS_1 = \left(\boldsymbol{U}_{i+1} - \boldsymbol{U}_{i}\right)^2
+\end{equation}
+The $\alpha_k$ values are calculated by
+\begin{equation}
+	\alpha_0 = \frac{C_0}{\left(IS_0 + \epsilon\right)^2}
+\end{equation}
+\begin{equation}
+	\alpha_1 = \frac{C_1}{\left(IS_1 + \epsilon\right)^2}
+\end{equation}
+Where the optimal wieghts $C_0 = \frac{1}{3}$ and $C_1 = \frac{2}{3}$ and as in the case of the MUSCL Reconstruction of \equationref{eqn:rip1}-\equationref{eqn:rim1}, $\epsilon = 10^{-6}$ to avoid division by zero. Numerical tests by Jiang and Shu indicate that the results are not sensitive to the choice of $\epsilon$ as long as the value is in the range of $10^{-5}$ to $10^{-7}$ \cite{1996JCoPh.126..202J}.
+
+The weights, $\omega_k$, have the property
+\begin{equation}
+	\sum_{k=0}^{r-1} \omega_k = 1
+\end{equation}
+so that near a discontinuity the stencil that includes the discontinuity will be given a weight of $\omega_k = 0$ and the other stencil will be given a weight of $\omega_k = 1$ for the WENO3 reconstruction. The weights, $\omega_k$, are given by
+\begin{equation}
+	\omega_0 = \frac{\alpha_1}{\sum \alpha}
+\end{equation}
+\begin{equation}
+	\omega_1 = \frac{\alpha_2}{\sum \alpha}
+\end{equation}
+The stencils are given by
+\begin{equation}\label{eqn:q13}
+	q_0 = \frac{3}{2} \boldsymbol{U}_{i+1} - \frac{1}{2} \boldsymbol{U}_{i+2}
+\end{equation}
+\begin{equation}\label{eqn:q23}
+	q_1 = \frac{1}{2} \boldsymbol{U}_{i} - \frac{1}{2} \boldsymbol{U}_{i+1}
+\end{equation}
+The interpolation for $\boldsymbol{U}_{i+\frac{1}{2}}^R$ is then the convex combination of \equationref{eqn:q13} and \equationref{eqn:q23} multiplied by their appropriate weights given by
+\begin{equation}\label{eqn:WENOSum}
+	\boldsymbol{U}^{R}_{i+\frac{1}{2}} = \sum_{k=0}^{r-1} \omega_k q_k
+\end{equation}
+\subsection{Fifth-Order WENO Reconstruction}
+
+The smoothness indicators, $IS_k$, of Jiang and Shu \cite{1996JCoPh.126..202J} for the fifth-order WENO scheme (WENO5) are
+\begin{equation}
+	IS_0 = \frac{13}{12}\left(\boldsymbol{U}_{i-1} -2 \boldsymbol{U}_i + \boldsymbol{U}_{i+1}\right)^2 + \frac{1}{4}\left(\boldsymbol{U}_{i-1} - 4 \boldsymbol{U}_i + 3 \boldsymbol{U}_{i+1}\right)^2
+\end{equation}
+\begin{equation}
+	IS_1 = \frac{13}{12}\left(\boldsymbol{U}_{i} -2 \boldsymbol{U}_{i+1} + \boldsymbol{U}_{i+2}\right)^2 + \frac{1}{4}\left(\boldsymbol{U}_{i} -  \boldsymbol{U}_{i+2}\right)^2
+\end{equation}
+\begin{equation}
+	IS_2 = \frac{13}{12}\left(\boldsymbol{U}_{i+1} -2 \boldsymbol{U}_{i+2} + \boldsymbol{U}_{i+3}\right)^2 + \frac{1}{4}\left(3 \boldsymbol{U}_{i+1} -4 \boldsymbol{U}_{i+2} +  \boldsymbol{U}_{i+3}\right)^2
+\end{equation}
+The $\alpha_k$ values are given by
+\begin{equation}
+	\alpha_0 = \frac{C_0}{\left(IS_0 + \epsilon\right)^2}
+\end{equation}
+\begin{equation}
+	\alpha_1 = \frac{C_1}{\left(IS_1 + \epsilon\right)^2}
+\end{equation}
+\begin{equation}
+	\alpha_2 = \frac{C_2}{\left(IS_2 + \epsilon\right)^2}
+\end{equation}
+where the coefficients $C_0 = \frac{1}{10}$, $C_1 = \frac{3}{5}$, and $C_2 = \frac{3}{10}$. As in the case of the WENO3 reconstruction of \sectionref{sect:WENO3}, $\epsilon = 10^{-6}$ is chosen to prevent division by zero. The weights, $\omega_k$, are given by
+\begin{equation}
+	\omega_0 = \frac{\alpha_0}{\sum \alpha}
+\end{equation}
+\begin{equation}
+	\omega_1 = \frac{\alpha_1}{\sum \alpha}
+\end{equation}
+\begin{equation}
+	\omega_2 = \frac{\alpha_2}{\sum \alpha}
+\end{equation}
+The stencils are then given by
+\begin{equation}\label{eqn:q05}
+	q_0 = \frac{1}{6}\left(5 \boldsymbol{U}_{i} - \boldsymbol{U}_{i-1} + 2 \boldsymbol{U}_{i+1} \right)
+\end{equation}
+\begin{equation}\label{eqn:q15}
+	q_1 = \frac{1}{6} \left( 2 \boldsymbol{U}_{i} - \boldsymbol{U}_{i+2} + 5 \boldsymbol{U}_{i+1} \right)
+\end{equation}
+\begin{equation}\label{eqn:q25}
+	q_2 = \frac{1}{6} \left( 11 \boldsymbol{U}_{i+1} - 7 \boldsymbol{U}_{i+2} + 2 \boldsymbol{U}_{i+3} \right)
+\end{equation}
+The interpolation for $\boldsymbol{U}_{i+\frac{1}{2}}^R$ is then the convex combination of \equationref{eqn:q05}, \equationref{eqn:q15}, and \equationref{eqn:q23} multiplied by their appropriate weights, again given by \equationref{eqn:WENOSum}.
+%\begin{figure}
+%    \cfig{4}{blank.eps}{3.5}
+%    \caption[Caption for list of figures.]{Long caption for by figure}
+%    \label{fig:thisFigLabel}
+%\end{figure}

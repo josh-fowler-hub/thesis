@@ -1,0 +1,65 @@
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Roe Flux Calculation Outline}}{6}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Process Flowchart}}{7}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Configuration of the wave system: (a) Left rarefaction, contact, right shock. (b) Left shock, contact, right rarefaction. (c) Left rarefaction, contact, right rarefaction. (d) Left shock, contact, right shock.}}{16}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Solution structure of the Riemann problem on the $x$-$t$ plane for the time-dependent Euler equations.}}{17}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Cell Configuration for a one-dimensional grid.}}{21}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Flowchart for the Adaptive Riemann Solver.}}{31}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces MUSCL Reconstruction.}}{40}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces WENO Reconstruction.}}{43}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Results for density for the higher-order reconstruction for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}}{54}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Results for velocity for the higher-order reconstruction for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}}{55}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Results for pressure for the higher-order reconstruction for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}}{55}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Results for internal energy for the higher-order reconstruction for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}}{56}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Results for density for the higher-order reconstruction for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}}{58}%
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Results for velocity for the higher-order reconstruction for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}}{58}%
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Results for pressure for the higher-order reconstruction for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}}{59}%
+\contentsline {figure}{\numberline {6.8}{\ignorespaces Results for internal energy for the higher-order reconstruction for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}}{59}%
+\contentsline {figure}{\numberline {6.9}{\ignorespaces Results for density for the higher-order reconstruction for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}}{61}%
+\contentsline {figure}{\numberline {6.10}{\ignorespaces Results for velocity for the higher-order reconstruction for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}}{61}%
+\contentsline {figure}{\numberline {6.11}{\ignorespaces Results for pressure for the higher-order reconstruction for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}}{62}%
+\contentsline {figure}{\numberline {6.12}{\ignorespaces Results for internal energy for the higher-order reconstruction for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}}{62}%
+\contentsline {figure}{\numberline {6.13}{\ignorespaces Results for density for the higher-order reconstruction for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}}{64}%
+\contentsline {figure}{\numberline {6.14}{\ignorespaces Results for velocity for the higher-order reconstruction for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}}{64}%
+\contentsline {figure}{\numberline {6.15}{\ignorespaces Results for pressure for the higher-order reconstruction for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}}{65}%
+\contentsline {figure}{\numberline {6.16}{\ignorespaces Results for internal energy for the higher-order reconstruction for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}}{65}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Results for density for the higher-order reconstruction with second-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}}{69}%
+\contentsline {figure}{\numberline {7.2}{\ignorespaces Results for velocity for the higher-order reconstruction with second-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}}{70}%
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Results for pressure for the higher-order reconstruction with second-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}}{70}%
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Results for internal energy for the higher-order reconstruction with second-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}}{71}%
+\contentsline {figure}{\numberline {7.5}{\ignorespaces Results for density for the higher-order reconstruction with fourth-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}}{72}%
+\contentsline {figure}{\numberline {7.6}{\ignorespaces Results for velocity for the higher-order reconstruction with fourth-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}}{73}%
+\contentsline {figure}{\numberline {7.7}{\ignorespaces Results for pressure for the higher-order reconstruction with fourth-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}}{73}%
+\contentsline {figure}{\numberline {7.8}{\ignorespaces Results for internal energy for the higher-order reconstruction with fourth-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}}{74}%
+\contentsline {figure}{\numberline {7.9}{\ignorespaces Results for density for the higher-order reconstruction with sixth-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}}{75}%
+\contentsline {figure}{\numberline {7.10}{\ignorespaces Results for velocity for the higher-order reconstruction with sixth-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}}{76}%
+\contentsline {figure}{\numberline {7.11}{\ignorespaces Results for pressure for the higher-order reconstruction with sixth-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}}{76}%
+\contentsline {figure}{\numberline {7.12}{\ignorespaces Results for internal energy for the higher-order reconstruction with sixth-order central differencing for Test 1, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.2$.}}{77}%
+\contentsline {figure}{\numberline {7.13}{\ignorespaces Results for density for the higher-order reconstruction with second-order central differencing for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}}{79}%
+\contentsline {figure}{\numberline {7.14}{\ignorespaces Results for density for the higher-order reconstruction with second-order central differencing for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}}{79}%
+\contentsline {figure}{\numberline {7.15}{\ignorespaces Results for density for the higher-order reconstruction with second-order central differencing for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}}{80}%
+\contentsline {figure}{\numberline {7.16}{\ignorespaces Results for density for the higher-order reconstruction with second-order central differencing for Test 2, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}}{80}%
+\contentsline {figure}{\numberline {7.17}{\ignorespaces Results for density for the higher-order reconstruction with second-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}}{81}%
+\contentsline {figure}{\numberline {7.18}{\ignorespaces Results for velocity for the higher-order reconstruction with second-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}}{82}%
+\contentsline {figure}{\numberline {7.19}{\ignorespaces Results for pressure for the higher-order reconstruction with second-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}}{82}%
+\contentsline {figure}{\numberline {7.20}{\ignorespaces Results for internal energy for the higher-order reconstruction with second-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}}{83}%
+\contentsline {figure}{\numberline {7.21}{\ignorespaces Results for density for the higher-order reconstruction with fourth-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}}{84}%
+\contentsline {figure}{\numberline {7.22}{\ignorespaces Results for velocity for the higher-order reconstruction with fourth-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}}{85}%
+\contentsline {figure}{\numberline {7.23}{\ignorespaces Results for pressure for the higher-order reconstruction with fourth-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}}{85}%
+\contentsline {figure}{\numberline {7.24}{\ignorespaces Results for internal energy for the higher-order reconstruction with fourth-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}}{86}%
+\contentsline {figure}{\numberline {7.25}{\ignorespaces Results for density for the higher-order reconstruction with sixth-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}}{87}%
+\contentsline {figure}{\numberline {7.26}{\ignorespaces Results for velocity for the higher-order reconstruction with sixth-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}}{87}%
+\contentsline {figure}{\numberline {7.27}{\ignorespaces Results for pressure for the higher-order reconstruction with sixth-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}}{88}%
+\contentsline {figure}{\numberline {7.28}{\ignorespaces Results for internal energy for the higher-order reconstruction with sixth-order central differencing for Test 3, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.035$.}}{88}%
+\contentsline {figure}{\numberline {7.29}{\ignorespaces Results for density for the higher-order reconstruction with second-order central differencing for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}}{90}%
+\contentsline {figure}{\numberline {7.30}{\ignorespaces Results for density for the higher-order reconstruction with second-order central differencing for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}}{91}%
+\contentsline {figure}{\numberline {7.31}{\ignorespaces Results for density for the higher-order reconstruction with second-order central differencing for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}}{91}%
+\contentsline {figure}{\numberline {7.32}{\ignorespaces Results for density for the higher-order reconstruction with second-order central differencing for Test 4, with a CFL number of 1 and 100 grid points, compared at a time of $t=0.012$.}}{92}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }

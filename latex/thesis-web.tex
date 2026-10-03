@@ -1,0 +1,66 @@
+\documentclass[12pt,oneside]{book}
+
+% Mathematical and chapter-content packages
+\usepackage{
+  amsmath,
+  amsfonts,
+  amssymb,
+  bm,
+  mathtools,
+  mathrsfs
+}
+
+\usepackage{
+  graphicx,
+  booktabs,
+  hhline,
+  enumerate,
+  units,
+  xspace,
+  gensymb,
+  verbatim,
+  rotating
+}
+
+\usepackage{typedref}
+\usepackage{tikz}
+
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{automata,positioning}
+
+% Print-only spacing command used by the original definitions.
+\providecommand{\singlespace}{}
+
+% Preserve the thesis's custom commands
+\input{definitions}
+
+\title{
+  High Order Roe-WENO Schemes Based on
+  Higher-Order Central Differencing and Reconstruction
+}
+
+\author{Joshua A. Fowler}
+\date{2021}
+
+\begin{document}
+
+\frontmatter
+
+\chapter*{Thesis Contents}
+\tableofcontents
+
+\mainmatter
+
+\include{CH1/introduction}
+\include{CH2/chapter2name}
+\include{CH3/chapter3name}
+\include{CH4/chapter4name}
+\include{CH5/chapter5name}
+\include{CH6/conclusions}
+
+\backmatter
+
+\bibliographystyle{plain}
+\bibliography{bibliography}
+
+\end{document}

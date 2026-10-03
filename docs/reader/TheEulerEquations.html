@@ -1,0 +1,42 @@
+<!DOCTYPE html> 
+<html lang='en-US' xml:lang='en-US'> 
+<head><title>The Euler Equations</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='thesis-web.css' rel='stylesheet' type='text/css' /> 
+<meta content='thesis-web.tex' name='src' /> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+<link href='titan-reader.css' rel='stylesheet' type='text/css' /> 
+</head><body>
+<!-- l. 2 --><p class='noindent'> <nav aria-label='Thesis navigation' class='thesis-nav'> <a href='/thesis/'>Thesis overview</a>  |  <a href='/thesis/reader/thesis-web.html'>Contents</a>  |  <a href='/'>Portfolio</a> </nav>  </p><!-- l. 2 --><div class='crosslinks'><p class='noindent'>[<a href='TheRiemannProblem.html'>next</a>] [<a href='#tailTheEulerEquations.html'>tail</a>] [<a href='GoverningEquations.html#TheEulerEquations.html'>up</a>] </p></div>
+   <h3 class='sectionHead' id='the-euler-equations'><span class='titlemark'>2.1   </span> <a id='x9-80002.1'></a>The Euler Equations</h3>
+<!-- l. 3 --><p class='noindent'>The Euler equations are a system of time dependent non-linear hyperbolic partial
+differential equations that govern the dynamics of inviscid fluid flow. The five
+governing equations are the conservation of mass, \(x\)-momentum, \(y\)-momentum,
+\(z\)-momentum, and energy. \begin {equation}  \rho _t + \left (\rho u\right )_x + \left (\rho v\right )_y + \left (\rho w\right )_z = 0  \end {equation}<a id='x9-8001r1'></a> \begin {equation}  \left (\rho u\right )_t + \left (\rho u^2 + p\right )_x + \left (\rho u v\right )_y + \left (\rho u w\right )_z = 0  \end {equation}<a id='x9-8002r2'></a> \begin {equation}  \left (\rho v\right )_t + \left (\rho u v + p\right )_x + \left (\rho v^2 + p\right )_y + \left (\rho v w\right )_z = 0  \end {equation}<a id='x9-8003r3'></a> \begin {equation}  \left (\rho w\right )_t + \left (\rho u w + p\right )_x + \left (\rho v w\right )_y + \left (\rho w^2 + p\right )_z = 0  \end {equation}<a id='x9-8004r4'></a> \begin {equation}  E_t + \left [u\left (E + p\right )\right ]_x + \left [v\left (E + p\right )\right ]_y + \left [w\left (E + p\right )\right ]_z = 0  \end {equation}<a id='x9-8005r5'></a> This system of PDEs can be represented more
+compactly using the vector definitions for the quantities \begin {equation}  \boldsymbol {U} = \begin {bmatrix} \rho \\ \rho u\\ \rho v\\ \rho w\\ E \end {bmatrix},\,\, \boldsymbol {F} = \begin {bmatrix} \rho u\\ \rho u^2 + p\\ \rho u v\\ \rho u w\\ u\left (E + p\right ) \end {bmatrix},\,\, \boldsymbol {G} = \begin {bmatrix} \rho u\\ \rho u v\\ \rho v^2 + p\\ \rho v w\\ v\left (E + p\right ) \end {bmatrix},\,\, \boldsymbol {H} = \begin {bmatrix} \rho u\\ \rho u w\\ \rho v w\\ \rho w^2 + p\\ w\left (E + p\right ) \end {bmatrix}  \end {equation}<a id='x9-8006r6'></a> Where \(E\) is the total
+energy per unit volume and is defined as \begin {equation}  E = \frac {1}{2} \rho \boldsymbol {V}^2 + pe  \end {equation}<a id='x9-8007r7'></a> and \(\boldsymbol {V}^2\) is \begin {equation}  \boldsymbol {V}^2 = u^2 + v^2 + w^2  \end {equation}<a id='x9-8008r8'></a> and the specific internal energy,
+\(e\), for an ideal gas is \begin {equation} \label {eqn:idealgasEOS} e = \frac {p}{\left (\gamma - 1\right ) \rho }  \end {equation}<a id='x9-8009r9'></a> So that the system of PDEs can take the more compact
+vector form \begin {equation} \label {eqn:EulerVector} \boldsymbol {U}_t + \boldsymbol {F}\left (\boldsymbol {U}\right )_x + \boldsymbol {G}\left (\boldsymbol {U}\right )_y + \boldsymbol {H}\left (\boldsymbol {U}\right )_z = \boldsymbol {0}  \end {equation}<a id='x9-8010r10'></a> The integral form of the conservation laws are \begin {equation} \label {eq:IntegralForm} \frac {d}{dt} \int \int \int _{V} \boldsymbol {U} d V + \int \int _A \mathcal {H} \boldsymbol {\cdot } \boldsymbol {n} d A = \boldsymbol {0}  \end {equation}<a id='x9-8011r11'></a> where \(\mathcal {H} = \left (\boldsymbol {F},\boldsymbol {G},\boldsymbol {H}\right )\) is
+the tensor of fluxes. In the one-dimensional case, the Euler equations
+take the form \begin {equation} \label {eqn:EulerVector1d} \boldsymbol {U}_t + \boldsymbol {F}\left (\boldsymbol {U}\right )_x = \boldsymbol {0}  \end {equation}<a id='x9-8012r12'></a> Where the one-dimensional form of \(\boldsymbol {U}\) and \(\boldsymbol {F}\) are \begin {equation}  \boldsymbol {U} = \begin {bmatrix} \rho \\ \rho u\\ E \end {bmatrix},\,\, \boldsymbol {F} = \begin {bmatrix} \rho u\\ \rho u^2 + p\\ u\left (E + p\right ) \end {bmatrix}  \end {equation}<a id='x9-8013r13'></a> The Euler
+equations can be linearized, so that the equations can be represented in
+the following form \begin {equation} \label {eqn:LinEuler} \boldsymbol {U}_t + \boldsymbol {A} \boldsymbol {U}_x = \boldsymbol {0}  \end {equation}<a id='x9-8014r14'></a> by finding a matrix, \(\boldsymbol {A}\), where \begin {equation} \label {eq:LinEquiv} \boldsymbol {F} = \boldsymbol {A}\boldsymbol {U}  \end {equation}<a id='x9-8015r15'></a> The matrix, \(\boldsymbol {A}\), is the
+Jacobian matrix given by \begin {equation} \label {eqn:JacobDef} \boldsymbol {A} = \frac {\partial \boldsymbol {F}}{\partial \boldsymbol {U}}  \end {equation}<a id='x9-8016r16'></a> To find \(\frac {\partial \boldsymbol {F}}{\partial \boldsymbol {U}}\)the components of \(\boldsymbol {F}\) must be represented
+by the components of \(\boldsymbol {U}\). \begin {equation}  \rho = u_1  \end {equation}<a id='x9-8017r17'></a> \begin {equation}  \rho u = u_2  \end {equation}<a id='x9-8018r18'></a> \begin {equation}  E = u_3  \end {equation}<a id='x9-8019r19'></a> Then \(u\) and \(a\) can be represented as \begin {equation}  u = \frac {u_2}{u_1}  \end {equation}<a id='x9-8020r20'></a> \begin {equation}  a = \sqrt {\left (\frac {u_3}{u_1} - \frac {1}{2} \left (\frac {u_2}{u_1}\right )^2\right )\left (\gamma \left (\gamma - 1\right )\right )}  \end {equation}<a id='x9-8021r21'></a> so that \(\boldsymbol {F}\)
+becomes \begin {equation}  \boldsymbol {F} = \begin {bmatrix} u_2\\ \frac {u_2^2}{2 u_1} \left (3 - \gamma \right ) + u_3 \left (\gamma - 1\right )\\ \gamma \frac {u_2}{u_1} u_3 - \frac {u_2^3}{2 u_1^2} \left (\gamma - 1\right ) \end {bmatrix}  \end {equation}<a id='x9-8022r22'></a> The Jacobian matrix can be evaluated according to Equation <a href='#x9-8016r16'>2.16<!-- tex4ht:ref: equation:eqn:JacobDef  --></a>,
+given in full by \begin {equation}  \boldsymbol {A} = \begin {bmatrix} \frac {\partial f_1}{\partial u_1} &amp; \frac {\partial f_1}{\partial u_2} &amp; \frac {\partial f_1}{\partial u_3}\\ \frac {\partial f_2}{\partial u_1} &amp; \frac {\partial f_2}{\partial u_2} &amp; \frac {\partial f_2}{\partial u_3}\\ \frac {\partial f_3}{\partial u_1} &amp; \frac {\partial f_3}{\partial u_2} &amp; \frac {\partial f_3}{\partial u_3} \end {bmatrix}  \end {equation}<a id='x9-8023r23'></a> Evaluating the derivatives of the components of \(\boldsymbol {F}\) with
+respect to the components of \(\boldsymbol {U}\), gives the following Jacobian matrix for the
+one-dimensional Euler equations \begin {equation}  \boldsymbol {A} = \begin {bmatrix} 0 &amp; 1 &amp; 0\\ \frac {u^2}{2}\left (\gamma - 3\right )&amp; u(3 - \gamma ) &amp; \gamma - 1\\ \frac {u^3}{2} \left (\gamma - 2\right ) - \frac {a^2 u}{\gamma - 1}&amp; \frac {3 - 2 \gamma }{2} u^2 + \frac {a^2}{\gamma - 1} &amp; \gamma u \end {bmatrix}  \end {equation}<a id='x9-8024r24'></a> where \(a\) is the speed of sound and is
+given by \begin {equation}  a = \sqrt {\frac {\gamma p}{\rho }}  \end {equation}<a id='x9-8025r25'></a> Allowing the system of PDEs to be represented in the form of
+Equation <a href='#x9-8014r14'>2.14<!-- tex4ht:ref: equation:eqn:LinEuler  --></a>.
+                                                                          
+
+                                                                          
+</p>
+   <!-- l. 154 --><div class='crosslinks'><p class='noindent'>[<a href='TheRiemannProblem.html'>next</a>] [<a href='TheEulerEquations.html'>front</a>] [<a href='GoverningEquations.html#TheEulerEquations.html'>up</a>] </p></div>
+<!-- l. 154 --><p class='indent'>   <a id='tailTheEulerEquations.html'></a> </p> 
+</body> 
+</html>

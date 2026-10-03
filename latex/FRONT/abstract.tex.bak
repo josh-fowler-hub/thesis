@@ -1,0 +1,56 @@
+\chapter*{Abstract}
+% the \makeabstract command creates the top portion of the abstract
+% page ... must be issued before the abstract content
+\makeabstract
+
+%%%%%%%%%%% Your Abstract Text Goes after Here %%%%%%%%%%%%%%%%%%%%%%%
+
+The principle objective of this dissertation is to analyze the NASA
+Magnetohydrodynamic Augmented Propulsion Experiment (MAPX) using a
+three-dimensional numerical model.  The results of this analysis are
+intended to increase the understanding of the of the critical
+physical processes in the accelerator and to provide pre-test
+performance predictions.  Because of the three-dimensional nature of
+the electromagnetic forces involved, one must use a
+three-dimensional numerical model to properly analyze any
+magnetohydrodynamic (MHD) flow.  However, no such three-dimensional
+model existed for diagonal MHD accelerators.
+
+Therefore, we developed a parabolic three-dimensional numerical
+model capable of simulating diagonal MHD accelerator flows.  The
+magnetohydrodynamic equation set comprised the mass continuity
+equation, three momentum equations, the energy equation, two
+turbulence equations, and Maxwell's electrical equations.  This
+numerical model incorporates the NASA Chemical Equilibrium with
+Applications code for calculation of thermodynamic and species
+concentration properties and uses a numerical technique based on
+electron-neutral momentum transfer cross-sections to calculated
+electrical conductivity.  This model is advantageous because it
+allows for the simulation of partially ionized plasma flows.
+
+This new three-dimensional diagonal MHD accelerator model was then
+used to analyze the NASA MAPX accelerator.  From this 3-D analysis,
+contrary to the previous one-dimensional analyses, we recommend that
+the MAPX accelerator operate at a 45-degree angle, with an applied
+current of 100-Amps, for a length of .800m.  The 45-degree angle
+represents that maximum that can be achieved experimentally,
+allowing for a reduction in Hall current.  The 100-Amp applied
+current allows for  high accelerator exit velocity while preventing
+electrode damage due to over-powering.  We also determined that, due
+to secondary flows in the MHD accelerator, powering the electrodes
+more than 0.800m results in a reversal of the Faraday current,
+essentially transforming the accelerator into a generator, which
+results in a reduction in velocity.
+
+This research marks the first in-depth, three dimensional numerical
+analysis of an experimental diagonal MHD accelerator.  The results
+of this research have helped to define the experimental
+configuration of the NASA MAPX accelerator and offer a better
+understanding of the critical physical processes that occur within a
+diagonal magnetohydrodynamic accelerator.
+
+%%%%%%%%%%%%% Your Abstract Text should be before Here %%%%%%%%%%%%%%
+
+% the abstractsig command creates the signature spaces after the
+% abstract, and therefore, must be issued after the abstract.
+\abstractsig

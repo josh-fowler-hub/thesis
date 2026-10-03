@@ -1,0 +1,56 @@
+<!DOCTYPE html> 
+<html lang='en-US' xml:lang='en-US'> 
+<head><title>Higher-Order Reconstruction with Higher-Order Central Differencing
+Results</title> 
+<meta charset='utf-8' /> 
+<meta content='TeX4ht (https://tug.org/tex4ht/)' name='generator' /> 
+<meta content='width=device-width,initial-scale=1' name='viewport' /> 
+<link href='thesis-web.css' rel='stylesheet' type='text/css' /> 
+<meta content='thesis-web.tex' name='src' /> 
+<script>window.MathJax = { tex: { tags: "ams", }, }; </script> 
+ <script async='async' id='MathJax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js' type='text/javascript'></script>  
+<link href='titan-reader.css' rel='stylesheet' type='text/css' /> 
+</head><body>
+<!-- l. 12 --><p class='noindent'> <nav aria-label='Thesis navigation' class='thesis-nav'> <a href='/thesis/'>Thesis overview</a>  |  <a href='/thesis/reader/thesis-web.html'>Contents</a>  |  <a href='/'>Portfolio</a> </nav>  </p><!-- l. 12 --><div class='crosslinks'><p class='noindent'>[<a href='Conclusions1.html'>next</a>] [<a href='HigherOrderReconstructionResults1.html'>prev</a>] [<a href='HigherOrderReconstructionResults1.html#tailHigherOrderReconstructionResults1.html'>prev-tail</a>] [<a href='#tailHigherOrderReconstructionwithHigherOrderCentralDifferencingResults.html'>tail</a>] [<a href='Conclusions.html#HigherOrderReconstructionwithHigherOrderCentralDifferencingResults.html'>up</a>] </p></div>
+   <h3 class='sectionHead' id='higherorder-reconstruction-with-higherorder-central-differencing-results'><span class='titlemark'>6.2   </span> <a id='x30-440006.2'></a>Higher-Order Reconstruction with Higher-Order Central Differencing
+Results</h3>
+<!-- l. 14 --><p class='noindent'>The Roe scheme was the least sensitive to the modification made to the average
+flux term. The results for the CD2-Roe scheme remained unchanged from the
+results for the Roe scheme in all tests. The average flux in the Roe scheme is seen
+in Equation <a href='ModificationtoRoesApproximateRiemannSolver.html#x17-21001r70'>3.70<!-- tex4ht:ref: equation:eqn:CDFlux  --></a> where \(\boldsymbol {F}_L\) is taken as \(\boldsymbol {F}_{i-1}\) and \(\boldsymbol {F}_R\) is taken as \(\boldsymbol {F}_i\). The centrally differenced
+flux in the CD2 scheme is seen in Equation <a href='ModificationtoRoesApproximateRiemannSolver.html#x17-22004r76'>3.76<!-- tex4ht:ref: equation:eqn:CD2  --></a>, which is equivalent to the
+average flux in the Roe scheme.
+</p><!-- l. 16 --><p class='indent'>   The CD2-Roe-WENO5 scheme shows large oscillations in all four tests,
+with the largest amplitude oscillations near contact discontinuities. The
+CD2-Roe-MUSCL and CD2-Roe-WENO3 schemes are not affected to the
+same degree as the CD2-Roe-WENO5 scheme. The CD2-Roe-MUSCL and
+CD2-Roe-WENO3 schemes show some small oscillatory behavior near shocks in
+Test 3, but the oscillations are of much lower amplitude than seen in the
+CD2-Roe-WENO5 scheme. Near contact waves, the CD2-Roe-MUSCL
+and CD2-Roe-WENO3 schemes also show smaller oscillations than the
+CD2-Roe-WENO5 scheme. The CD4-Roe-WENO5 scheme sees the oscillations
+near the contact waves dampen when compared to the CD2-Roe-WENO5 scheme.
+Test 3, however, also displays an increase in the oscillations’ amplitude ahead of
+the left shock. The oscillations near contact waves in the CD6-Roe-WENO5
+scheme can also be seen to dampen when compared to the CD4-Roe-WENO5
+scheme. The oscillations near the left shock in Test 3 increase in amplitude as
+well.
+</p><!-- l. 18 --><p class='indent'>   In Test 1, the higher-order reconstruction with higher-order central
+differencing schemes showed the reintroduction of the entropy fix artifact present
+in the Roe scheme absent from the higher-order reconstruction schemes. Except
+for the CD2-Roe scheme, which is, in fact, the Roe scheme, the CD2, CD4, and
+CD6 schemes did not produce solutions for Test 2 and Test 4. These schemes
+developed large oscillations at the contact waves that led to non-TVD behavior
+                                                                          
+
+                                                                          
+and unphysical flow properties, making them unsuitable for use in any practical
+computation.
+                                                                          
+
+                                                                          
+</p>
+   <!-- l. 19 --><div class='crosslinks'><p class='noindent'>[<a href='Conclusions1.html'>next</a>] [<a href='HigherOrderReconstructionResults1.html'>prev</a>] [<a href='HigherOrderReconstructionResults1.html#tailHigherOrderReconstructionResults1.html'>prev-tail</a>] [<a href='HigherOrderReconstructionwithHigherOrderCentralDifferencingResults.html'>front</a>] [<a href='Conclusions.html#HigherOrderReconstructionwithHigherOrderCentralDifferencingResults.html'>up</a>] </p></div>
+<!-- l. 19 --><p class='indent'>   <a id='tailHigherOrderReconstructionwithHigherOrderCentralDifferencingResults.html'></a> </p> 
+</body> 
+</html>
