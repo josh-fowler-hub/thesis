@@ -4,7 +4,8 @@ subtitle: "Master’s Thesis · Joshua A. Fowler · 2021"
 description: "An investigation of higher-order shock-capturing methods for the one-dimensional compressible Euler equations."
 ---
 
-[Download the thesis PDF](downloads/thesis.pdf){.btn .btn-primary}
+[Read the thesis online](reader/thesis-web.html){.btn .btn-primary}
+[Download the thesis PDF](downloads/thesis.pdf){.btn .btn-outline-light}
 [View the MATLAB implementation](https://github.com/josh-fowler-hub/HighOrderEuler-MATLAB){.btn .btn-outline-light}
 
 ## Overview
@@ -78,11 +79,11 @@ and flux formulation.
 
 ## Read the Thesis
 
-The full thesis is currently available as a PDF, including
-the mathematical development, benchmark results, figures,
-and references.
+Read the thesis online with separate chapter pages, linked equations,
+figures, and references, or download the original PDF.
 
-[Download the complete thesis](downloads/thesis.pdf){.btn .btn-primary}
+[Read online](reader/thesis-web.html){.btn .btn-primary}
+[Download PDF](downloads/thesis.pdf){.btn .btn-outline-light}
 
 ## Related Software
 
